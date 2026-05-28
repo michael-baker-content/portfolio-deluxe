@@ -1,6 +1,6 @@
 # Bay Area Show Explorer
 
-A non-commercial prototype for adding artist context to SF Bay Area concert listings from [The List](https://jon.luini.com/thelist/date.html).
+A non-commercial prototype for adding artist context to S.F. Bay Area concert listings from [The List](https://jon.luini.com/thelist/date.html).
 
 The project is deliberately conservative:
 
