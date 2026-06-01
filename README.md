@@ -1,6 +1,6 @@
 # Michael Baker Portfolio
 
-This is the standalone Portfolio project at `C:\Users\Michael\Documents\Apps\Portfolio`.
+This is the standalone Portfolio project. In the local workspace, it is intended to sit alongside the Music and Greeting projects under a shared apps folder.
 
 The project began as a fork of [`machadop1407/beautiful-react-tailwind-portfolio`](https://github.com/machadop1407/beautiful-react-tailwind-portfolio). The current goal is to keep the useful 1.0 portfolio structure while turning it into a more evidence-driven 2.0 site for Michael Baker's work.
 
@@ -63,16 +63,16 @@ npm run build
 If the local npm launcher points at a broken user-level npm install, use the Node-bundled npm CLI directly:
 
 ```powershell
-node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" install
-node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run build
+node "<node-install-dir>\node_modules\npm\bin\npm-cli.js" install
+node "<node-install-dir>\node_modules\npm\bin\npm-cli.js" run build
 ```
 
 ## Sibling Projects
 
 Sibling app projects live outside this folder:
 
-- Music app: `C:\Users\Michael\Documents\Apps\Music`
-- Greeting Card app: `C:\Users\Michael\Documents\Apps\Greeting`
+- Music app: `../Music`
+- Greeting Card app: `../Greeting`
 
 The Portfolio project may link to those apps, but their app code should not be mixed back into this repo root.
 

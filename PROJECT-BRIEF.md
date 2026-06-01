@@ -21,7 +21,7 @@ Build a portfolio site that feels personal enough to represent Michael's taste a
 - Personal before generic: keep the structure of a portfolio template, but replace stock developer-portfolio language with specific project evidence.
 - Projects as evidence: each project card should explain what the project does, why it exists, what improved, and where to go next.
 - Data over markup: project entries, tags, links, and summaries should live in structured data.
-- Three-project clarity: Portfolio, Music, and Greeting are sibling projects under `C:\Users\Michael\Documents\Apps`.
+- Three-project clarity: Portfolio, Music, and Greeting are sibling projects under the same local apps workspace.
 - Source materials stay separate: old assets, references, and prototypes belong under `source-materials` unless they are active code.
 - Accessible by default: navigation, contrast, reduced motion, semantic sections, and keyboard flow should be part of the baseline.
 
