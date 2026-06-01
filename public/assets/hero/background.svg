@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Placeholder background architecture layer">
+  <defs>
+    <linearGradient id="distant" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#d9eef6" stop-opacity="0.78"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="none"/>
+  <g opacity="0.72">
+    <path d="M160 690L360 470L560 690Z" fill="url(#distant)"/>
+    <path d="M410 690L650 400L900 690Z" fill="#d3e5f1" opacity="0.58"/>
+    <path d="M750 690L980 430L1220 690Z" fill="#f3d8cc" opacity="0.55"/>
+    <path d="M1100 690L1320 465L1540 690Z" fill="#d9eef6" opacity="0.58"/>
+  </g>
+  <g opacity="0.82">
+    <rect x="1070" y="285" width="235" height="315" rx="24" fill="#fffaf1"/>
+    <rect x="1110" y="345" width="45" height="105" rx="22" fill="#a8d6e5"/>
+    <rect x="1180" y="345" width="45" height="105" rx="22" fill="#a8d6e5"/>
+    <rect x="1250" y="345" width="35" height="105" rx="17" fill="#a8d6e5"/>
+    <path d="M1070 285L1187 190L1305 285Z" fill="#ffffff"/>
+    <circle cx="1187" cy="188" r="54" fill="#fffaf1"/>
+  </g>
+</svg>

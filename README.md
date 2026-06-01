@@ -1,97 +1,97 @@
-# Bay Area Show Explorer
+# Michael Baker Portfolio
 
-A non-commercial prototype for adding artist context to S.F. Bay Area concert listings from [The List](https://jon.luini.com/thelist/date.html).
+This is the standalone Portfolio project at `C:\Users\Michael\Documents\Apps\Portfolio`.
 
-The project is deliberately conservative:
+The project began as a fork of [`machadop1407/beautiful-react-tailwind-portfolio`](https://github.com/machadop1407/beautiful-react-tailwind-portfolio). The current goal is to keep the useful 1.0 portfolio structure while turning it into a more evidence-driven 2.0 site for Michael Baker's work.
 
-- The original listing source stays credited and linked.
-- Imported artists start as `review` confidence until enriched or manually verified.
-- Direct support links, such as Bandcamp and artist pages, are favored over platform-only discovery.
-- Ambiguous artist names are treated as unresolved instead of guessed.
+## Current Shape
 
-## Open the Prototype
+The active app is a React, Vite, and Tailwind portfolio site with:
 
-For read-only browsing, open `index.html` in a browser. To save review edits directly to `data/artists.js`, use the local dev server:
+- A layered, scroll-reactive hero using placeholder SVG assets in `public/assets/hero`.
+- Sticky full-screen homepage sections for lineage, featured work, capabilities, taste, and contact.
+- Data-driven project cards and project detail pages.
+- Four case studies: Portfolio, Music, Greeting, and a reusable lorem-ipsum template case study.
+- Sibling-project links for the Music and Greeting apps, which live outside this repo folder.
 
-```powershell
-node scripts/dev-server.mjs
-```
+## Project Structure
 
-Then open:
+- `index.html` mounts the Vite app.
+- `src/main.jsx` boots React.
+- `src/App.jsx` routes the homepage and `/projects/:slug` case-study pages.
+- `src/pages/HomePage.jsx` contains the homepage layout and scroll hero behavior.
+- `src/pages/ProjectPage.jsx` renders shared case-study pages.
+- `src/components` contains reusable UI components.
+- `src/data` contains navigation, profile, capabilities, and case-study content.
+- `src/styles.css` contains Tailwind layers and custom utilities.
+- `public/assets/hero` contains the current layered hero placeholder assets.
 
-```text
-http://127.0.0.1:4173/review.html
-```
+## Case Studies
 
-## Import Current Listings
+Case-study content lives in `src/data/projects.js`.
 
-When network access is available, run:
+Each case study currently supports:
 
-```powershell
-node scripts/import-thelist.mjs
-node scripts/build-artist-store.mjs
-```
+- Card metadata: `slug`, `label`, `title`, `description`, `status`, `tone`, and `evidence`.
+- Detail-page overview: `summary`, `problem`, `outcome`, and `role`.
+- Lists: `decisions` and `nextSteps`.
+- Narrative blocks: `sections`.
+- Optional app links via `appHref`.
 
-The page loads `data/sample-events.js` first and then `data/imported-events.js` when it exists, so imported data automatically replaces the small sample set.
+The template case study at `/projects/template` is intentionally placeholder content. Use it as the pattern for future case studies before replacing lorem ipsum with real project detail.
 
-## Review Artists
+## Local Development
 
-Open `review.html` through the local dev server to work through the artist queue. `Save Artist` writes to `data/artists.js` when the dev server is running. If the page is opened without the dev server, it falls back to browser storage. `Revert Form` discards unsaved changes in the current form only. `Clear Browser Store` is the destructive reset that reloads from `data/artists.js`. Export remains available as a backup.
-
-`Enrich Artist` is enabled for artists marked `Likely`. It saves the current artist first, then asks the local dev server to run Wikidata, MusicBrainz, Discogs-link cleanup, and normalization for that selected artist.
-
-Rejected links are sticky: enrichment should not revive the same URL after you reject it. Enrichment also uses user-provided Spotify, MusicBrainz, and Discogs artist links as stronger lookup seeds before trying a name-only search. Name-only Wikidata enrichment now requires an exact artist-name match and skips record-label entities, which avoids cases like "The Famous" becoming "The Famous Charisma Label."
-
-When verified official, Bandcamp, or Facebook links exist, enrichment also tries to fill empty locality, genres, and summary from page metadata/text. It only fills blank or `unknown` fields; it does not overwrite reviewed values.
-
-Typed links use this format:
-
-```text
-bandcamp | Bandcamp | https://artist.bandcamp.com/ | verified
-instagram | Instagram | https://instagram.com/artist | likely
-official | Official | https://artist.example.com/ | verified
-```
-
-Support Priority is computed from verified link types. Official pages are listed first, link hubs such as Linktree second, and the remaining verified source types are sorted alphabetically.
-
-## Optional Enrichment
-
-Spotify is not required. MusicBrainz can add stable artist identity candidates without any paid account:
+Install dependencies:
 
 ```powershell
-node scripts/enrich-musicbrainz.mjs --limit=25
+npm install
 ```
 
-The script is intentionally conservative and rate-limited. It only marks high-score name matches as `likely`, adds a MusicBrainz link, and records evidence for review.
-
-Wikidata is useful for well-known artists because it can supply official sites, social IDs, Wikipedia, Discogs, MusicBrainz, and some streaming IDs without Spotify credentials:
+Run the local site:
 
 ```powershell
-node scripts/enrich-wikidata.mjs --limit=25
-node scripts/enrich-wikidata.mjs --artist="2 Chainz"
+npm run dev
 ```
 
-Manual submissions can be applied from JSON:
+Build the deployable static site:
 
 ```powershell
-node scripts/apply-artist-submission.mjs --file=docs/submissions/2-chainz.json
+npm run build
 ```
 
-To clean up stored link statuses after imports or manual edits:
+If the local npm launcher points at a broken user-level npm install, use the Node-bundled npm CLI directly:
 
 ```powershell
-node scripts/normalize-artist-store.mjs
+node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" install
+node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run build
 ```
 
-Discogs links can be labeled with artist/alias/legal-name context when the public Discogs API is reachable:
+## Sibling Projects
 
-```powershell
-node scripts/enrich-discogs-links.mjs --artist="2 Chainz"
-```
+Sibling app projects live outside this folder:
 
-## Next Build Steps
+- Music app: `C:\Users\Michael\Documents\Apps\Music`
+- Greeting Card app: `C:\Users\Michael\Documents\Apps\Greeting`
 
-1. Improve parser accuracy against The List's live HTML.
-2. Add an enrichment store for MusicBrainz, Spotify, Bandcamp, Instagram, and official-site links.
-3. Add a human review page for accepting or rejecting candidate matches.
-4. Contact the site maintainers before making a public version easy to find.
+The Portfolio project may link to those apps, but their app code should not be mixed back into this repo root.
+
+## Source Materials
+
+`source-materials` is for archived references, old prototypes, and files that are useful context but not part of the active Portfolio app.
+
+Current source-material groups:
+
+- `source-materials/music-show-explorer`: legacy Music app materials kept for reference.
+- `source-materials/static-prototype`: the previous static prototype that used the old `portfolio-hero.png` image.
+- `source-materials/package-manager-artifacts`: old package-manager artifacts. This folder is ignored by Git and is not part of the active project.
+- `source-materials/empty-folders`: recovered empty folder names from earlier cleanup.
+
+## Push Checklist
+
+Before pushing to GitHub:
+
+1. Confirm the app runs locally at `http://127.0.0.1:5173/`.
+2. Run `npm run build`.
+3. Check that `node_modules`, `dist`, `.npm-cache`, and `source-materials/package-manager-artifacts` are not staged.
+4. Review whether `public/assets/portfolio-hero.png` should remain as a source-material dependency for the static prototype or be moved out of `public` later.

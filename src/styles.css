@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: theme("fontFamily.sans");
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply m-0 text-xs font-black uppercase tracking-normal text-portfolioBlue;
+  }
+
+  .button {
+    @apply inline-flex min-h-12 items-center justify-center rounded-full border-2 border-ink px-5 font-black no-underline shadow-[0_6px_0_#201d1d] transition hover:-translate-y-0.5 hover:shadow-[0_4px_0_#201d1d] max-sm:w-full;
+  }
+}
+
+@layer utilities {
+  .stars-layer {
+    position: absolute;
+    inset: 0;
+    opacity: 0.42;
+    background-image:
+      radial-gradient(circle, rgba(32, 29, 29, 0.42) 1px, transparent 1.5px),
+      radial-gradient(circle, rgba(40, 92, 143, 0.36) 1px, transparent 1.5px);
+    background-position: 0 0, 34px 28px;
+    background-size: 74px 74px, 104px 104px;
+    animation: star-drift 34s linear infinite;
+  }
+
+  .meteor {
+    position: absolute;
+    width: 170px;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, rgba(242, 107, 87, 0.9), transparent);
+    filter: drop-shadow(0 0 10px rgba(242, 107, 87, 0.6));
+    transform: rotate(-28deg);
+  }
+
+  .meteor-one {
+    top: 18%;
+    left: 72%;
+    animation: meteor-pass 9s ease-in-out infinite;
+  }
+
+  .meteor-two {
+    top: 44%;
+    left: 88%;
+    width: 120px;
+    animation: meteor-pass 13s 3s ease-in-out infinite;
+  }
+
+  .audience-card:nth-child(2) {
+    background: #fbe0d7;
+  }
+
+  .audience-card:nth-child(3) {
+    background: #e5f1c2;
+  }
+
+  .audience-card:nth-child(4) {
+    background: #dff0f5;
+  }
+
+  .service-card:nth-child(2) {
+    border-top-color: theme("colors.gold");
+  }
+
+  .service-card:nth-child(3) {
+    border-top-color: theme("colors.portfolioBlue");
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+
+  @keyframes star-drift {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+
+    to {
+      transform: translate3d(-74px, 74px, 0);
+    }
+  }
+
+  @keyframes meteor-pass {
+    0%,
+    70%,
+    100% {
+      opacity: 0;
+      transform: translate3d(0, 0, 0) rotate(-28deg);
+    }
+
+    8% {
+      opacity: 1;
+    }
+
+    20% {
+      opacity: 0;
+      transform: translate3d(-360px, 190px, 0) rotate(-28deg);
+    }
+  }
+}

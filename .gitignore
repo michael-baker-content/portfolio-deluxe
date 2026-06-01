@@ -1,2 +1,11 @@
 *.log
 data/*.before-*.js
+.env
+.env.*
+!.env.example
+node_modules/
+dist/
+.corepack/
+.pnpm-store/
+.npm-cache/
+source-materials/package-manager-artifacts/

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Placeholder midground project objects layer">
+  <defs>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#201d1d" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="1000" fill="none"/>
+  <g filter="url(#softShadow)">
+    <rect x="860" y="485" width="310" height="255" rx="28" fill="#f26b57"/>
+    <rect x="900" y="535" width="230" height="116" rx="14" fill="#fffaf1"/>
+    <rect x="930" y="570" width="170" height="22" rx="11" fill="#285c8f" opacity="0.32"/>
+    <rect x="930" y="610" width="125" height="18" rx="9" fill="#285c8f" opacity="0.22"/>
+  </g>
+  <g filter="url(#softShadow)">
+    <rect x="1120" y="565" width="205" height="150" rx="18" fill="#c8d84b"/>
+    <circle cx="1160" cy="610" r="20" fill="#fffaf1"/>
+    <rect x="1195" y="596" width="92" height="18" rx="9" fill="#201d1d" opacity="0.24"/>
+    <rect x="1160" y="646" width="128" height="16" rx="8" fill="#201d1d" opacity="0.18"/>
+  </g>
+  <g filter="url(#softShadow)">
+    <path d="M650 655C650 548 735 460 840 460C945 460 1030 548 1030 655V750H650Z" fill="#ffe7a8"/>
+    <rect x="725" y="560" width="230" height="128" rx="18" fill="#fffaf1"/>
+    <path d="M760 625H920" stroke="#285c8f" stroke-width="18" stroke-linecap="round" opacity="0.32"/>
+  </g>
+</svg>

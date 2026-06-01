@@ -1,12 +1,12 @@
 window.SHOW_EXPLORER_VENUES = {
-  "generatedAt": "2026-05-28T06:15:59.324Z",
+  "generatedAt": "2026-05-28T18:11:57.446Z",
   "venues": {
     "20-spot": {
       "id": "20-spot",
       "name": "20 Spot",
       "displayName": "20 Spot",
       "aliases": [],
-      "confidence": "likely",
+      "confidence": "rejected",
       "mergedInto": "",
       "status": "seasonal",
       "venueType": "wine bar",
@@ -40,6 +40,27 @@ window.SHOW_EXPLORER_VENUES = {
           "url": "https://www.yelp.com/biz/20-spot-san-francisco",
           "confidence": "verified",
           "source": "manual"
+        },
+        {
+          "type": "official",
+          "label": "Official",
+          "url": "https://www.20spot.com/",
+          "confidence": "verified",
+          "source": "manual"
+        },
+        {
+          "type": "instagram",
+          "label": "Instagram",
+          "url": "https://www.instagram.com/20spotsf/",
+          "confidence": "verified",
+          "source": "manual"
+        },
+        {
+          "type": "facebook",
+          "label": "Facebook",
+          "url": "https://www.facebook.com/20spot/",
+          "confidence": "verified",
+          "source": "manual"
         }
       ],
       "evidence": [],
@@ -55,7 +76,8 @@ window.SHOW_EXPLORER_VENUES = {
             "sourceUrl": "https://jon.luini.com/thelist/date.html"
           }
         ]
-      }
+      },
+      "updatedAt": "2026-05-28T18:10:11.605Z"
     },
     "22nd-and-bartlett": {
       "id": "22nd-and-bartlett",
@@ -169,7 +191,7 @@ window.SHOW_EXPLORER_VENUES = {
           "source": "manual"
         },
         {
-          "type": "other",
+          "type": "yelp",
           "label": "Yelp",
           "url": "https://www.yelp.com/biz/4-star-theater-san-francisco",
           "confidence": "verified",
@@ -189,7 +211,8 @@ window.SHOW_EXPLORER_VENUES = {
             "sourceUrl": "https://jon.luini.com/thelist/date.html"
           }
         ]
-      }
+      },
+      "updatedAt": "2026-05-28T18:11:56.635Z"
     },
     "518-valencia-gallery": {
       "id": "518-valencia-gallery",
