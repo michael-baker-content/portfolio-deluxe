@@ -13,17 +13,37 @@ I have been building a small ecosystem of web projects that are different on the
 
 The shared idea is this: I am interested in products that turn messy inputs into useful structure. A concert listing becomes a richer discovery workflow. A set of GitHub repos becomes a readable body of work. A learning idea becomes a course platform. A custom fantasy league becomes a dashboard instead of a spreadsheet.
 
-This post is a snapshot of what I am working on, how the pieces work, and the challenges that have made each project interesting.
+Recently, the projects have also started to connect at the infrastructure level. Portfolio Deluxe is live on Vercel, the contact form is wired through Formspree, and the portfolio now has a small backend dashboard so I can edit core copy and case-study content without opening a code editor. That changes the portfolio from a static presentation layer into something closer to a working content product.
+
+This post is a snapshot of what I am working on, how the pieces work, the newest features I have added, and the challenges that have made each project interesting.
 
 ## Portfolio Deluxe
 
-Portfolio Deluxe is the hub for the rest of the work. It started as a fork of a polished React and Tailwind portfolio starter, but it has grown into something more specific: a candidate-focused portfolio with case studies, filters, project metadata, and a direct contact form.
+Portfolio Deluxe is the hub for the rest of the work. It started as a fork of a polished React and Tailwind portfolio starter, but it has grown into something more specific: a candidate-focused portfolio with case studies, filters, project metadata, deployment-ready hosting, a direct contact form, and a small admin dashboard.
 
 The interesting part is not just the visual redesign. The useful part is the content system underneath it. Project cards and case-study pages share structured data, which means the homepage, the filterable case-study index, and individual project pages can all stay in sync. A project can be listed publicly, hidden as a draft, sorted by priority, grouped by category, and expanded into a full narrative without rewriting layout code.
 
 That structure matters because I want the portfolio to behave less like a static brochure and more like a living index of work. As the projects change, the portfolio can absorb them.
 
-The challenge has been separating the story of the portfolio itself from the story of me as a candidate. Some of the early copy focused too much on the fork and the mechanics of rebuilding the site. That belongs in the Portfolio case study. The homepage needs to answer a different question: what kind of person is behind this work, and why should someone keep reading?
+The newest feature is the backend dashboard. The public site still has code defaults, but it can now load a saved content document from Vercel Blob at runtime. The `/admin` route lets me edit homepage copy and case-study content in the browser, save through a Vercel Function, and keep the live site current without asking every copy tweak to become a code change. I also added two sync paths: an admin "Download JSON" button and a local `content:pull` script for pulling live content back into the repo.
+
+That creates a useful tension. I want the dashboard to make editing easier, but I do not want to lose the discipline of versioned content. The current approach treats Vercel Blob as the live content source and the repo data as a fallback/default. The next challenge is deciding how often live edits should be pulled back into Git and whether the dashboard should eventually become more structured than a pragmatic editor.
+
+Another recent addition is the contact form. Instead of listing placeholder email addresses or making visitors jump to social links, the site now has a Formspree-backed form with context fields: the person's role, their general location, and whether they are interested in a particular case study. That turns contact into a product surface too. A good contact form should not just transmit a message; it should help the conversation start in the right place.
+
+The hardest content challenge has been separating the story of the portfolio itself from the story of me as a candidate. Some of the early copy focused too much on the fork and the mechanics of rebuilding the site. That belongs in the Portfolio case study. The homepage needs to answer a different question: what kind of person is behind this work, and why should someone keep reading?
+
+## Newest Features In The Portfolio
+
+Several recent updates changed the portfolio from a static showcase into a more flexible working system.
+
+First, the site is now live on Vercel. That forced a useful pass over deployment details: Vite build output, SPA route fallbacks, environment variables, and the difference between local defaults and production configuration. The site now supports direct visits to routes like `/case-studies`, `/projects/music`, and `/admin`.
+
+Second, the contact flow is real. The Formspree integration means someone can contact me directly from the portfolio. The extra context fields make the form more useful than a plain message box because they tell me who is writing, where they are generally located, and what work caught their attention.
+
+Third, the case-study system is easier to browse. The homepage shows a focused set of three case studies first, then offers an expansion control. The full `/case-studies` page supports search, category filtering, and sorting. That split lets the homepage stay readable while the archive can grow.
+
+Fourth, the admin dashboard gives me a content workflow. I can edit homepage copy and case studies in the browser, save to Vercel Blob, download JSON, and pull live content locally when I want to compare or commit changes. It is a small backend, but it changes the character of the project. The portfolio is no longer only an output. It is becoming a tool for maintaining itself.
 
 ## Bay Area Show Explorer
 
@@ -69,7 +89,7 @@ Astro is a good fit because the site is content-first but still flexible. It can
 
 The challenge is editorial discipline. A repo writeup should not become a README with more adjectives. It should explain the project in plain terms: what problem it explores, how it works, why the technical choices fit, and what I would do next.
 
-In the overall system, the blog is the reflective layer. The portfolio gives a quick path into the work. The blog gives the work more room to breathe.
+In the overall system, the blog is the reflective layer. The portfolio gives a quick path into the work. The blog gives the work more room to breathe. The newest portfolio features make that relationship stronger: case studies can point to blog posts, and blog posts can explain the decisions that would overcrowd a project card.
 
 ## Fantasy Basketball Dashboard
 
@@ -119,7 +139,8 @@ I am building around a few recurring questions:
 - How do you make a prototype feel real enough to evaluate?
 - How do you explain the decisions behind the work?
 - How do you keep tools focused enough that they stay useful?
+- How do you make content editable without losing control of the underlying system?
 
-Portfolio Deluxe, Bay Area Show Explorer, BakerLinks, Baker University, the blog, and the smaller utilities all answer those questions from different angles. Together they are becoming more than a collection of repos. They are a practice: product thinking, frontend craft, writing, and data structure reinforcing each other.
+Portfolio Deluxe, Bay Area Show Explorer, BakerLinks, Baker University, the blog, and the smaller utilities all answer those questions from different angles. Together they are becoming more than a collection of repos. They are a practice: product thinking, frontend craft, writing, data structure, deployment, and content operations reinforcing each other.
 
 That is the work I want to keep doing.

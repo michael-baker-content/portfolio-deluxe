@@ -84,6 +84,16 @@ export function AdminPage({ defaultContent }) {
     setStatus("Saved. Refresh the public site to see the latest content.");
   };
 
+  const downloadContent = () => {
+    const blob = new Blob([`${JSON.stringify(content, null, 2)}\n`], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "portfolio-content.json";
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <main className="bg-paper px-4 py-10 sm:px-8 lg:px-14">
       <section className="mx-auto max-w-7xl">
@@ -93,7 +103,7 @@ export function AdminPage({ defaultContent }) {
           Edit homepage copy and case-study content without opening the code editor. Changes save to Vercel Blob and the public site loads them at runtime.
         </p>
 
-        <div className="mt-8 grid gap-4 rounded-lg border-2 border-ink bg-white p-5 shadow-hard lg:grid-cols-[1fr_auto_auto] lg:items-end">
+        <div className="mt-8 grid gap-4 rounded-lg border-2 border-ink bg-white p-5 shadow-hard lg:grid-cols-[1fr_auto_auto_auto] lg:items-end">
           <label className="block">
             <span className="text-xs font-black uppercase text-ink/65">Admin token</span>
             <input
@@ -106,6 +116,9 @@ export function AdminPage({ defaultContent }) {
           </label>
           <button className="button bg-cream" type="button" onClick={loadStoredContent}>
             Load saved
+          </button>
+          <button className="button bg-cream" type="button" onClick={downloadContent}>
+            Download JSON
           </button>
           <button className="button bg-chartreuse" type="button" onClick={saveContent} disabled={!adminToken}>
             Save changes

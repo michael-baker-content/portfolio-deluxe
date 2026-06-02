@@ -100,6 +100,27 @@ To enable it on Vercel:
 
 Keep `ADMIN_TOKEN` private. It is not a user account system; it is a simple owner-only token gate for a personal portfolio dashboard.
 
+### Syncing Dashboard Content Back To The Repo
+
+Dashboard edits are stored in Vercel Blob, not automatically committed to Git. Use either sync path when you want a local copy of the live content:
+
+- In `/admin`, use **Download JSON** to save the current editor content.
+- From this repo, run:
+
+```powershell
+npm run content:pull
+```
+
+By default, the script fetches `https://michaelbaker.vercel.app/api/content` and writes `content-snapshots/latest-content.json`.
+
+You can also target another URL or output path:
+
+```powershell
+npm run content:pull -- https://your-preview-url.vercel.app/api/content content-snapshots/preview-content.json
+```
+
+Review the pulled JSON before deciding whether to fold any changes back into `src/data/profile.js` or `src/data/projects.js`.
+
 ## Local Development
 
 Install dependencies:
