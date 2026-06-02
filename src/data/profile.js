@@ -1,41 +1,50 @@
+const formspreeEndpoint = import.meta.env?.VITE_FORMSPREE_ENDPOINT || "";
+
 export const profile = {
   brand: "Michael Baker",
-  contactEmail: "hello@example.com",
+  contactForm: {
+    endpoint: formspreeEndpoint,
+  },
+  links: [
+    { label: "GitHub", href: "https://github.com/michael-baker-content" },
+    { label: "Project blog", href: "https://michael-baker-content.github.io/" },
+    { label: "Case studies", href: "/case-studies" },
+  ],
   hero: {
-    eyebrow: "React/Tailwind portfolio, rebuilt for a working practice",
+    eyebrow: "Product thinking, frontend craft, and clear technical storytelling",
     title: "Michael Baker builds useful web experiences.",
     description:
-      "A modern portfolio for product thinking, frontend prototypes, creative direction, and the case studies behind the work.",
+      "I make working prototypes, dashboards, publishing tools, and learning systems that turn messy ideas into things people can inspect, use, and understand.",
     imageAlt:
       "A polished paper-craft workspace with interface elements, project cards, and soft architectural details.",
   },
   lineage: {
-    eyebrow: "From template to system",
-    title: "A visible 2.0 of the portfolio starter.",
+    eyebrow: "Candidate snapshot",
+    title: "I turn messy ideas into usable web products.",
     description:
-      "The original fork gave this project the modern portfolio essentials: React, Tailwind, responsive navigation, animated polish, project cards, skills, and contact. This version keeps that structure, then upgrades the content model so every section points to real project evidence.",
+      "My work sits at the intersection of product thinking, writing, interface design, and practical engineering. I like ambiguous problems, useful prototypes, and systems that make information easier to act on.",
     beats: [
-      { from: "Hero intro", to: "Hero with sharper positioning and visual voice" },
-      { from: "Skills grid", to: "Capabilities tied to actual project evidence" },
-      { from: "Project cards", to: "Case-study previews with detail pages" },
-      { from: "Dark glass polish", to: "A clearer visual system that can support multiple themes" },
+      { from: "Product judgment", to: "Shape unclear ideas into focused user workflows." },
+      { from: "Frontend craft", to: "Build polished React interfaces that people can actually try." },
+      { from: "Content systems", to: "Turn project details, data, and decisions into reusable structure." },
+      { from: "Editorial taste", to: "Make technical work legible, specific, and worth reading." },
     ],
   },
   creativePosition: {
-    eyebrow: "Creative position",
-    title: "A portfolio that stays practical while showing taste.",
+    eyebrow: "Working style",
+    title: "Practical, curious, and comfortable in the messy middle.",
     paragraphs: [
-      "The site returns to the high-level promise of the 1.0 fork: a clean, modern portfolio with quick orientation, visible skills, project cards, and a direct contact path.",
-      "The 2.0 version adds a stronger editorial layer underneath that familiar structure: clearer case studies, project-specific proof, and a content system that can grow as the work grows.",
+      "I like projects where the path is not fully defined yet: the audience needs to be clarified, the data needs a shape, or the interface needs to make a complicated thing feel usable.",
+      "My strongest work combines enough engineering to make the idea real, enough writing to make the decisions legible, and enough design judgment to keep the experience focused.",
     ],
   },
 };
 
 export const audienceSignals = [
-  "A clear introduction for people who need to understand the work quickly.",
-  "A responsive project grid that turns portfolio entries into case-study previews.",
-  "A skills section connected to evidence instead of generic progress bars.",
-  "A direct contact path that keeps the site useful as a real portfolio.",
+  "Comfortable moving between product strategy, interface details, and implementation.",
+  "Builds working prototypes quickly without treating polish as an afterthought.",
+  "Writes clearly about decisions, tradeoffs, and the path from idea to product.",
+  "Looks for roles where curiosity, ownership, and practical judgment matter.",
 ];
 
 export const services = [
@@ -60,25 +69,25 @@ export const capabilities = [
   {
     category: "Product",
     title: "Information architecture",
-    proof: "Separated Portfolio, Music, and Greeting into sibling apps with source materials kept out of active code.",
+    proof: "Turns scattered project ideas into clear workflows, content structures, and decision points.",
     level: "System design",
   },
   {
     category: "Prototype",
     title: "Working interfaces",
-    proof: "Built review flows, case-study routes, and deployable static app structure instead of static mockups only.",
+    proof: "Builds React interfaces, review flows, dashboards, and small tools that can be tried instead of merely described.",
     level: "Frontend craft",
   },
   {
     category: "Editorial",
     title: "Voice and positioning",
-    proof: "Turns generic portfolio blocks into a focused presentation of taste, product judgment, and project-level evidence.",
+    proof: "Explains product decisions with enough context that the work is easier to evaluate and discuss.",
     level: "Creative direction",
   },
   {
     category: "Data",
     title: "Structured content",
-    proof: "Project cards and case studies now share the same data source, making the site easier to extend.",
+    proof: "Uses structured content and lightweight data models to keep products easier to extend.",
     level: "Maintainability",
   },
 ];

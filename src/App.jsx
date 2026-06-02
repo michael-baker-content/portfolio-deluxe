@@ -2,6 +2,7 @@ import { AmbientBackground } from "./components/AmbientBackground.jsx";
 import React from "react";
 import { Header } from "./components/Header.jsx";
 import { useRoute } from "./hooks/useRoute.js";
+import { CaseStudiesPage } from "./pages/CaseStudiesPage.jsx";
 import { HomePage } from "./pages/HomePage.jsx";
 import { ProjectPage } from "./pages/ProjectPage.jsx";
 
@@ -13,7 +14,7 @@ export function App() {
     <div className="min-h-screen text-ink">
       <AmbientBackground />
       <Header />
-      {projectMatch ? <ProjectPage slug={projectMatch[1]} /> : <HomePage />}
+      {projectMatch ? <ProjectPage slug={projectMatch[1]} /> : path === "/case-studies" ? <CaseStudiesPage /> : <HomePage />}
     </div>
   );
 }

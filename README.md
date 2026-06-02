@@ -1,28 +1,42 @@
-# Michael Baker Portfolio
+# Portfolio Deluxe
 
-This is the standalone Portfolio project. In the local workspace, it is intended to sit alongside the Music and Greeting projects under a shared apps folder.
+Portfolio Deluxe is a React, Vite, and Tailwind portfolio system for presenting projects as evidence. It is built for Michael Baker's work, but it is also intended to be a useful 2.0 evolution of the portfolio starter it came from.
 
-The project began as a fork of [`machadop1407/beautiful-react-tailwind-portfolio`](https://github.com/machadop1407/beautiful-react-tailwind-portfolio). The current goal is to keep the useful 1.0 portfolio structure while turning it into a more evidence-driven 2.0 site for Michael Baker's work.
+This project began as a fork of [`machadop1407/beautiful-react-tailwind-portfolio`](https://github.com/machadop1407/beautiful-react-tailwind-portfolio). The original repo is valuable because it gives you the familiar modern portfolio foundation: a hero, navigation, skills, project cards, responsive layout, visual polish, and a contact path. Portfolio Deluxe keeps that spirit, then pushes the site toward a stronger content system: case studies, searchable work, richer project metadata, contact context, and a homepage that makes the candidate behind the work easier to understand.
 
-## Current Shape
+## What It Adds
 
-The active app is a React, Vite, and Tailwind portfolio site with:
+- A candidate-focused homepage with sections for positioning, strengths, selected work, capabilities, working style, and contact.
+- Data-driven case-study cards and shared project detail pages.
+- A filterable `/case-studies` page with search, category filtering, and sorting.
+- Replaceable decorative card imagery for each visible case study.
+- A Formspree-ready contact form with name, email, role, location, case-study interest, and message fields.
+- Footer links for GitHub, the project blog, case studies, and other future destinations.
+- Hidden draft/template case studies so new work can be prepared before it appears publicly.
 
-- A layered, scroll-reactive hero using placeholder SVG assets in `public/assets/hero`.
-- Sticky full-screen homepage sections for lineage, featured work, capabilities, taste, and contact.
-- Data-driven project cards and project detail pages.
-- Four case studies: Portfolio, Music, Greeting, and a reusable lorem-ipsum template case study.
-- Sibling-project links for the Music and Greeting apps, which live outside this repo folder.
+## Good Starting Moves
+
+If you are adapting this from the fork, start with content before visual tweaks:
+
+1. Update `src/data/profile.js` with your candidate story, strengths, links, and contact form configuration.
+2. Replace the project records in `src/data/projects.js` with 3-6 real projects that show different kinds of evidence.
+3. Keep unfinished work as `visibility: "hidden"` until the case study is ready.
+4. Use `priority` to control display order and `category` to make the case-study filters useful.
+5. Swap the `cardImage` URLs for your own images, screenshots, or better stock placeholders.
+6. Add your Formspree endpoint in `.env.local` so visitors can contact you without leaving the portfolio.
+7. Only after the content feels true, tune colors, typography, spacing, and hero art.
 
 ## Project Structure
 
-- `index.html` mounts the Vite app.
+- `index.html` mounts the Vite app and declares the favicon.
 - `src/main.jsx` boots React.
-- `src/App.jsx` routes the homepage and `/projects/:slug` case-study pages.
-- `src/pages/HomePage.jsx` contains the homepage layout and scroll hero behavior.
-- `src/pages/ProjectPage.jsx` renders shared case-study pages.
-- `src/components` contains reusable UI components.
-- `src/data` contains navigation, profile, capabilities, and case-study content.
+- `src/App.jsx` routes the homepage, `/case-studies`, and `/projects/:slug`.
+- `src/pages/HomePage.jsx` contains the homepage sections and contact form.
+- `src/pages/CaseStudiesPage.jsx` renders the searchable/filterable case-study index.
+- `src/pages/ProjectPage.jsx` renders shared case-study detail pages.
+- `src/components` contains reusable UI pieces.
+- `src/data/profile.js` contains homepage copy, capabilities, footer links, and Formspree config.
+- `src/data/projects.js` contains case-study content and display metadata.
 - `src/styles.css` contains Tailwind layers and custom utilities.
 - `public/assets/hero` contains the current layered hero placeholder assets.
 
@@ -30,15 +44,42 @@ The active app is a React, Vite, and Tailwind portfolio site with:
 
 Case-study content lives in `src/data/projects.js`.
 
-Each case study currently supports:
+Each case study supports:
 
-- Card metadata: `slug`, `label`, `title`, `description`, `status`, `tone`, and `evidence`.
-- Detail-page overview: `summary`, `problem`, `outcome`, and `role`.
+- Display controls: `visibility`, `priority`, and `category`.
+- Card metadata: `slug`, `label`, `title`, `description`, `status`, `tone`, `evidence`, and `cardImage`.
+- Detail-page overview: `summary`, `problem`, `outcome`, `role`, `timeline`, `collaborators`, and `tools`.
+- Metric cards: `metrics`.
 - Lists: `decisions` and `nextSteps`.
 - Narrative blocks: `sections`.
-- Optional app links via `appHref`.
+- Optional app and repository links via `appHref` and `repoHref`.
 
-The template case study at `/projects/template` is intentionally placeholder content. Use it as the pattern for future case studies before replacing lorem ipsum with real project detail.
+Visibility controls:
+
+- `visibility: "listed"` shows a project on the homepage and `/case-studies`.
+- `visibility: "hidden"` keeps a project available by direct route but removes it from public lists.
+- `priority` controls ordering; lower numbers appear first.
+- `category` powers the case-study index filter.
+
+The hidden template case study at `/projects/template` is intentionally placeholder content. Use it as a pattern when drafting new case studies.
+
+## Contact Form
+
+The contact form is wired for Formspree through a Vite environment variable.
+
+Create `.env.local`:
+
+```powershell
+Copy-Item .env.example .env.local
+```
+
+Then replace the placeholder with your real Formspree endpoint:
+
+```powershell
+VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/YOUR_FORM_ID
+```
+
+Restart the dev server after changing environment variables.
 
 ## Local Development
 
@@ -54,6 +95,12 @@ Run the local site:
 npm run dev
 ```
 
+If you specifically want port `3000`, stop anything already running there, then use:
+
+```powershell
+npm run dev:3000
+```
+
 Build the deployable static site:
 
 ```powershell
@@ -67,9 +114,42 @@ node "<node-install-dir>\node_modules\npm\bin\npm-cli.js" install
 node "<node-install-dir>\node_modules\npm\bin\npm-cli.js" run build
 ```
 
-## Sibling Projects
+## Deployment
 
-Sibling app projects live outside this folder:
+This is a static Vite app. The production build output is `dist`.
+
+### Vercel
+
+Recommended first host.
+
+1. Import the GitHub repo into Vercel.
+2. Use the Vite defaults:
+   - Build command: `npm run build`
+   - Output directory: `dist`
+3. Add the environment variable:
+   - `VITE_FORMSPREE_ENDPOINT`
+4. Deploy.
+
+`vercel.json` includes a rewrite so direct visits to routes like `/case-studies` and `/projects/music` serve the React app instead of returning 404.
+
+### Cloudflare Pages
+
+Good second host and a useful comparison point.
+
+1. Create a Cloudflare Pages project from the GitHub repo.
+2. Use:
+   - Framework preset: Vite
+   - Build command: `npm run build`
+   - Build output directory: `dist`
+3. Add the environment variable:
+   - `VITE_FORMSPREE_ENDPOINT`
+4. Deploy.
+
+`public/_redirects` is copied into `dist` during the Vite build and gives Cloudflare Pages the same SPA route fallback.
+
+## Related Local Projects
+
+Related app projects may live outside this folder. In Michael's local workspace:
 
 - Music app: `../Music`
 - Greeting Card app: `../Greeting`
@@ -83,7 +163,7 @@ The Portfolio project may link to those apps, but their app code should not be m
 Current source-material groups:
 
 - `source-materials/music-show-explorer`: legacy Music app materials kept for reference.
-- `source-materials/static-prototype`: the previous static prototype that used the old `portfolio-hero.png` image.
+- `source-materials/static-prototype`: the previous static prototype.
 - `source-materials/package-manager-artifacts`: old package-manager artifacts. This folder is ignored by Git and is not part of the active project.
 - `source-materials/empty-folders`: recovered empty folder names from earlier cleanup.
 
@@ -91,7 +171,8 @@ Current source-material groups:
 
 Before pushing to GitHub:
 
-1. Confirm the app runs locally at `http://127.0.0.1:5173/`.
-2. Run `npm run build`.
-3. Check that `node_modules`, `dist`, `.npm-cache`, and `source-materials/package-manager-artifacts` are not staged.
-4. Review whether `public/assets/portfolio-hero.png` should remain as a source-material dependency for the static prototype or be moved out of `public` later.
+1. Confirm the app runs locally at the URL printed by `npm run dev`.
+2. Confirm `.env.local` is not staged.
+3. Run `npm run build`.
+4. Check that `node_modules`, `dist`, `.npm-cache`, and `source-materials/package-manager-artifacts` are not staged.
+5. Review case-study visibility so drafts are not accidentally public.

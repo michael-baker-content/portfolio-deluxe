@@ -43,8 +43,32 @@ export function ProjectPage({ slug }) {
           <aside className="rounded-lg border-2 border-ink bg-white/60 p-5 shadow-hard">
             <p className="eyebrow">Role</p>
             <p className="mt-2 font-black leading-6">{project.role}</p>
+            {project.timeline ? (
+              <>
+                <p className="eyebrow mt-6">Timeline</p>
+                <p className="mt-2 font-black leading-6">{project.timeline}</p>
+              </>
+            ) : null}
             <p className="eyebrow mt-6">Status</p>
             <p className="mt-2 font-black leading-6">{project.status}</p>
+            {project.collaborators?.length ? (
+              <>
+                <p className="eyebrow mt-6">Collaborators</p>
+                <p className="mt-2 font-black leading-6">{project.collaborators.join(", ")}</p>
+              </>
+            ) : null}
+            {project.tools?.length ? (
+              <>
+                <p className="eyebrow mt-6">Tools</p>
+                <ul className="mt-3 flex flex-wrap gap-2" aria-label="Tools">
+                  {project.tools.map((tool) => (
+                    <li className="rounded-full border border-ink/25 bg-white/60 px-3 py-1 text-xs font-black text-ink/75" key={tool}>
+                      {tool}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : null}
             <ul className="mt-6 flex flex-wrap gap-2" aria-label="Evidence">
               {project.evidence.map((item) => (
                 <li className="rounded-full bg-white px-3 py-1 text-xs font-black text-ink/75" key={item}>
@@ -54,13 +78,30 @@ export function ProjectPage({ slug }) {
             </ul>
             {project.appHref ? (
               <a className="mt-7 inline-flex items-center gap-2 border-b-[3px] border-ink text-sm font-black no-underline" href={project.appHref}>
-                Open sibling app
+                Open project
+                <ExternalLink size={16} />
+              </a>
+            ) : null}
+            {project.repoHref ? (
+              <a className="mt-4 inline-flex items-center gap-2 border-b-[3px] border-ink text-sm font-black no-underline" href={project.repoHref}>
+                View repository
                 <ExternalLink size={16} />
               </a>
             ) : null}
           </aside>
         </div>
       </section>
+
+      {project.metrics?.length ? (
+        <section className="mx-auto grid w-[min(1180px,calc(100vw-32px))] gap-4 border-b border-ink/20 py-10 md:grid-cols-3">
+          {project.metrics.map((metric) => (
+            <article className="rounded-lg border-2 border-ink bg-cream p-5 shadow-hard" key={metric.label}>
+              <p className="eyebrow">{metric.label}</p>
+              <p className="mt-2 text-3xl font-black leading-none">{metric.value}</p>
+            </article>
+          ))}
+        </section>
+      ) : null}
 
       <section className="mx-auto grid w-[min(1180px,calc(100vw-32px))] gap-5 py-16 md:grid-cols-3">
         <CaseBlock title="Problem" body={project.problem} />
