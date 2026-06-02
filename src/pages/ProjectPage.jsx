@@ -1,7 +1,6 @@
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import React from "react";
 import { Link } from "../components/Link.jsx";
-import { projectBySlug } from "../data/projects.js";
 
 const toneClasses = {
   spotlight: "bg-chartreuse",
@@ -10,8 +9,8 @@ const toneClasses = {
   blue: "bg-[#d9eef6]",
 };
 
-export function ProjectPage({ slug }) {
-  const project = projectBySlug(slug);
+export function ProjectPage({ content, slug }) {
+  const project = content.projectBySlug(slug);
 
   if (!project) {
     return (

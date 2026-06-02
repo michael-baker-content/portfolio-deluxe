@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ProjectCard } from "../components/ProjectCard.jsx";
 import { Link } from "../components/Link.jsx";
-import { audienceSignals, capabilities, listedProjects, profile, services } from "../data/portfolio.js";
 
-export function HomePage() {
+export function HomePage({ content }) {
+  const { audienceSignals, capabilities, listedProjects, profile, services } = content;
   const titleRef = useRef(null);
   const [showAllProjects, setShowAllProjects] = useState(false);
   const homepageProjects = showAllProjects ? listedProjects : listedProjects.slice(0, 3);

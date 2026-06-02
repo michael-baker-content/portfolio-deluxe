@@ -11,6 +11,7 @@ This project began as a fork of [`machadop1407/beautiful-react-tailwind-portfoli
 - A filterable `/case-studies` page with search, category filtering, and sorting.
 - Replaceable decorative card imagery for each visible case study.
 - A Formspree-ready contact form with name, email, role, location, case-study interest, and message fields.
+- A protected `/admin` content dashboard for editing homepage copy and case-study content without touching code.
 - Footer links for GitHub, the project blog, case studies, and other future destinations.
 - Hidden draft/template case studies so new work can be prepared before it appears publicly.
 
@@ -24,7 +25,8 @@ If you are adapting this from the fork, start with content before visual tweaks:
 4. Use `priority` to control display order and `category` to make the case-study filters useful.
 5. Swap the `cardImage` URLs for your own images, screenshots, or better stock placeholders.
 6. Add your Formspree endpoint in `.env.local` so visitors can contact you without leaving the portfolio.
-7. Only after the content feels true, tune colors, typography, spacing, and hero art.
+7. Add Vercel Blob and `ADMIN_TOKEN` if you want browser-based editing through `/admin`.
+8. Only after the content feels true, tune colors, typography, spacing, and hero art.
 
 ## Project Structure
 
@@ -32,11 +34,14 @@ If you are adapting this from the fork, start with content before visual tweaks:
 - `src/main.jsx` boots React.
 - `src/App.jsx` routes the homepage, `/case-studies`, and `/projects/:slug`.
 - `src/pages/HomePage.jsx` contains the homepage sections and contact form.
+- `src/pages/AdminPage.jsx` contains the protected content dashboard UI.
 - `src/pages/CaseStudiesPage.jsx` renders the searchable/filterable case-study index.
 - `src/pages/ProjectPage.jsx` renders shared case-study detail pages.
 - `src/components` contains reusable UI pieces.
 - `src/data/profile.js` contains homepage copy, capabilities, footer links, and Formspree config.
 - `src/data/projects.js` contains case-study content and display metadata.
+- `src/lib/contentModel.js` normalizes code defaults and dashboard-saved content into one shape.
+- `api/content.js` reads and writes dashboard content through Vercel Blob.
 - `src/styles.css` contains Tailwind layers and custom utilities.
 - `public/assets/hero` contains the current layered hero placeholder assets.
 
@@ -80,6 +85,20 @@ VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/YOUR_FORM_ID
 ```
 
 Restart the dev server after changing environment variables.
+
+## Admin Dashboard
+
+The dashboard lives at `/admin`. It edits a JSON content document stored in Vercel Blob. The public site loads that saved content at runtime; if no saved content exists yet, it falls back to the code defaults in `src/data`.
+
+To enable it on Vercel:
+
+1. Add Vercel Blob storage to the project.
+2. Make sure `BLOB_READ_WRITE_TOKEN` is available to the project. Vercel Blob can create this for you.
+3. Add your own private `ADMIN_TOKEN` environment variable.
+4. Deploy.
+5. Visit `/admin`, paste the admin token, load saved content or start from defaults, edit, and save.
+
+Keep `ADMIN_TOKEN` private. It is not a user account system; it is a simple owner-only token gate for a personal portfolio dashboard.
 
 ## Local Development
 

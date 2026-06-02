@@ -2,7 +2,6 @@ import React, { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { ProjectCard } from "../components/ProjectCard.jsx";
 import { Link } from "../components/Link.jsx";
-import { caseStudyCategories, listedProjects } from "../data/portfolio.js";
 
 const sortOptions = [
   { value: "priority", label: "Portfolio priority" },
@@ -24,7 +23,8 @@ function projectSearchText(project) {
     .toLowerCase();
 }
 
-export function CaseStudiesPage() {
+export function CaseStudiesPage({ content }) {
+  const { caseStudyCategories, listedProjects } = content;
   const [category, setCategory] = useState("all");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState("priority");
