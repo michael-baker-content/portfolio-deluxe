@@ -29,32 +29,38 @@ export const projects = [
       { label: "Content source", value: "Data-driven" },
     ],
     summary:
-      "This project began as a fork of a polished React/Tailwind portfolio template. The first major redesign pushed it into the bright, editorial 'occasionally strange' direction; this case study captures that move as a deliberate theme experiment inside the broader Portfolio 2.0 build.",
+      "Portfolio Deluxe began as a React/Tailwind fork and became a working content product for presenting projects as evidence. The build tracks the shift from starter-site aesthetics to structured data, filters, admin editing, deployment, and a clearer candidate story.",
     problem:
-      "The original template had a useful modern portfolio structure, but the first personalized version leaned so far into the 'occasionally strange' theme that the main site started to feel less like the source portfolio and more like a separate creative project.",
+      "The original template had a useful modern portfolio structure, but it still behaved like a template. The first personalized version proved that the site could carry a distinct visual voice, but it also made the main portfolio feel more like a theme experiment than a durable system for explaining work.",
     outcome:
-      "The main site now returns to the 1.0 fork's high-level portfolio promise while preserving the themed redesign as a documented case study about voice, visual direction, and product positioning.",
+      "The current site preserves the fork's familiar portfolio promise while adding a richer content model, a filterable case-study index, direct contact, a Taste page, a protected admin dashboard, and a deployment path that can support ongoing edits.",
     decisions: [
       "Keep the 1.0 structure visible: hero, navigation, work, skills, case studies, and contact.",
-      "Move the 'occasionally strange' concept from site identity into the Portfolio Case Study.",
-      "Use structured project data so the theme, case-study copy, and navigation can change without rewriting page markup.",
-      "Treat the redesign as evidence of creative direction rather than the permanent brand of the portfolio.",
+      "Move the 'occasionally strange' direction from the main site identity into documented design evidence.",
+      "Use structured project data so cards, filters, project pages, and admin edits can share the same source.",
+      "Treat the homepage as a candidate pitch and the case-study pages as deeper evidence.",
+      "Add backend editing through Vercel Blob without removing the code defaults that make the site portable.",
     ],
     sections: [
       {
         title: "Starting Point",
         body:
-          "The fork supplied a strong 1.0 baseline: a recognizable modern portfolio shape, Tailwind styling, responsive navigation, animated polish, project cards, and a contact path. That made it a useful starter, but the content still behaved like a template.",
+          "The fork supplied a strong 1.0 baseline: a recognizable modern portfolio shape, Tailwind styling, responsive navigation, animated polish, project cards, and a contact path. That made it a useful starter, but the content still needed a stronger point of view and a more flexible structure.",
       },
       {
         title: "Theme Experiment",
         body:
-          "The first redesign explored a brighter, more theatrical 'occasionally strange' identity. It proved the site could carry a distinct voice, but it also made the main portfolio feel farther away from the forked project than intended.",
+          "The first redesign explored a brighter, more theatrical identity. It proved the site could carry a distinct voice, but it also clarified that the main site should not be only an aesthetic experiment. That work now functions as evidence of visual direction rather than the entire brand.",
       },
       {
-        title: "2.0 Direction",
+        title: "Content System",
         body:
-          "The current direction keeps the 1.0 portfolio promise visible while moving the themed redesign into this case study. The result is a clearer public site with room to document experiments as evidence of creative direction.",
+          "The 2.0 version is organized around structured content. Each project carries display controls, metadata, links, metrics, decisions, and narrative sections, so homepage cards, filters, project pages, and admin editing all share one model.",
+      },
+      {
+        title: "Backend Editing",
+        body:
+          "The admin dashboard turns the portfolio into a small content-management workflow. Saved content can live in Vercel Blob, while the code still contains defaults and tests that keep the site safe when backend content is missing or incomplete.",
       },
     ],
     nextSteps: [
@@ -89,32 +95,38 @@ export const projects = [
       { label: "Source posture", value: "Traceable" },
     ],
     summary:
-      "The Music app started as a show-listing prototype and grew into a small information system for understanding who is playing, where they are playing, and what still needs human review.",
+      "Bay Area Show Explorer turns local concert listings into a reviewable music-discovery system. The project is less about making another event calendar and more about answering better questions: who is this artist, how local are they, where can someone support them directly, and how confident should we be in the data?",
     problem:
-      "Local concert listings are useful but thin. They rarely explain whether an artist is local, where to support them directly, or how confident the data is.",
+      "Local concert listings are useful but thin. They usually tell you what is happening, but not enough about whether the artist is local, what kind of act they are, which source should be trusted, or what still needs human review.",
     outcome:
-      "The app adds artist and venue stores, review states, source links, and enrichment workflows while keeping the original listings credited and traceable.",
+      "The app now frames discovery as a source-aware review workflow: artist and venue records can be enriched, checked, credited, and improved without pretending every automated match is correct.",
     decisions: [
-      "Treat imported data as provisional until reviewed.",
-      "Favor direct artist-support links over platform-only discovery.",
-      "Keep ambiguous matches unresolved instead of pretending every search result is correct.",
-      "Separate the Music app from Portfolio so future work starts in the right project root.",
+      "Treat imported listings as leads, not finished truth.",
+      "Keep artist, venue, and event data separate so each record can carry its own review state.",
+      "Favor direct artist-support links and source trails over platform-only discovery.",
+      "Leave ambiguous matches unresolved until there is enough evidence to make a confident call.",
+      "Separate the Music app from the Portfolio repo so product work and portfolio storytelling can evolve independently.",
     ],
     sections: [
       {
-        title: "Discovery Problem",
+        title: "Discovery Layer",
         body:
-          "The app is built around the gap between a listing and a useful recommendation. A show entry can tell someone what is happening, but it rarely explains why the artist matters, how local the act is, or which source should be trusted.",
+          "The core product idea is that a listing should be the beginning of discovery, not the end of it. A show entry can point to an event, but the app tries to add the context that makes a person more likely to care: artist identity, local relevance, support links, and source confidence.",
       },
       {
-        title: "Review Workflow",
+        title: "Review Queue",
         body:
-          "The project treats enrichment as a reviewable workflow instead of a single import step. Artist and venue data can be gathered, compared, marked for review, and kept traceable back to sources.",
+          "The review queue is the product's practical center. It gives uncertain records a place to live while they are checked, rather than forcing bad certainty into the data model. That matters because music listings often contain aliases, partial names, shared venue details, and fragile source trails.",
       },
       {
-        title: "Portfolio Value",
+        title: "Venue Intelligence",
         body:
-          "As a case study, Music shows product judgment around data quality, editorial usefulness, and the practical split between automated enrichment and human review.",
+          "Venue data adds another layer of usefulness. The project can distinguish between the event itself and the place hosting it, which opens the door to richer venue pages, source review, and eventually better recommendations by geography or scene.",
+      },
+      {
+        title: "Editorial Use",
+        body:
+          "Bay Area Show Explorer shows how automated enrichment, editorial review, and local discovery can work together without hiding uncertainty from the user.",
       },
     ],
     nextSteps: [
@@ -206,32 +218,38 @@ export const projects = [
       { label: "Pattern", value: "Live dashboard" },
     ],
     summary:
-      "Fantasy Basketball Dashboard turns a custom competition format into a self-hosted web app with standings, participant pages, and a leaderboard that can be checked throughout the season.",
+      "Fantasy Basketball Dashboard turns a custom fantasy sports format into a self-hosted web app with standings, roster pages, and live leaderboard signals. It translates rules, stats, participants, and season state into something a league can inspect without relying on spreadsheets or chat updates.",
     problem:
-      "Custom competitions often live in spreadsheets or chat threads. That makes standings hard to inspect, harder to share, and easy to misread when rosters, scoring categories, or rules change.",
+      "Custom fantasy competitions often live in spreadsheets or chat threads. That makes standings hard to inspect, difficult to share, and easy to misread when rosters, scoring categories, or rules change.",
     outcome:
-      "The app creates a dedicated home for participant state, scoring logic, and live leaderboard review while keeping the deployment path practical through Railway.",
+      "The app creates a dedicated home for participant state, scoring logic, roster detail, and leaderboard review while keeping the deployment path practical through Flask, a database layer, and Railway.",
     decisions: [
       "Use a small Flask app instead of a heavier framework so the scoring model stays easy to reason about.",
       "Keep local SQLite simple while allowing PostgreSQL in production.",
       "Make detail and leaderboard views separate so users can inspect both summary and supporting evidence.",
       "Treat the app as an operational dashboard, not just a technical demo.",
+      "Model the competition rules explicitly so the leaderboard can be trusted and explained.",
     ],
     sections: [
       {
         title: "Dashboard Utility",
         body:
-          "The project is valuable because it formalizes a custom competition workflow. Instead of asking users to trust a manually updated sheet, the app gives the group a single place to inspect participant state and standings.",
+          "The project is valuable because it formalizes a custom competition workflow. Instead of asking users to trust a manually updated sheet, the app gives the group a shared place to inspect standings, roster state, and the evidence behind movement on the leaderboard.",
       },
       {
         title: "Data Shape",
         body:
-          "The case study should explain how participants, scoring categories, and leaderboard calculations map into the database and the UI. That relationship is the heart of the product.",
+          "The data model has to translate league concepts into durable records: teams, players, rosters, scoring categories, standings, and update timing. That relationship between rules and data is the heart of the product.",
       },
       {
         title: "Deployment Path",
         body:
-          "Railway gives the project a realistic production target while preserving a simple local development loop. That makes the app easier to maintain between league updates.",
+          "Railway gives the project a realistic production target while preserving a simple local development loop. SQLite keeps early iteration low-friction, while PostgreSQL gives production a more durable home.",
+      },
+      {
+        title: "Operational Clarity",
+        body:
+          "The win is not just that the app calculates standings. It makes a custom competition legible by putting backend modeling in service of a user-facing state problem.",
       },
     ],
     nextSteps: [
@@ -265,9 +283,9 @@ export const projects = [
       { label: "Pattern", value: "Focused search" },
     ],
     summary:
-      "Movie Database Project supports a focused entertainment workflow: making fast, informed choices from movie metadata without forcing users into a sprawling database experience.",
+      "Movie Database Project is a focused lookup tool built around a specific entertainment workflow. It uses TMDB data and a modern React/Next.js stack, but the product idea is narrower than a general movie database: help someone make faster, better decisions from just the metadata that matters in the moment.",
     problem:
-      "Search tools are often too broad for high-context decisions. The user needs targeted recall support, not a general movie database experience.",
+      "Search tools are often too broad for high-context decisions. A user may need targeted recall support, quick scanning, and clear metadata rather than another sprawling entertainment encyclopedia.",
     outcome:
       "The app frames external movie data around the decisions a user needs to make in the moment, turning lookup into lightweight decision support.",
     decisions: [
@@ -275,22 +293,28 @@ export const projects = [
       "Prioritize fast scanning over encyclopedic detail.",
       "Deploy through Vercel to keep sharing and iteration simple.",
       "Keep the project scoped to a specific workflow so the interface can stay direct.",
+      "Use TypeScript so API responses and UI expectations stay easier to reason about.",
     ],
     sections: [
       {
         title: "Focused Context",
         body:
-          "The app works because it starts from the constraints of a specific task. The best interface is not the one with the most film data; it is the one that helps a user act quickly.",
+          "The app works because it starts from the constraints of a specific task. The best interface is not the one with the most film data; it is the one that helps a user act quickly and confidently.",
       },
       {
         title: "Lookup Design",
         body:
-          "The case study can show how search results, metadata, and interaction timing are shaped around decision support instead of passive browsing.",
+          "Search results, metadata, and interaction timing are shaped around decision support instead of passive browsing. The goal is to reduce the distance between remembering a movie and knowing whether it is useful for the current choice.",
       },
       {
         title: "Technical Fit",
         body:
           "Next.js, TypeScript, TMDB, and Vercel make sense for a small public helper where typed API integration and deployability matter more than backend complexity.",
+      },
+      {
+        title: "Focused Scope",
+        body:
+          "Movie Database Project shows restraint. It filters a large external database through a narrow product need instead of copying it wholesale into a generic interface.",
       },
     ],
     nextSteps: [
@@ -324,32 +348,38 @@ export const projects = [
       { label: "Math", value: "KaTeX" },
     ],
     summary:
-      "Baker University is a learning-platform experiment built to explore how lessons, course structure, rich text, and mathematical notation can live together in a modern web app.",
+      "Baker University is a learning-platform prototype for turning structured lessons, rich explanation, and technical notation into a coherent course experience. It combines my online education background with a modern web stack that can support authoring, presentation, and future learner workflows.",
     problem:
-      "Learning products need both structure and expressiveness. A course app has to organize material clearly while still supporting rich explanations, formulas, and editing workflows.",
+      "Learning products need a difficult balance: enough structure to guide someone through material, enough flexibility to support rich teaching, and enough editorial control that the course does not collapse into a pile of disconnected pages.",
     outcome:
-      "The platform creates a space to test course navigation, lesson authoring, and learning-content presentation with a stack that can support future expansion.",
+      "The platform creates a test bed for course navigation, lesson authoring, math rendering, and reusable learning content. It is a place to ask what a small, personally owned LMS could become if the authoring experience is treated as part of the product.",
     decisions: [
-      "Use Next.js and TypeScript for a durable app foundation.",
-      "Explore Tiptap for rich lesson editing instead of plain markdown only.",
-      "Include KaTeX so technical learning content can support mathematical notation.",
-      "Treat the project as both product prototype and learning-system research.",
+      "Use Next.js and TypeScript for a durable foundation that can grow beyond a static course shell.",
+      "Explore Tiptap because lesson authoring needs richer structure than plain text alone can comfortably provide.",
+      "Include KaTeX so the platform can support technical lessons, formulas, and math-heavy explanations.",
+      "Treat course structure, editing, and learner navigation as connected product problems.",
+      "Draw on online art education experience: examples, sequencing, critique, and context should shape the interface.",
     ],
     sections: [
       {
-        title: "Learning Model",
+        title: "Learning Shape",
         body:
-          "The case study should explain how the app models courses, lessons, and learner progress or orientation. The product value lives in making learning paths feel navigable.",
+          "The product challenge is not just displaying lessons. It is giving learning a shape: courses, units, lessons, examples, and supporting material need to feel ordered without making the experience rigid.",
       },
       {
         title: "Authoring Experience",
         body:
-          "Rich lesson editing is a central design problem. Tiptap introduces flexibility, but the interface still has to protect clarity and keep content creation manageable.",
+          "The authoring experience is part of the product. Tiptap makes it possible to imagine lessons with structured blocks, embedded examples, and richer formatting, but the editor still has to protect clarity and keep the act of creating lessons manageable.",
       },
       {
-        title: "Content Range",
+        title: "Technical Teaching",
         body:
-          "KaTeX support signals that the platform can handle more than simple prose lessons. That makes the project a stronger learning-platform prototype.",
+          "KaTeX support matters because it expands the kind of learning content the platform can handle. The goal is not only prose lessons, but technical explanation that can include notation, examples, and careful step-by-step reasoning.",
+      },
+      {
+        title: "Learning System",
+        body:
+          "This connects my teaching background to web development. It treats learning systems as content products: structured, authored, navigable, and designed for people trying to understand something difficult.",
       },
     ],
     nextSteps: [
@@ -383,32 +413,38 @@ export const projects = [
       { label: "Deploy", value: "Vercel" },
     ],
     summary:
-      "BakerLinks explores a free link-in-bio product: simple profile publishing, editable links, and a practical stack for getting social landing pages online quickly.",
+      "BakerLinks is a free link-in-bio platform experiment built around a simple product promise: make it easy for someone to publish a clean, useful profile page without paying for the privilege of sharing links.",
     problem:
-      "Many link-in-bio tools are either overbuilt, paywalled, or too generic. The challenge is making a lightweight publishing workflow that still feels trustworthy and customizable.",
+      "Many link-in-bio tools are either overbuilt, paywalled, or too generic. The challenge is to make a small publishing workflow that feels trustworthy, flexible, and easy to understand without turning into a full website builder.",
     outcome:
-      "The project tests a modern hosted stack for profile pages and link management while keeping the product promise simple: publish useful links without friction.",
+      "The project tests profile publishing, link management, hosted data, and public pages through a practical Next.js, Supabase, and Vercel stack while keeping the core experience focused on fast publishing.",
     decisions: [
-      "Use Supabase for a hosted backend instead of building auth and storage from scratch.",
-      "Keep the frontend in Next.js so profile pages can be fast and shareable.",
-      "Focus the first version on publishing clarity before advanced customization.",
-      "Treat the free model as a product constraint, not just a pricing note.",
+      "Use Supabase for hosted data and authentication patterns instead of building the backend from scratch.",
+      "Keep public profile pages in Next.js so they are fast, shareable, and easy to deploy.",
+      "Focus the first version on publishing clarity before advanced personalization.",
+      "Treat the free model as a design constraint: the product should not depend on hiding basic usefulness behind a paywall.",
+      "Keep the interface closer to a publishing tool than a social network.",
     ],
     sections: [
       {
         title: "Publishing Flow",
         body:
-          "The product rises or falls on how quickly someone can create a useful public profile. The case study should show the path from signup or setup to a shareable page.",
+          "The product rises or falls on the path from setup to a useful public page. The interesting workflow is not just adding links; it is helping someone decide what belongs on the page, what order it should appear in, and how the result reads to a visitor.",
       },
       {
         title: "Platform Choices",
         body:
-          "Supabase and Vercel reduce operational weight, which matters for a small platform experiment. The stack keeps attention on product design instead of infrastructure.",
+          "Supabase and Vercel reduce operational weight, which matters for a small platform experiment. The stack keeps attention on product decisions: profile data, publishing states, editable links, and public presentation.",
       },
       {
-        title: "Differentiation",
+        title: "Product Position",
         body:
-          "The case study can sharpen what makes BakerLinks different: free access, control, simplicity, or a more creator-friendly workflow.",
+          "The product position is intentionally plainspoken: a free link page should feel useful before it feels monetized. That gives the project a clearer audience than a generic landing-page builder.",
+      },
+      {
+        title: "Small Platform",
+        body:
+          "BakerLinks puts full-stack product thinking into a small package: user promise, database-backed editing, public pages, deployment, and the tradeoff between simplicity and customization.",
       },
     ],
     nextSteps: [
@@ -442,32 +478,38 @@ export const projects = [
       { label: "Core object", value: "Tracker" },
     ],
     summary:
-      "RPG Character Tracker is a character-management project focused on making a dense rules system easier to use through dynamic calculations and clearer player-facing structure.",
+      "RPG Character Tracker is a character-management project for dense tabletop rules systems. It began from Pathfinder 2E, where character state contains many calculated, conditional, and frequently referenced values, and it explores how a dynamic interface can make that information easier to use during play.",
     problem:
-      "Rules-heavy role-playing characters contain a lot of interdependent information. Static sheets can make it hard to see what changed, what is derived, and what a player needs during play.",
+      "Rules-heavy role-playing characters contain a lot of interdependent information. Static sheets can make it hard to see what changed, what is derived, what is conditional, and what the player actually needs during a session.",
     outcome:
-      "The project creates a custom interface for character information that can respond to the needs of the rules system and the table.",
+      "The project creates a custom interface for character information that can respond to the rules system and the needs of the table, with dynamic behavior where static reference becomes friction.",
     decisions: [
       "Start with a specific rules system instead of designing a generic tracker.",
       "Prioritize dynamic behavior where rules density creates friction.",
       "Use JavaScript to keep the project lightweight and adaptable.",
       "Treat table usability as the product goal, not just rules completeness.",
+      "Keep the interface organized around player action rather than sourcebook structure.",
     ],
     sections: [
       {
         title: "Rules Density",
         body:
-          "The case study should explain which rules or character values benefit most from dynamic handling. That will make the design problem concrete.",
+          "The design problem comes from rules density. Pathfinder-style characters include derived values, modifiers, proficiency changes, resources, and context-specific decisions. The app is strongest where dynamic handling removes repeated lookup or manual recalculation.",
       },
       {
         title: "Player Workflow",
         body:
-          "A good character sheet supports action at the table. The project should highlight what a player needs to find quickly during play.",
+          "A good character sheet supports action at the table. That means the interface should help a player find what they need quickly, understand what changed, and avoid breaking the rhythm of play.",
       },
       {
         title: "System Scope",
         body:
-          "Because role-playing systems vary widely, choosing one rules-heavy system gives the app a strong constraint and makes the solution easier to evaluate.",
+          "Because role-playing systems vary widely, choosing one rules-heavy system gives the app a strong constraint. It makes the project easier to evaluate because the tool can be judged against real play needs instead of abstract flexibility.",
+      },
+      {
+        title: "Usable State",
+        body:
+          "RPG Character Tracker shows how interface design can clarify a dense knowledge system. The same pattern applies beyond games: make complex state visible, actionable, and easier to trust.",
       },
     ],
     nextSteps: [
@@ -501,22 +543,23 @@ export const projects = [
       { label: "Mode", value: "Utility" },
     ],
     summary:
-      "Notion Archive Cleaner is a small workflow utility built around one sharp annoyance: exported Notion files often include auto-appended UUIDs that make archives harder to read, publish, and maintain.",
+      "Notion Archive Cleaner is a small workflow utility built around one sharp annoyance: exported Notion files often include auto-appended UUIDs that make archives harder to read, publish, and maintain. The project turns a repetitive cleanup chore into a safer, repeatable process.",
     problem:
-      "Notion exports are useful, but their generated filenames can be noisy. Manual cleanup is tedious and error-prone, especially when an archive contains many pages and assets.",
+      "Notion exports are useful, but their generated filenames can be noisy. Manual cleanup is tedious and error-prone, especially when an archive contains many pages, nested folders, links, and assets.",
     outcome:
-      "The utility gives the cleanup job a repeatable path, turning a messy export archive into a more human-readable file structure.",
+      "The utility gives the cleanup job a repeatable path, turning a messy export archive into a more human-readable file structure while keeping the scope narrow enough to remain understandable.",
     decisions: [
       "Keep the tool focused on a narrow recurring workflow.",
       "Support scripting patterns that can be repeated across exports.",
       "Treat filename clarity as the main product value.",
       "Avoid turning a small utility into an oversized content-management project.",
+      "Preserve the user's archive structure while removing the parts that make it harder to read.",
     ],
     sections: [
       {
         title: "Workflow Fit",
         body:
-          "The best case study angle is the before-and-after workflow: exported files with UUID noise versus a cleaned archive that is easier to inspect and move.",
+          "The strongest product story is the before-and-after workflow: exported files with UUID noise versus a cleaned archive that is easier to inspect, move, publish, and keep.",
       },
       {
         title: "Utility Scope",
@@ -526,7 +569,12 @@ export const projects = [
       {
         title: "Automation Value",
         body:
-          "The case study can show how a lightweight script saves repeated manual effort and reduces mistakes in a publishing or archiving process.",
+          "A lightweight cleanup tool can save repeated manual effort and reduce mistakes in a publishing or archiving process. The product value is not flash; it is relief from a recurring friction point.",
+      },
+      {
+        title: "Careful Utility",
+        body:
+          "Notion Archive Cleaner shows that small utilities still require product judgment. File operations need clarity, caution, and respect for the user's material.",
       },
     ],
     nextSteps: [
@@ -561,32 +609,38 @@ export const projects = [
       { label: "Content", value: "Repo notes" },
     ],
     summary:
-      "GitHub Repo Journal is a static blog for making the work around recent repositories more legible: what each project explores, what choices were made, and what might come next.",
+      "GitHub Repo Journal is a static blog for turning repository activity into a readable body of work. It gives recent projects a narrative layer: what sparked the build, how it works, what decisions mattered, and where the experiment could go next.",
     problem:
-      "A GitHub profile can show activity, but it rarely explains intent. Without writing, prototypes can look disconnected even when they are part of a larger learning or product arc.",
+      "A GitHub profile can show activity, but it rarely explains intent. Without writing, prototypes can look disconnected even when they are part of a larger learning arc, product idea, or technical exploration.",
     outcome:
-      "The Astro site gives project exploration a narrative layer, connecting repositories to essays, notes, examples, and experiments.",
+      "The Astro site connects repositories to essays, notes, technical examples, and creative experiments. It turns code history into something a reader can follow.",
     decisions: [
-      "Use Astro for a content-first site that can still include interactive components.",
-      "Support KaTeX and p5.js so technical and creative explorations can live in the same publishing system.",
-      "Treat repo writeups as a bridge between code history and portfolio narrative.",
-      "Keep the site deployable through GitHub Pages.",
+      "Use Astro because the site is content-first but still needs room for interactive components.",
+      "Support KaTeX and p5.js so technical explanation and creative coding can live in the same publishing system.",
+      "Treat repo writeups as a bridge between code history, portfolio narrative, and public learning.",
+      "Keep the site deployable through GitHub Pages so publishing stays lightweight.",
+      "Use posts to explain the reasoning that a repository alone cannot show.",
     ],
     sections: [
       {
         title: "Narrative Layer",
         body:
-          "The blog turns repository activity into a readable body of work. That makes the case study useful as a companion to the portfolio itself.",
+          "The blog turns repository activity into a readable body of work. It gives the reader context for why a project exists, what changed during the build, and what kind of judgment the project demonstrates.",
       },
       {
         title: "Content Flexibility",
         body:
-          "Astro, React, KaTeX, and p5.js support a broad range of post types, from technical notes to interactive sketches.",
+          "Astro, React, KaTeX, and p5.js support a broad range of post types: technical notes, project retrospectives, math-heavy explanations, and interactive sketches. That flexibility matters because the projects are not all the same kind of work.",
       },
       {
         title: "Portfolio Connection",
         body:
-          "The project can become a source of deeper context for case studies, giving each repo a place for reflection that does not overcrowd the main portfolio.",
+          "The blog can carry the deeper reflection that would overcrowd a portfolio card. Case studies can stay focused, while blog posts explain process, challenges, and what I learned from building.",
+      },
+      {
+        title: "Readable Work",
+        body:
+          "GitHub Repo Journal shows that the work is not only being built; it is being interpreted. That combination of making and explaining is central to the larger portfolio.",
       },
     ],
     nextSteps: [

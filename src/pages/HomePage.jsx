@@ -58,29 +58,32 @@ export function HomePage({ content }) {
 
   return (
     <main id="main-content">
-      <section className="relative h-screen w-full bg-neutral-950">
-        <div className="sticky top-0 w-full h-screen overflow-hidden border-b border-white/45">
+      <section className="relative h-[calc(100svh-73px)] w-full bg-[#163d6a] md:h-screen">
+        <div className="hero-scene-2 sticky top-0 h-full w-full overflow-hidden border-b-2 border-ink md:h-screen">
 
           {/* Screen-reader only description of the complete scene */}
           <span className="sr-only">{profile.hero.imageAlt}</span>
 
+          <div className="hero-aurora" aria-hidden="true" />
+          <div className="hero-pattern" aria-hidden="true" />
+
           {/* Individual fragmented layers hidden from assistive tech */}
-          <img src="/assets/hero/sky.svg" className="absolute inset-0 w-full h-full object-cover opacity-85 select-none zoom-layer" data-scale-speed="0.05" alt="" aria-hidden="true" />
-          <img src="/assets/hero/background.svg" className="absolute inset-0 w-full h-full object-cover opacity-85 select-none zoom-layer" data-scale-speed="0.25" alt="" aria-hidden="true" />
+          <img src="/assets/hero/sky.svg" className="absolute inset-0 w-full h-full object-cover opacity-70 mix-blend-screen select-none zoom-layer" data-scale-speed="0.05" alt="" aria-hidden="true" />
+          <img src="/assets/hero/background.svg" className="absolute inset-0 w-full h-full object-cover opacity-80 select-none zoom-layer" data-scale-speed="0.25" alt="" aria-hidden="true" />
           <img src="/assets/hero/midground.svg" className="absolute inset-0 w-full h-full object-cover opacity-85 select-none zoom-layer" data-scale-speed="0.6" alt="" aria-hidden="true" />
-          <img src="/assets/hero/foreground.svg" className="absolute inset-0 w-full h-full object-cover opacity-85 select-none zoom-layer" data-scale-speed="1.3" alt="" aria-hidden="true" />
+          <img src="/assets/hero/foreground.svg" className="absolute inset-0 w-full h-full object-cover opacity-90 select-none zoom-layer" data-scale-speed="1.3" alt="" aria-hidden="true" />
 
-          <div className="absolute inset-0 bg-gradient-to-r from-paper/95 via-paper/80 to-paper/10 max-md:bg-gradient-to-t" />
+          <div className="absolute inset-0 bg-gradient-to-t from-paper/95 via-paper/62 to-transparent md:bg-gradient-to-r md:from-paper md:via-paper/92 md:via-[48%] md:to-[#163d6a]/10" />
 
-          <div className="absolute inset-0 flex flex-col justify-center">
-            <div className="relative z-10 w-[min(680px,calc(100vw-32px))] px-4 py-8 sm:ml-[clamp(18px,6vw,84px)] sm:px-0">
-              <div className="mb-5 inline-flex rounded-full border border-white/70 bg-white/45 px-3 py-2 text-xs font-black uppercase tracking-normal shadow-soft backdrop-blur-xl">
-                Product-minded frontend candidate
+          <div className="absolute inset-0 flex flex-col justify-end pb-8 md:justify-center md:pb-0">
+            <div className="hero-copy-shell relative z-10 mx-4 px-0 py-0 md:mx-0 md:rounded-r-[2rem] md:border-y md:border-r md:border-white/55 md:bg-paper/72 md:px-7 md:py-8 md:shadow-soft md:backdrop-blur-md md:ml-[clamp(18px,6vw,84px)]">
+              <div className="mb-4 inline-flex rounded-full border border-ink/15 bg-white/35 px-3 py-2 text-xs font-black uppercase tracking-normal text-ink/65 backdrop-blur-xl">
+                Michael Baker
               </div>
               <p className="eyebrow">{profile.hero.eyebrow}</p>
               <h1
                 ref={titleRef}
-                className="mt-3 w-full max-w-none text-[clamp(2.5rem,7vw,6rem)] font-black leading-[0.88] tracking-normal bg-clip-text text-transparent"
+                className="mt-3 w-full max-w-none pb-2 text-[clamp(2.5rem,7vw,6rem)] font-black leading-[0.96] tracking-normal bg-clip-text text-transparent"
                 style={{ backgroundImage: "linear-gradient(135deg, #1e1b4b 0%, #1d4ed8 40%, #7e22ce 100%)" }}
               >
                 {profile.hero.title}
@@ -100,9 +103,9 @@ export function HomePage({ content }) {
       </section>
 
       <div className="relative z-20">
-        <div className="relative min-h-screen">
-          <div className="sticky top-0 min-h-screen flex flex-col justify-center bg-cream pt-20 pb-16 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] rounded-t-3xl border-t border-ink/10">
-            <section className="mx-auto grid w-[min(1180px,calc(100vw-32px))] gap-6 md:grid-cols-[0.85fr_1.15fr] md:items-start">
+        <div className="relative min-h-screen max-md:min-h-0 max-md:px-3 max-md:py-3">
+          <div className="sticky top-0 min-h-screen flex flex-col justify-center bg-cream pt-20 pb-16 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] rounded-t-3xl border-t border-ink/10 max-md:static max-md:min-h-0 max-md:rounded-2xl max-md:px-1 max-md:py-10">
+            <section className="page-shell grid gap-6 md:grid-cols-[0.85fr_1.15fr] md:items-start">
               <div>
                 <p className="eyebrow">{profile.lineage.eyebrow}</p>
                 <h2 className="mt-2 text-[clamp(2rem,4vw,4.2rem)] font-black leading-none">{profile.lineage.title}</h2>
@@ -120,25 +123,28 @@ export function HomePage({ content }) {
               </div>
             </section>
 
-            <section className="mx-auto mt-16 grid w-[min(1180px,calc(100vw-32px))] overflow-hidden rounded-lg border-2 border-ink bg-ink shadow-soft md:grid-cols-4">
+            <section className="page-shell mt-16 grid overflow-hidden rounded-lg border-2 border-ink bg-ink shadow-soft md:grid-cols-4">
               {audienceSignals.map((signal, index) => (
-                <article className="audience-card min-h-40 border-ink bg-cream p-5 md:border-r md:last:border-r-0" key={signal}>
-                  <span className="font-black">{String(index + 1).padStart(2, "0")}</span>
-                  <p className="mt-3 font-semibold leading-7 text-muted">{signal}</p>
+                <article className="audience-card min-h-44 border-ink bg-cream p-5 md:border-r md:last:border-r-0" key={signal.label}>
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="text-4xl font-black leading-none text-ink/25">{String(index + 1).padStart(2, "0")}</span>
+                    <span className="rounded-full border border-ink/20 bg-white/55 px-2 py-1 text-xs font-black uppercase text-portfolioBlue">{signal.label}</span>
+                  </div>
+                  <p className="mt-5 text-lg font-black leading-7 text-ink">{signal.text}</p>
                 </article>
               ))}
             </section>
           </div>
         </div>
 
-        <div id="work" className="relative min-h-screen">
-          <div className="sticky top-0 flex min-h-screen flex-col justify-center bg-white pt-20 pb-16 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] rounded-t-3xl border-t border-ink/10">
-            <section className="mx-auto w-[min(1180px,calc(100vw-32px))]">
+        <div id="work" className="relative min-h-screen max-md:min-h-0 max-md:px-3 max-md:py-3">
+          <div className="sticky top-0 flex min-h-screen flex-col justify-center bg-white pt-20 pb-16 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] rounded-t-3xl border-t border-ink/10 max-md:static max-md:min-h-0 max-md:rounded-2xl max-md:px-1 max-md:py-10">
+            <section className="page-shell">
               <div className="mb-7 max-w-3xl">
                 <p className="eyebrow">Case studies</p>
                 <h2 className="mt-2 text-[clamp(2rem,4vw,4.2rem)] font-black leading-none">Selected work, shaped into case studies.</h2>
                 <p className="mt-4 text-lg font-bold leading-8 text-muted">
-                  Each project has its own angle: product thinking, data shape, interface decisions, writing, and the tradeoffs behind the build.
+                  Each project makes a different part of the bridge visible: content judgment, data shape, interface decisions, and the tradeoffs behind the build.
                 </p>
                 <Link className="mt-4 inline-flex border-b-[3px] border-ink text-sm font-black no-underline transition hover:-translate-y-0.5" href="/case-studies">
                   Open filterable index
@@ -164,9 +170,9 @@ export function HomePage({ content }) {
           </div>
         </div>
 
-        <div id="capabilities" className="relative min-h-screen">
-          <div className="sticky top-0 min-h-screen flex flex-col justify-center bg-cream pt-20 pb-16 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] rounded-t-3xl border-t border-ink/10">
-            <section className="mx-auto w-[min(1180px,calc(100vw-32px))]">
+        <div id="capabilities" className="relative min-h-screen max-md:min-h-0 max-md:px-3 max-md:py-3">
+          <div className="sticky top-0 min-h-screen flex flex-col justify-center bg-cream pt-20 pb-16 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] rounded-t-3xl border-t border-ink/10 max-md:static max-md:min-h-0 max-md:rounded-2xl max-md:px-1 max-md:py-10">
+            <section className="page-shell">
               <div className="mb-7 max-w-3xl">
                 <p className="eyebrow">Capabilities</p>
                 <h2 className="mt-2 text-[clamp(2rem,4vw,4.2rem)] font-black leading-none">What I bring to the work.</h2>
@@ -185,9 +191,9 @@ export function HomePage({ content }) {
           </div>
         </div>
 
-        <div id="taste" className="relative min-h-screen">
-          <div className="sticky top-0 min-h-screen flex flex-col justify-center bg-white pt-20 pb-16 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] rounded-t-3xl border-t border-ink/10">
-            <section className="mx-auto grid w-[min(1180px,calc(100vw-32px))] gap-8 md:grid-cols-[0.9fr_1.1fr]">
+        <div id="taste" className="relative min-h-screen max-md:min-h-0 max-md:px-3 max-md:py-3">
+          <div className="sticky top-0 min-h-screen flex flex-col justify-center bg-white pt-20 pb-16 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] rounded-t-3xl border-t border-ink/10 max-md:static max-md:min-h-0 max-md:rounded-2xl max-md:px-1 max-md:py-10">
+            <section className="page-shell grid gap-8 md:grid-cols-[0.9fr_1.1fr]">
               <div>
                 <p className="eyebrow">{profile.creativePosition.eyebrow}</p>
                 <h2 className="mt-2 text-[clamp(2rem,4vw,4.2rem)] font-black leading-none">{profile.creativePosition.title}</h2>
@@ -196,13 +202,13 @@ export function HomePage({ content }) {
                 {profile.creativePosition.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
-                <Link className="mt-2 inline-flex w-fit border-b-[3px] border-ink text-sm font-black no-underline transition hover:-translate-y-0.5" href="/taste">
-                  Read the full taste and content pitch
+                <Link className="button mt-2 w-fit bg-coral max-sm:w-full" href="/taste">
+                  Open the full taste pitch
                 </Link>
               </div>
             </section>
 
-            <section className="mx-auto mt-16 grid w-[min(1180px,calc(100vw-32px))] gap-4 md:grid-cols-3" aria-label="Ways to collaborate">
+            <section className="page-shell mt-16 grid gap-4 md:grid-cols-3" aria-label="Ways to collaborate">
               {services.map((service) => (
                 <article className="service-card border-t-[6px] border-coral pt-5" key={service.title}>
                   <h3 className="text-2xl font-black leading-none">{service.title}</h3>
@@ -211,7 +217,7 @@ export function HomePage({ content }) {
               ))}
             </section>
 
-            <section id="contact" className="mx-auto mt-16 grid w-[min(1180px,calc(100vw-32px))] gap-6 rounded-lg border-2 border-ink bg-chartreuse p-7 shadow-soft md:grid-cols-[0.9fr_1.1fr] md:p-10">
+            <section id="contact" className="page-shell mt-16 grid gap-6 rounded-lg border-2 border-ink bg-chartreuse p-7 shadow-soft md:grid-cols-[0.9fr_1.1fr] md:p-10">
               <div className="self-center">
                 <p className="eyebrow">Contact</p>
                 <h2 className="mt-2 text-[clamp(2rem,4vw,4.2rem)] font-black leading-none">Want to talk about a role or project?</h2>
@@ -271,14 +277,14 @@ export function HomePage({ content }) {
                       type="text"
                       autoComplete="address-level2"
                       maxLength="120"
-                      placeholder="Bay Area, remote, Eastern time..."
+                      placeholder="City or region"
                     />
                   </label>
                 </div>
                 <label className="mt-4 block">
                   <span className="text-xs font-black uppercase text-ink/65">Case study interest</span>
                   <select className="mt-2 min-h-12 w-full rounded-lg border-2 border-ink bg-cream px-3 font-bold outline-none focus:bg-white" name="caseStudyInterest" defaultValue="">
-                    <option value="">No specific case study</option>
+                    <option value="">No specific study</option>
                     {listedProjects.map((project) => (
                       <option key={project.slug} value={project.title}>
                         {project.title}
@@ -292,7 +298,7 @@ export function HomePage({ content }) {
                     className="mt-2 min-h-32 w-full resize-y rounded-lg border-2 border-ink bg-cream px-3 py-3 font-bold outline-none focus:bg-white"
                     name="message"
                     maxLength="3000"
-                    placeholder="Tell me what caught your eye, what role or project you have in mind, or what kind of conversation would be useful."
+                    placeholder="What should we talk about?"
                     required
                   />
                 </label>
@@ -315,13 +321,13 @@ export function HomePage({ content }) {
           <div>
             <p className="text-xs font-black uppercase text-chartreuse">Michael Baker</p>
             <p className="mt-2 max-w-xl font-semibold leading-7 text-cream/75">
-              Product-minded frontend work, case studies, technical writing, and practical prototypes.
+              Content production depth, technical writing, practical prototypes, and growing frontend craft.
             </p>
           </div>
-          <nav className="flex flex-wrap gap-3" aria-label="Footer links">
+          <nav className="grid w-full grid-cols-3 gap-2 sm:flex sm:w-auto sm:flex-wrap sm:gap-3" aria-label="Footer links">
             {profile.links.map((item) => (
               <Link
-                className="rounded-full border border-cream/25 px-4 py-2 text-sm font-black no-underline transition hover:-translate-y-0.5 hover:border-chartreuse hover:bg-chartreuse hover:text-ink"
+                className="min-w-0 rounded-full border border-cream/25 px-2 py-2 text-center text-xs font-black no-underline transition hover:-translate-y-0.5 hover:border-chartreuse hover:bg-chartreuse hover:text-ink sm:px-4 sm:text-sm"
                 href={item.href}
                 key={item.href}
               >

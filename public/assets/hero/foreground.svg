@@ -1,24 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Placeholder foreground portfolio objects layer">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Tilt-shift diorama foreground objects layer">
   <defs>
-    <filter id="hardShadow" x="-20%" y="-20%" width="140%" height="150%">
-      <feDropShadow dx="0" dy="22" stdDeviation="14" flood-color="#201d1d" flood-opacity="0.24"/>
+    <filter id="nearBlur">
+      <feGaussianBlur stdDeviation="5.5"/>
+    </filter>
+    <filter id="nearShadow" x="-25%" y="-25%" width="150%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="15" flood-color="#201d1d" flood-opacity="0.26"/>
     </filter>
   </defs>
   <rect width="1600" height="1000" fill="none"/>
-  <g filter="url(#hardShadow)">
-    <rect x="1030" y="705" width="410" height="170" rx="22" fill="#201d1d"/>
-    <rect x="1060" y="735" width="350" height="36" rx="18" fill="#fffaf1"/>
-    <rect x="1085" y="795" width="145" height="18" rx="9" fill="#f26b57"/>
-    <rect x="1250" y="795" width="120" height="18" rx="9" fill="#c8d84b"/>
+  <g filter="url(#nearShadow)">
+    <rect x="112" y="692" width="390" height="214" rx="34" fill="#fffaf1"/>
+    <rect x="148" y="734" width="216" height="34" rx="17" fill="#285c8f"/>
+    <rect x="148" y="794" width="286" height="20" rx="10" fill="#201d1d" opacity="0.18"/>
+    <rect x="148" y="834" width="220" height="20" rx="10" fill="#201d1d" opacity="0.13"/>
+    <circle cx="440" cy="742" r="34" fill="#c8d84b"/>
   </g>
-  <g filter="url(#hardShadow)">
-    <rect x="114" y="650" width="395" height="230" rx="30" fill="#fffaf1"/>
-    <rect x="150" y="690" width="210" height="32" rx="16" fill="#285c8f"/>
-    <rect x="150" y="750" width="285" height="20" rx="10" fill="#201d1d" opacity="0.18"/>
-    <rect x="150" y="790" width="230" height="20" rx="10" fill="#201d1d" opacity="0.14"/>
+  <g filter="url(#nearShadow)">
+    <rect x="1000" y="732" width="456" height="170" rx="28" fill="#201d1d"/>
+    <rect x="1036" y="764" width="372" height="38" rx="19" fill="#fffaf1"/>
+    <rect x="1070" y="830" width="150" height="18" rx="9" fill="#f26b57"/>
+    <rect x="1248" y="830" width="128" height="18" rx="9" fill="#c8d84b"/>
   </g>
-  <g filter="url(#hardShadow)">
-    <circle cx="1370" cy="575" r="116" fill="#285c8f"/>
-    <path d="M1370 497L1390 548L1444 552L1402 587L1416 640L1370 611L1324 640L1338 587L1296 552L1350 548Z" fill="#ffe7a8"/>
+  <g filter="url(#nearBlur)" opacity="0.78">
+    <circle cx="1404" cy="594" r="124" fill="#285c8f"/>
+    <path d="M1404 510L1428 566L1488 570L1442 610L1456 670L1404 638L1352 670L1366 610L1320 570L1380 566Z" fill="#ffe7a8"/>
+    <rect x="520" y="804" width="180" height="96" rx="24" fill="#f26b57"/>
   </g>
 </svg>

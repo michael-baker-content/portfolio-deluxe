@@ -1,23 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Placeholder sky layer">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Tilt-shift diorama sky and tabletop layer">
   <defs>
-    <linearGradient id="sky" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0" stop-color="#f7fbff"/>
-      <stop offset="0.45" stop-color="#dcecf8"/>
-      <stop offset="1" stop-color="#f8e7d9"/>
+    <linearGradient id="sky2" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#12335d"/>
+      <stop offset="0.42" stop-color="#285c8f"/>
+      <stop offset="1" stop-color="#8ec7df"/>
     </linearGradient>
-    <radialGradient id="glow" cx="28%" cy="22%" r="40%">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    <linearGradient id="table" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff2d7"/>
+      <stop offset="1" stop-color="#d29a25"/>
+    </linearGradient>
+    <radialGradient id="lamp" cx="33%" cy="18%" r="42%">
+      <stop offset="0" stop-color="#fffaf1" stop-opacity="0.95"/>
+      <stop offset="0.42" stop-color="#fffaf1" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#fffaf1" stop-opacity="0"/>
     </radialGradient>
+    <filter id="farBlur">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
   </defs>
-  <rect width="1600" height="1000" fill="url(#sky)"/>
-  <circle cx="430" cy="190" r="360" fill="url(#glow)"/>
-  <circle cx="1270" cy="180" r="210" fill="#ffffff" opacity="0.22"/>
-  <path d="M0 710C210 650 320 700 510 645C720 583 835 640 1030 590C1250 533 1390 560 1600 505V1000H0Z" fill="#fff6e9" opacity="0.58"/>
-  <g fill="#285c8f" opacity="0.14">
-    <circle cx="180" cy="220" r="4"/>
-    <circle cx="530" cy="145" r="3"/>
-    <circle cx="960" cy="260" r="4"/>
-    <circle cx="1420" cy="310" r="3"/>
+  <rect width="1600" height="1000" fill="url(#sky2)"/>
+  <rect width="1600" height="1000" fill="url(#lamp)" opacity="0.82"/>
+  <g opacity="0.22" fill="#fffaf1" filter="url(#farBlur)">
+    <circle cx="1160" cy="150" r="120"/>
+    <circle cx="1360" cy="250" r="74"/>
+    <circle cx="980" cy="210" r="42"/>
   </g>
+  <g opacity="0.24" stroke="#fffaf1" stroke-width="2">
+    <path d="M0 170H1600"/>
+    <path d="M0 300H1600"/>
+    <path d="M0 430H1600"/>
+    <path d="M210 0V610"/>
+    <path d="M460 0V610"/>
+    <path d="M710 0V610"/>
+    <path d="M960 0V610"/>
+    <path d="M1210 0V610"/>
+    <path d="M1460 0V610"/>
+  </g>
+  <path d="M0 645C210 594 388 624 548 590C744 548 875 586 1045 544C1240 496 1396 505 1600 458V1000H0Z" fill="#fffaf1" opacity="0.42"/>
+  <path d="M0 720C250 680 408 704 620 674C830 644 1060 690 1600 606V1000H0Z" fill="url(#table)" opacity="0.72"/>
+  <ellipse cx="1090" cy="806" rx="510" ry="112" fill="#201d1d" opacity="0.1"/>
 </svg>

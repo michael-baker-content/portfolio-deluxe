@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, Brush, Building2, Code2, GraduationCap } from "lucide-react";
+import { ArrowRight, Brush, Building2, Code2, GraduationCap, MessageSquare } from "lucide-react";
 import { Link } from "../components/Link.jsx";
 
 const iconMap = [Building2, GraduationCap, Code2];
@@ -34,7 +34,7 @@ export function TastePage({ content }) {
             <div className="memphis-bob absolute -bottom-8 -right-4 z-20 grid h-28 w-28 place-items-center rounded-lg border-2 border-ink bg-chartreuse shadow-hard rotate-6">
               <Brush size={46} />
             </div>
-            <figure className="relative z-10 overflow-hidden rounded-lg border-2 border-ink bg-white shadow-hard rotate-1">
+            <figure className="taste-lift relative z-10 overflow-hidden rounded-lg border-2 border-ink bg-white shadow-hard rotate-1">
               <img className="h-[min(70vh,680px)] w-full object-cover" src={pitch.heroImage.src} alt={pitch.heroImage.alt} />
               <figcaption className="border-t-2 border-ink bg-white p-4 text-sm font-black uppercase text-ink/65">
                 Content work is systems work, people work, and taste work.
@@ -56,8 +56,8 @@ export function TastePage({ content }) {
               const Icon = iconMap[index] || ArrowRight;
 
               return (
-                <article className="taste-proof-card rounded-lg border-2 border-ink bg-cream p-5 shadow-hard" key={point.title}>
-                  <div className="grid h-14 w-14 place-items-center rounded-full border-2 border-ink bg-chartreuse">
+                <article className="taste-proof-card taste-lift rounded-lg border-2 border-ink bg-cream p-5 shadow-hard" key={point.title}>
+                  <div className="taste-pop grid h-14 w-14 place-items-center rounded-full border-2 border-ink bg-chartreuse">
                     <Icon size={28} />
                   </div>
                   <p className="eyebrow mt-5">{point.label}</p>
@@ -79,13 +79,13 @@ export function TastePage({ content }) {
               <h2 className="mt-2 max-w-4xl text-[clamp(2.5rem,6vw,5.5rem)] font-black leading-none">Three lanes that keep crossing.</h2>
             </div>
             <p className="max-w-md font-semibold leading-7 text-cream/70">
-              Content strategy, online education, and frontend development are not separate interests. They are different ways of making information usable.
+              The throughline is usability: people need accurate material, clear structure, and tools that make the next step easier.
             </p>
           </div>
 
           <div className="mt-10 grid gap-6">
             {pitch.imagePanels.map((panel, index) => (
-              <article className={`grid overflow-hidden rounded-lg border-2 border-cream bg-cream text-ink shadow-soft lg:grid-cols-2 ${index % 2 ? "lg:[&>figure]:order-2" : ""}`} key={panel.title}>
+              <article className={`taste-lift grid overflow-hidden rounded-lg border-2 border-cream bg-cream text-ink shadow-soft lg:grid-cols-2 ${index % 2 ? "lg:[&>figure]:order-2" : ""}`} key={panel.title}>
                 <figure className="min-h-80">
                   <img className="h-full min-h-80 w-full object-cover" src={panel.src} alt={panel.alt} loading="lazy" />
                 </figure>
@@ -103,15 +103,46 @@ export function TastePage({ content }) {
         </div>
       </section>
 
-      <section className="relative bg-chartreuse px-4 py-16 sm:px-8 lg:px-14">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 rounded-lg border-2 border-ink bg-white p-8 shadow-hard md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="eyebrow">Bottom line</p>
-            <h2 className="mt-2 max-w-4xl text-[clamp(2.5rem,6vw,5.5rem)] font-black leading-none">{pitch.closing}</h2>
+      <section className="relative overflow-hidden bg-chartreuse px-4 py-16 sm:px-8 lg:px-14">
+        <div className="memphis-dots absolute inset-0 opacity-20" aria-hidden="true" />
+        <div className="relative z-10 mx-auto grid max-w-7xl gap-6 rounded-lg border-2 border-ink bg-white p-6 shadow-hard md:grid-cols-[1fr_0.72fr] md:p-8 lg:p-10">
+          <div className="taste-lift rounded-lg border-2 border-ink bg-[#fff7d6] p-6">
+            <p className="eyebrow">Leave-behind</p>
+            <h2 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,4.7rem)] font-black leading-none">
+              Seasoned content judgment, now closer to the product.
+            </h2>
+            <p className="mt-5 max-w-2xl text-lg font-bold leading-8 text-muted">
+              I bring enterprise production habits, editorial care, and growing frontend skill to teams that need useful web experiences built with taste and attention.
+            </p>
           </div>
-          <Link className="button bg-coral" href="/#contact">
-            Contact me
-          </Link>
+
+          <div className="grid gap-4">
+            {[
+              ["Content depth", "I know what quality looks like before and after a page ships."],
+              ["Technical momentum", "The case studies show the systems I can now make tangible."],
+              ["Good collaboration", "I am used to working where accuracy, review, and trust matter."],
+            ].map(([title, body]) => (
+              <article className="taste-lift rounded-lg border-2 border-ink bg-cream p-5" key={title}>
+                <p className="text-xs font-black uppercase text-portfolioBlue">{title}</p>
+                <p className="mt-2 font-bold leading-7 text-ink/75">{body}</p>
+              </article>
+            ))}
+
+            <div className="taste-lift rounded-lg border-2 border-ink bg-ink p-5 text-cream">
+              <div className="flex items-center gap-3">
+                <span className="taste-pop grid h-12 w-12 place-items-center rounded-full border-2 border-cream bg-coral text-ink">
+                  <MessageSquare size={24} />
+                </span>
+                <div>
+                  <p className="text-xs font-black uppercase text-chartreuse">Next step</p>
+                  <p className="font-bold text-cream/80">Talk with me about the fit.</p>
+                </div>
+              </div>
+              <Link className="button mt-5 w-full bg-coral text-ink" href="/#contact">
+                Start a conversation
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -123,7 +154,7 @@ function MemphisBackdrop() {
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       <div className="memphis-bob absolute left-[6%] top-[15%] h-24 w-24 rounded-full border-2 border-ink bg-chartreuse" />
       <div className="memphis-wiggle absolute right-[12%] top-[10%] h-32 w-32 rotate-12 border-2 border-ink bg-[#d9eef6]" />
-      <div className="memphis-drift absolute bottom-[12%] left-[15%] h-20 w-40 -rotate-6 rounded-full border-2 border-ink bg-coral" />
+      <div className="memphis-drift absolute bottom-[calc(12%+50px)] left-[15%] h-20 w-40 -rotate-6 rounded-full border-2 border-ink bg-coral" />
       <div className="memphis-dots absolute inset-0 opacity-25" />
     </div>
   );

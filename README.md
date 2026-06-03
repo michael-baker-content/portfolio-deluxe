@@ -12,7 +12,7 @@ This project began as a fork of [`machadop1407/beautiful-react-tailwind-portfoli
 - Replaceable decorative card imagery for each visible case study.
 - A Formspree-ready contact form with name, email, role, location, case-study interest, and message fields.
 - A protected `/admin` content dashboard for editing homepage copy and case-study content without touching code.
-- Footer links for GitHub, the project blog, case studies, and other future destinations.
+- Footer links for GitHub, the project blog, and the case-study index.
 - Hidden draft/template case studies so new work can be prepared before it appears publicly.
 
 ## Good Starting Moves
@@ -95,7 +95,7 @@ To enable it on Vercel:
 1. Add Vercel Blob storage to the project.
 2. Make sure `BLOB_READ_WRITE_TOKEN` is available to the project. Vercel Blob can create this for you.
 3. Add your own private `ADMIN_TOKEN` environment variable.
-4. Deploy.
+5. Deploy.
 5. Visit `/admin`, paste the admin token, load saved content or start from defaults, edit, and save.
 
 Keep `ADMIN_TOKEN` private. It is not a user account system; it is a simple owner-only token gate for a personal portfolio dashboard.
@@ -146,7 +146,7 @@ npm run dev:3000
 To test the `/admin` dashboard and Vercel API locally, run the Vercel dev server and opt into API loading:
 
 ```powershell
-VITE_ENABLE_CONTENT_API=true
+$env:VITE_ENABLE_CONTENT_API = "true"
 npm run dev:vercel
 ```
 
@@ -177,6 +177,9 @@ Recommended first host.
    - Output directory: `dist`
 3. Add the environment variable:
    - `VITE_FORMSPREE_ENDPOINT`
+4. To enable the admin dashboard, also add:
+   - `BLOB_READ_WRITE_TOKEN`
+   - `ADMIN_TOKEN`
 4. Deploy.
 
 `vercel.json` includes a rewrite so direct visits to routes like `/case-studies` and `/projects/music` serve the React app instead of returning 404.
@@ -196,9 +199,9 @@ Good second host and a useful comparison point.
 
 `public/_redirects` is copied into `dist` during the Vite build and gives Cloudflare Pages the same SPA route fallback.
 
-## Related Local Projects
+## Related Projects
 
-Related app projects may live outside this folder. In Michael's local workspace:
+Related app projects may live beside this folder in a shared apps workspace:
 
 - Music app: `../Music`
 - Greeting Card app: `../Greeting`
@@ -222,6 +225,7 @@ Before pushing to GitHub:
 
 1. Confirm the app runs locally at the URL printed by `npm run dev`.
 2. Confirm `.env.local` is not staged.
-3. Run `npm run build`.
-4. Check that `node_modules`, `dist`, `.npm-cache`, and `source-materials/package-manager-artifacts` are not staged.
-5. Review case-study visibility so drafts are not accidentally public.
+3. Run `npm test`.
+4. Run `npm run build`.
+5. Check that `node_modules`, `dist`, `.npm-cache`, and `source-materials/package-manager-artifacts` are not staged.
+6. Review case-study visibility so drafts are not accidentally public.

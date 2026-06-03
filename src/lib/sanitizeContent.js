@@ -121,7 +121,17 @@ export function sanitizeContent(content) {
   return {
     ...source,
     profile: cleanProfile(source.profile || {}),
-    audienceSignals: cleanArray(source.audienceSignals),
+    audienceSignals: cleanArray(source.audienceSignals, (signal) => {
+      if (signal && typeof signal === "object") {
+        return {
+          label: cleanText(signal.label, 80),
+          text: cleanText(signal.text, 500),
+        };
+      }
+
+      const text = cleanText(signal, 500);
+      return text ? { label: "Signal", text } : null;
+    }),
     capabilities: cleanObjectArray(source.capabilities, (capability) => ({
       ...capability,
       category: cleanText(capability.category, 80),

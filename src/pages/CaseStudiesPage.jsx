@@ -55,13 +55,13 @@ export function CaseStudiesPage({ content }) {
               <h1 className="mt-2 text-[clamp(2.5rem,7vw,6.5rem)] font-black leading-none">Projects with a point of view.</h1>
             </div>
             <p className="text-lg font-bold leading-8 text-muted">
-              These are the builds where product judgment, writing, interface design, and technical problem-solving come together. Dig into the context behind each project: what sparked it, how it works, and what it says about the kind of work I like to make.
+              These builds make the technical side of my work visible: what sparked each project, how it works, and what decisions shaped it.
             </p>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto w-[min(1180px,calc(100vw-32px))] py-10">
+      <section className="page-shell py-10">
         <div className="rounded-lg border-2 border-ink bg-white p-5 shadow-hard">
           <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
             <label className="block">

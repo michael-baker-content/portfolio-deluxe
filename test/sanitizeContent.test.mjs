@@ -16,6 +16,7 @@ test("sanitizeContent cleans project URLs, image URLs, slugs, and arrays", () =>
       links: [{ label: "Bad link", href: "javascript:alert(1)" }],
       contactForm: { endpoint: "https://formspree.io/f/example" },
     },
+    audienceSignals: [{ label: "Signal", text: "Useful context" }, "Legacy signal"],
     projects: [
       {
         slug: "Bad Project!!",
@@ -30,6 +31,10 @@ test("sanitizeContent cleans project URLs, image URLs, slugs, and arrays", () =>
 
   assert.equal(content.profile.links[0].href, "");
   assert.equal(content.profile.contactForm.endpoint, "https://formspree.io/f/example");
+  assert.deepEqual(content.audienceSignals, [
+    { label: "Signal", text: "Useful context" },
+    { label: "Signal", text: "Legacy signal" },
+  ]);
   assert.equal(content.projects[0].slug, "bad-project");
   assert.equal(content.projects[0].detailHref, "/projects/bad-project");
   assert.equal(content.projects[0].appHref, "");

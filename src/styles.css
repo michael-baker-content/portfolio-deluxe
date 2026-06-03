@@ -13,6 +13,7 @@
 
   html {
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
   }
 
   body {
@@ -32,6 +33,20 @@
 }
 
 @layer components {
+  .page-shell {
+    width: min(1180px, calc(100% - 32px));
+    margin-inline: auto;
+  }
+
+  .page-shell-narrow {
+    width: min(900px, calc(100% - 32px));
+    margin-inline: auto;
+  }
+
+  .hero-copy-shell {
+    width: min(720px, calc(100% - 32px));
+  }
+
   .eyebrow {
     @apply m-0 text-xs font-black uppercase tracking-normal text-portfolioBlue;
   }
@@ -42,6 +57,17 @@
 
   .skip-link {
     @apply fixed left-4 top-4 z-50 -translate-y-24 rounded-full border-2 border-ink bg-chartreuse px-5 py-3 font-black no-underline shadow-hard transition focus:translate-y-0;
+  }
+
+  @media (max-width: 767px) {
+    .page-shell,
+    .page-shell-narrow {
+      width: min(1180px, calc(100% - 24px));
+    }
+
+    .hero-copy-shell {
+      width: auto;
+    }
   }
 }
 
@@ -101,6 +127,37 @@
     border-top-color: theme("colors.portfolioBlue");
   }
 
+  .hero-scene-2 {
+    background:
+      radial-gradient(circle at 78% 18%, rgba(200, 216, 75, 0.34), transparent 28%),
+      radial-gradient(circle at 88% 72%, rgba(242, 107, 87, 0.36), transparent 30%),
+      linear-gradient(135deg, #12335d 0%, #285c8f 48%, #15345f 100%);
+  }
+
+  .hero-aurora {
+    position: absolute;
+    inset: -18%;
+    background:
+      radial-gradient(circle at 68% 20%, rgba(142, 199, 223, 0.72), transparent 28%),
+      radial-gradient(circle at 86% 58%, rgba(242, 107, 87, 0.38), transparent 26%),
+      radial-gradient(circle at 52% 84%, rgba(200, 216, 75, 0.32), transparent 28%);
+    filter: blur(20px);
+    opacity: 0.75;
+    animation: hero-aurora-drift 18s ease-in-out infinite;
+  }
+
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.24;
+    background-image:
+      linear-gradient(rgba(255, 250, 241, 0.16) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 250, 241, 0.16) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(90deg, transparent 0%, black 34%, black 100%);
+    animation: hero-grid-slide 24s linear infinite;
+  }
+
   .memphis-dots {
     background-image: radial-gradient(circle, rgba(32, 29, 29, 0.55) 2px, transparent 2.5px);
     background-size: 22px 22px;
@@ -134,6 +191,37 @@
     transform: rotate(-1deg);
   }
 
+  .taste-lift {
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      filter 180ms ease;
+  }
+
+  .taste-lift:hover,
+  .taste-lift:focus-within {
+    filter: saturate(1.04);
+    transform: translate3d(0, -5px, 0) rotate(var(--taste-hover-rotate, 0deg));
+    box-shadow: 10px 10px 0 rgba(32, 29, 29, 0.92);
+  }
+
+  .taste-proof-card:nth-child(2) {
+    --taste-hover-rotate: 1.5deg;
+  }
+
+  .taste-proof-card:nth-child(3) {
+    --taste-hover-rotate: -1.5deg;
+  }
+
+  .taste-pop {
+    transition: transform 180ms ease;
+  }
+
+  .taste-lift:hover .taste-pop,
+  .taste-lift:focus-within .taste-pop {
+    transform: rotate(-6deg) scale(1.08);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -147,6 +235,41 @@
     .taste-proof-card:nth-child(2),
     .taste-proof-card:nth-child(3) {
       transform: none;
+    }
+
+    .taste-lift:hover,
+    .taste-lift:focus-within,
+    .taste-lift:hover .taste-pop,
+    .taste-lift:focus-within .taste-pop {
+      filter: none;
+      transform: none;
+      box-shadow: inherit;
+    }
+
+    .hero-aurora,
+    .hero-pattern {
+      animation: none;
+    }
+  }
+
+  @keyframes hero-aurora-drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    }
+
+    50% {
+      transform: translate3d(-34px, 22px, 0) rotate(4deg) scale(1.04);
+    }
+  }
+
+  @keyframes hero-grid-slide {
+    from {
+      background-position: 0 0, 0 0;
+    }
+
+    to {
+      background-position: 44px 44px, 44px 44px;
     }
   }
 

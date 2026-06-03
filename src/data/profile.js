@@ -11,135 +11,147 @@ export const profile = {
     { label: "Case studies", href: "/case-studies" },
   ],
   hero: {
-    eyebrow: "Product thinking, frontend craft, and clear technical storytelling",
-    title: "Michael Baker builds useful web experiences.",
+    eyebrow: "Content systems + web craft",
+    title: "Useful web work, built with editorial taste.",
     description:
-      "I make working prototypes, dashboards, publishing tools, and learning systems that turn messy ideas into things people can inspect, use, and understand.",
+      "Prototypes, dashboards, and publishing tools shaped by 15+ years in content production.",
     imageAlt:
       "A polished paper-craft workspace with interface elements, project cards, and soft architectural details.",
   },
   lineage: {
     eyebrow: "Candidate snapshot",
-    title: "I turn messy ideas into usable web products.",
+    title: "Content production experience, closer to the build.",
     description:
-      "My work sits at the intersection of product thinking, writing, interface design, and practical engineering. I like ambiguous problems, useful prototypes, and systems that make information easier to act on.",
+      "My work has moved through a large marketing agency, a tech news platform, an enterprise technology environment, and a private art and design university. In those settings, the best contributions are often invisible: catching errors, coordinating reviews, preserving accessibility, and helping technical teams publish clearly at scale.",
     beats: [
-      { from: "Product judgment", to: "Shape unclear ideas into focused user workflows." },
-      { from: "Frontend craft", to: "Build polished React interfaces that people can actually try." },
-      { from: "Content systems", to: "Turn project details, data, and decisions into reusable structure." },
-      { from: "Editorial taste", to: "Make technical work legible, specific, and worth reading." },
+      { from: "Enterprise web production", to: "CMS/DAM publishing, localization, product specs, legal copy, and global content deployment." },
+      { from: "Editorial quality", to: "Style systems, QA, accessibility metadata, technical accuracy, and the quiet work of preventing mistakes." },
+      { from: "Online education", to: "Course content, captions, transcripts, alternative text, faculty materials, and media accessibility." },
+      { from: "Technical growth", to: "React prototypes, dashboards, admin tools, and Codex-assisted scaffolding." },
     ],
   },
   creativePosition: {
     eyebrow: "Working style",
     title: "Practical, curious, and comfortable in the messy middle.",
     paragraphs: [
-      "I like projects where the path is not fully defined yet: the audience needs to be clarified, the data needs a shape, or the interface needs to make a complicated thing feel usable.",
-      "My strongest work combines enough engineering to make the idea real, enough writing to make the decisions legible, and enough design judgment to keep the experience focused.",
+      "The strongest projects here start where the path is not fully defined yet: the audience needs to be clarified, the data needs a shape, or the interface needs to make a complicated thing feel usable.",
+      "The work combines enough engineering to make the idea real, enough writing to make the decisions legible, and enough design judgment to keep the experience focused.",
     ],
   },
   tastePitch: {
     eyebrow: "Taste, content, and judgment",
-    title: "I have spent years making complex content easier to teach, use, publish, and trust.",
+    title: "I make complex content easier to trust.",
     intro:
-      "My edge is not only that I can build. It is that I understand content at a deep level: how it is planned, governed, taught, revised, launched, and used by real people inside real organizations.",
+      "My professional work is often confidential, so this page makes the pattern visible: seasoned content judgment, enterprise production habits, and the growing technical skill to build the systems I used to only help publish.",
     heroImage: {
       src: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1400&q=80",
       alt: "A team working around a table with laptops, notes, and shared planning materials.",
     },
     proofPoints: [
       {
-        label: "Enterprise content",
-        title: "I know how content problems show up inside large organizations.",
+        label: "Enterprise web production",
+        title: "I know how content quality works when the stakes are high and the work is quiet.",
         body:
-          "Enterprise content work is rarely just writing. It is ownership, review paths, stakeholder translation, source quality, governance, and helping teams make decisions when the material is complicated.",
+          "In large web and marketing environments, the best editorial work often disappears into the final product. The broken spec is fixed, the localization issue is caught, the accessibility metadata is improved, the legal copy is aligned, and the page ships without drama.",
       },
       {
-        label: "Online art education",
-        title: "I bring deep experience teaching visual and creative work online.",
+        label: "Academic and media content",
+        title: "I bring deep experience with learning content, technical editing, and accessibility.",
         body:
-          "Online art education taught me how people learn from examples, critique, sequencing, and context. That background shapes how I design interfaces, documentation, and case studies.",
+          "I have worked on online courses, captions, transcripts, alternative text, technical articles, ebooks, tutorials, documentation, and marketing content. That range trained me to care about structure, accuracy, audience, compliance, and the details that make content usable.",
       },
       {
         label: "Web development",
-        title: "My development skills are underutilized, but they are improving fast.",
+        title: "Working with strong web teams made me want to build more directly.",
         body:
-          "I am building real React products, dashboards, filters, forms, admin tools, and deployment workflows. The gap between content strategy and working software is getting smaller every week.",
+          "I have spent years working beside engineering, localization, branding, product, and SME teams. The more I saw how good web systems are assembled, the more I wanted to build them myself. These case studies show that transition in public.",
       },
     ],
     imagePanels: [
       {
         title: "Content operations",
-        caption: "Governance, review, publishing, and the unglamorous systems that keep content useful.",
+        caption: "I pay attention to governance, review, CMS publishing, localization, source-of-truth documents, and the unglamorous systems that keep content useful after the first draft.",
         src: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
         alt: "People collaborating in a workshop with sticky notes on a wall.",
       },
       {
         title: "Art education",
-        caption: "Teaching visual thinking online means building structure without flattening taste or experimentation.",
+        caption: "Online art education taught me how to build structure without flattening taste, experimentation, accessibility, or the learner's sense of discovery.",
         src: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=80",
         alt: "Paint brushes and art materials on a colorful work surface.",
       },
       {
         title: "Working software",
-        caption: "The current portfolio, dashboard, and case-study system are proof that the technical side is catching up.",
+        caption: "This portfolio, dashboard, and case-study system are part of the proof: I can use modern tools, including Codex, to scaffold complex web experiences quickly and thoughtfully.",
         src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
         alt: "A laptop showing code in a bright development workspace.",
       },
     ],
     closing:
-      "That combination is the pitch: I can think like a content strategist, explain like an educator, and increasingly build like the person who can make the solution tangible.",
+      "That is the pitch I want to make directly: I can bring seasoned content judgment, enterprise production habits, and growing frontend skill to teams that need useful web experiences built with care.",
   },
 };
 
 export const audienceSignals = [
-  "Comfortable moving between product strategy, interface details, and implementation.",
-  "Builds working prototypes quickly without treating polish as an afterthought.",
-  "Writes clearly about decisions, tradeoffs, and the path from idea to product.",
-  "Looks for roles where curiosity, ownership, and practical judgment matter.",
+  {
+    label: "Range",
+    text: "Agency, tech media, enterprise technology, and online art education.",
+  },
+  {
+    label: "Quality",
+    text: "CMS/DAM publishing, localization, accessibility, QA, and source-of-truth discipline.",
+  },
+  {
+    label: "Collaboration",
+    text: "Comfortable with engineering, branding, localization, and subject-matter expert teams.",
+  },
+  {
+    label: "Proof",
+    text: "Public React projects show technical growth where NDA-bound work cannot.",
+  },
 ];
 
 export const services = [
   {
-    title: "Product thinking",
+    title: "Content production",
     description:
-      "Clarify the messy middle between an idea, an audience, and the first useful version someone can actually touch.",
+      "Move complex web content through review, governance, localization, accessibility, and publishing without losing quality.",
   },
   {
-    title: "Creative direction",
+    title: "Editorial systems",
     description:
-      "Shape visual and verbal systems that can be bright, sincere, uncanny, or deadpan without losing the thread.",
+      "Create style guides, documentation, QA habits, and structured source materials that help teams publish consistently.",
   },
   {
     title: "Prototype craft",
     description:
-      "Build compact, testable web experiences with polished fronts and practical working backs.",
+      "Use React, structured data, admin workflows, and Codex-assisted development to make content/product ideas inspectable.",
   },
 ];
 
 export const capabilities = [
   {
-    category: "Product",
-    title: "Information architecture",
-    proof: "Turns scattered project ideas into clear workflows, content structures, and decision points.",
-    level: "System design",
+    category: "Content",
+    title: "Web production",
+    proof: "Developed, maintained, edited, and implemented web content across CMS, DAM, markdown, HTML, JSON, product tables, and localization-ready source decks.",
+    level: "15+ years",
   },
   {
-    category: "Prototype",
-    title: "Working interfaces",
-    proof: "Builds React interfaces, review flows, dashboards, and small tools that can be tried instead of merely described.",
-    level: "Frontend craft",
+    category: "Quality",
+    title: "Editorial governance",
+    proof: "Works across style systems, accessibility guidelines, QA audits, technical accuracy, alternative text, metadata, and compliance-sensitive publishing.",
+    level: "Senior judgment",
   },
   {
-    category: "Editorial",
-    title: "Voice and positioning",
-    proof: "Explains product decisions with enough context that the work is easier to evaluate and discuss.",
-    level: "Creative direction",
+    category: "Teams",
+    title: "Cross-functional delivery",
+    proof: "Collaborates with engineering, localization, branding, SMEs, vendors, faculty stakeholders, and production teams to ship accurate content at scale.",
+    level: "Enterprise-ready",
   },
   {
-    category: "Data",
-    title: "Structured content",
-    proof: "Uses structured content and lightweight data models to keep products easier to extend.",
-    level: "Maintainability",
+    category: "Technical",
+    title: "Frontend growth",
+    proof: "Builds React dashboards, publishing tools, filters, forms, and admin workflows to show technical ability beyond NDA-bound professional work.",
+    level: "Rapidly improving",
   },
 ];
