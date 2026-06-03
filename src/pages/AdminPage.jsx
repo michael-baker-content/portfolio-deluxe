@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { deriveContent } from "../lib/contentModel.js";
+import { sanitizeContent } from "../lib/sanitizeContent.js";
 
 function linesToArray(value) {
   return value
@@ -60,18 +61,23 @@ export function AdminPage({ defaultContent }) {
       setContent(payload.content);
       setSelectedSlug(payload.content.projects?.[0]?.slug || "");
       setStatus("Loaded saved backend content.");
+    } else {
+      setContent(defaultContent);
+      setSelectedSlug(defaultContent.projects?.[0]?.slug || "");
+      setStatus("No saved backend content yet. Loaded code defaults.");
     }
   };
 
   const saveContent = async () => {
     setStatus("Saving content...");
+    const safeContent = sanitizeContent(content);
     const response = await fetch("/api/content", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         "x-admin-token": adminToken,
       },
-      body: JSON.stringify({ content }),
+      body: JSON.stringify({ content: safeContent }),
     });
 
     const payload = await response.json().catch(() => ({}));
@@ -81,6 +87,7 @@ export function AdminPage({ defaultContent }) {
       return;
     }
 
+    setContent(safeContent);
     setStatus("Saved. Refresh the public site to see the latest content.");
   };
 
@@ -95,7 +102,7 @@ export function AdminPage({ defaultContent }) {
   };
 
   return (
-    <main className="bg-paper px-4 py-10 sm:px-8 lg:px-14">
+    <main id="main-content" className="bg-paper px-4 py-10 sm:px-8 lg:px-14">
       <section className="mx-auto max-w-7xl">
         <p className="eyebrow">Admin</p>
         <h1 className="mt-2 text-[clamp(2.5rem,7vw,6rem)] font-black leading-none">Content dashboard</h1>
@@ -125,21 +132,24 @@ export function AdminPage({ defaultContent }) {
           </button>
         </div>
 
-        <p className="mt-4 rounded-lg border border-ink/20 bg-cream px-4 py-3 font-bold text-muted">{status}</p>
+        <p className="mt-4 rounded-lg border border-ink/20 bg-cream px-4 py-3 font-bold text-muted" aria-live="polite">
+          {status}
+        </p>
 
         <section className="mt-8 grid gap-6 lg:grid-cols-2">
           <div className="rounded-lg border-2 border-ink bg-white p-5 shadow-hard">
             <p className="eyebrow">Homepage copy</p>
             <h2 className="mt-2 text-3xl font-black leading-none">Core page story</h2>
-            <TextField label="Hero eyebrow" value={content.profile.hero.eyebrow} onChange={(value) => updateProfile("hero", "eyebrow", value)} />
-            <TextField label="Hero title" value={content.profile.hero.title} onChange={(value) => updateProfile("hero", "title", value)} />
-            <TextArea label="Hero description" value={content.profile.hero.description} onChange={(value) => updateProfile("hero", "description", value)} />
-            <TextField label="Candidate section title" value={content.profile.lineage.title} onChange={(value) => updateProfile("lineage", "title", value)} />
-            <TextArea label="Candidate section description" value={content.profile.lineage.description} onChange={(value) => updateProfile("lineage", "description", value)} />
-            <TextField label="Working style title" value={content.profile.creativePosition.title} onChange={(value) => updateProfile("creativePosition", "title", value)} />
+            <TextField label="Hero eyebrow" value={content.profile.hero.eyebrow} placeholder="A compact positioning line" onChange={(value) => updateProfile("hero", "eyebrow", value)} />
+            <TextField label="Hero title" value={content.profile.hero.title} placeholder="Your main portfolio promise" onChange={(value) => updateProfile("hero", "title", value)} />
+            <TextArea label="Hero description" value={content.profile.hero.description} placeholder="Two or three sentences about what you build and why it matters." onChange={(value) => updateProfile("hero", "description", value)} />
+            <TextField label="Candidate section title" value={content.profile.lineage.title} placeholder="A candidate-focused section headline" onChange={(value) => updateProfile("lineage", "title", value)} />
+            <TextArea label="Candidate section description" value={content.profile.lineage.description} placeholder="Describe the strengths, background, and judgment you want visitors to notice." onChange={(value) => updateProfile("lineage", "description", value)} />
+            <TextField label="Working style title" value={content.profile.creativePosition.title} placeholder="A headline about how you approach work" onChange={(value) => updateProfile("creativePosition", "title", value)} />
             <TextArea
               label="Working style paragraphs"
               value={arrayToLines(content.profile.creativePosition.paragraphs)}
+              placeholder={"One paragraph per line.\nKeep each one focused on a specific work habit or point of view."}
               onChange={(value) =>
                 setContent((current) => ({
                   ...current,
@@ -170,10 +180,10 @@ export function AdminPage({ defaultContent }) {
             </label>
 
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
-              <TextField label="Title" value={selectedProject.title} onChange={(value) => updateProjectField("title", value)} />
-              <TextField label="Status tag" value={selectedProject.status} onChange={(value) => updateProjectField("status", value)} />
-              <TextField label="Category" value={selectedProject.category} onChange={(value) => updateProjectField("category", value)} />
-              <TextField label="Priority" type="number" value={String(selectedProject.priority)} onChange={(value) => updateProjectField("priority", Number(value))} />
+              <TextField label="Title" value={selectedProject.title} placeholder="Public case-study title" onChange={(value) => updateProjectField("title", value)} />
+              <TextField label="Status tag" value={selectedProject.status} placeholder="Prototype, Live project, Archive..." onChange={(value) => updateProjectField("status", value)} />
+              <TextField label="Category" value={selectedProject.category} placeholder="Content system, dashboard, learning platform..." onChange={(value) => updateProjectField("category", value)} />
+              <TextField label="Priority" type="number" value={String(selectedProject.priority)} placeholder="Lower numbers appear first" onChange={(value) => updateProjectField("priority", Number(value))} />
               <label className="block">
                 <span className="text-xs font-black uppercase text-ink/65">Visibility</span>
                 <select className="mt-2 min-h-12 w-full rounded-lg border-2 border-ink bg-cream px-3 font-bold" value={selectedProject.visibility} onChange={(event) => updateProjectField("visibility", event.target.value)}>
@@ -181,17 +191,17 @@ export function AdminPage({ defaultContent }) {
                   <option value="hidden">Hidden</option>
                 </select>
               </label>
-              <TextField label="Timeline" value={selectedProject.timeline || ""} onChange={(value) => updateProjectField("timeline", value)} />
+              <TextField label="Timeline" value={selectedProject.timeline || ""} placeholder="2026, Spring 2026, Ongoing..." onChange={(value) => updateProjectField("timeline", value)} />
             </div>
 
-            <TextArea label="Card description" value={selectedProject.description} onChange={(value) => updateProjectField("description", value)} />
-            <TextArea label="Summary" value={selectedProject.summary} onChange={(value) => updateProjectField("summary", value)} />
-            <TextArea label="Problem" value={selectedProject.problem} onChange={(value) => updateProjectField("problem", value)} />
-            <TextArea label="Outcome" value={selectedProject.outcome} onChange={(value) => updateProjectField("outcome", value)} />
-            <TextField label="Card image URL" value={selectedProject.cardImage?.src || ""} onChange={(value) => updateProjectField("cardImage", { ...(selectedProject.cardImage || {}), src: value })} />
-            <TextField label="Card image alt text" value={selectedProject.cardImage?.alt || ""} onChange={(value) => updateProjectField("cardImage", { ...(selectedProject.cardImage || {}), alt: value })} />
-            <TextArea label="Evidence tags, one per line" value={arrayToLines(selectedProject.evidence)} onChange={(value) => updateProjectField("evidence", linesToArray(value))} />
-            <TextArea label="Tools, one per line" value={arrayToLines(selectedProject.tools)} onChange={(value) => updateProjectField("tools", linesToArray(value))} />
+            <TextArea label="Card description" value={selectedProject.description} placeholder="A short card blurb that explains why this project is worth opening." onChange={(value) => updateProjectField("description", value)} />
+            <TextArea label="Summary" value={selectedProject.summary} placeholder="The top-level story for the detail page." onChange={(value) => updateProjectField("summary", value)} />
+            <TextArea label="Problem" value={selectedProject.problem} placeholder="What was unclear, broken, missing, or worth improving?" onChange={(value) => updateProjectField("problem", value)} />
+            <TextArea label="Outcome" value={selectedProject.outcome} placeholder="What changed because this project exists?" onChange={(value) => updateProjectField("outcome", value)} />
+            <TextField label="Card image URL" value={selectedProject.cardImage?.src || ""} placeholder="https://images.example.com/project.jpg" onChange={(value) => updateProjectField("cardImage", { ...(selectedProject.cardImage || {}), src: value })} />
+            <TextField label="Card image alt text" value={selectedProject.cardImage?.alt || ""} placeholder="Describe the image for people who cannot see it." onChange={(value) => updateProjectField("cardImage", { ...(selectedProject.cardImage || {}), alt: value })} />
+            <TextArea label="Evidence tags, one per line" value={arrayToLines(selectedProject.evidence)} placeholder={"React\nContent model\nAdmin workflow"} onChange={(value) => updateProjectField("evidence", linesToArray(value))} />
+            <TextArea label="Tools, one per line" value={arrayToLines(selectedProject.tools)} placeholder={"React\nVite\nVercel"} onChange={(value) => updateProjectField("tools", linesToArray(value))} />
           </div>
         </section>
 
@@ -206,20 +216,33 @@ export function AdminPage({ defaultContent }) {
   );
 }
 
-function TextField({ label, onChange, type = "text", value }) {
+function TextField({ label, onChange, placeholder = "", type = "text", value }) {
   return (
     <label className="mt-5 block">
       <span className="text-xs font-black uppercase text-ink/65">{label}</span>
-      <input className="mt-2 min-h-12 w-full rounded-lg border-2 border-ink bg-cream px-3 font-bold outline-none focus:bg-white" type={type} value={value} onChange={(event) => onChange(event.target.value)} />
+      <input
+        className="mt-2 min-h-12 w-full rounded-lg border-2 border-ink bg-cream px-3 font-bold outline-none focus:bg-white"
+        type={type}
+        value={value}
+        maxLength={type === "number" ? undefined : 1000}
+        placeholder={placeholder}
+        onChange={(event) => onChange(event.target.value)}
+      />
     </label>
   );
 }
 
-function TextArea({ label, onChange, value }) {
+function TextArea({ label, onChange, placeholder = "", value }) {
   return (
     <label className="mt-5 block">
       <span className="text-xs font-black uppercase text-ink/65">{label}</span>
-      <textarea className="mt-2 min-h-28 w-full resize-y rounded-lg border-2 border-ink bg-cream px-3 py-3 font-bold outline-none focus:bg-white" value={value} onChange={(event) => onChange(event.target.value)} />
+      <textarea
+        className="mt-2 min-h-28 w-full resize-y rounded-lg border-2 border-ink bg-cream px-3 py-3 font-bold outline-none focus:bg-white"
+        value={value}
+        maxLength="5000"
+        placeholder={placeholder}
+        onChange={(event) => onChange(event.target.value)}
+      />
     </label>
   );
 }

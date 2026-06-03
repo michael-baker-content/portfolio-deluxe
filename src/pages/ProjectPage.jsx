@@ -14,7 +14,7 @@ export function ProjectPage({ content, slug }) {
 
   if (!project) {
     return (
-      <main className="mx-auto grid min-h-[70vh] w-[min(900px,calc(100vw-32px))] place-items-center py-20">
+      <main id="main-content" className="mx-auto grid min-h-[70vh] w-[min(900px,calc(100vw-32px))] place-items-center py-20">
         <div className="rounded-lg border-2 border-ink bg-cream p-8 shadow-hard">
           <p className="eyebrow">Missing project</p>
           <h1 className="mt-2 text-4xl font-black">This case study does not exist yet.</h1>
@@ -27,7 +27,7 @@ export function ProjectPage({ content, slug }) {
   }
 
   return (
-    <main>
+    <main id="main-content">
       <section className={`border-b-2 border-ink ${toneClasses[project.tone]} px-4 py-16 sm:px-8 lg:px-14`}>
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-end">
           <div>

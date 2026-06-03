@@ -38,6 +38,58 @@ export const profile = {
       "My strongest work combines enough engineering to make the idea real, enough writing to make the decisions legible, and enough design judgment to keep the experience focused.",
     ],
   },
+  tastePitch: {
+    eyebrow: "Taste, content, and judgment",
+    title: "I have spent years making complex content easier to teach, use, publish, and trust.",
+    intro:
+      "My edge is not only that I can build. It is that I understand content at a deep level: how it is planned, governed, taught, revised, launched, and used by real people inside real organizations.",
+    heroImage: {
+      src: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1400&q=80",
+      alt: "A team working around a table with laptops, notes, and shared planning materials.",
+    },
+    proofPoints: [
+      {
+        label: "Enterprise content",
+        title: "I know how content problems show up inside large organizations.",
+        body:
+          "Enterprise content work is rarely just writing. It is ownership, review paths, stakeholder translation, source quality, governance, and helping teams make decisions when the material is complicated.",
+      },
+      {
+        label: "Online art education",
+        title: "I bring deep experience teaching visual and creative work online.",
+        body:
+          "Online art education taught me how people learn from examples, critique, sequencing, and context. That background shapes how I design interfaces, documentation, and case studies.",
+      },
+      {
+        label: "Web development",
+        title: "My development skills are underutilized, but they are improving fast.",
+        body:
+          "I am building real React products, dashboards, filters, forms, admin tools, and deployment workflows. The gap between content strategy and working software is getting smaller every week.",
+      },
+    ],
+    imagePanels: [
+      {
+        title: "Content operations",
+        caption: "Governance, review, publishing, and the unglamorous systems that keep content useful.",
+        src: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
+        alt: "People collaborating in a workshop with sticky notes on a wall.",
+      },
+      {
+        title: "Art education",
+        caption: "Teaching visual thinking online means building structure without flattening taste or experimentation.",
+        src: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=80",
+        alt: "Paint brushes and art materials on a colorful work surface.",
+      },
+      {
+        title: "Working software",
+        caption: "The current portfolio, dashboard, and case-study system are proof that the technical side is catching up.",
+        src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+        alt: "A laptop showing code in a bright development workspace.",
+      },
+    ],
+    closing:
+      "That combination is the pitch: I can think like a content strategist, explain like an educator, and increasingly build like the person who can make the solution tangible.",
+  },
 };
 
 export const audienceSignals = [

@@ -43,7 +43,7 @@ export function CaseStudiesPage({ content }) {
   }, [category, query, sort]);
 
   return (
-    <main className="bg-paper">
+    <main id="main-content" className="bg-paper">
       <section className="border-b border-ink/15 bg-cream px-4 py-16 sm:px-8 lg:px-14">
         <div className="mx-auto max-w-7xl">
           <Link className="inline-flex border-b-[3px] border-ink text-sm font-black no-underline" href="/">

@@ -24,6 +24,11 @@
   a {
     color: inherit;
   }
+
+  :focus-visible {
+    outline: 4px solid theme("colors.portfolioBlue");
+    outline-offset: 3px;
+  }
 }
 
 @layer components {
@@ -33,6 +38,10 @@
 
   .button {
     @apply inline-flex min-h-12 items-center justify-center rounded-full border-2 border-ink px-5 font-black no-underline shadow-[0_6px_0_#201d1d] transition hover:-translate-y-0.5 hover:shadow-[0_4px_0_#201d1d] max-sm:w-full;
+  }
+
+  .skip-link {
+    @apply fixed left-4 top-4 z-50 -translate-y-24 rounded-full border-2 border-ink bg-chartreuse px-5 py-3 font-black no-underline shadow-hard transition focus:translate-y-0;
   }
 }
 
@@ -92,6 +101,39 @@
     border-top-color: theme("colors.portfolioBlue");
   }
 
+  .memphis-dots {
+    background-image: radial-gradient(circle, rgba(32, 29, 29, 0.55) 2px, transparent 2.5px);
+    background-size: 22px 22px;
+  }
+
+  .memphis-zigzag {
+    background:
+      linear-gradient(135deg, transparent 0 35%, #c8d84b 35% 50%, transparent 50% 100%) 0 0 / 42px 42px,
+      linear-gradient(45deg, transparent 0 35%, #f26b57 35% 50%, transparent 50% 100%) 0 0 / 42px 42px;
+  }
+
+  .memphis-bob {
+    animation: memphis-bob 4.5s ease-in-out infinite;
+  }
+
+  .memphis-wiggle {
+    animation: memphis-wiggle 6s ease-in-out infinite;
+  }
+
+  .memphis-drift {
+    animation: memphis-drift 8s ease-in-out infinite;
+  }
+
+  .taste-proof-card:nth-child(2) {
+    background: #ffe0d9;
+    transform: rotate(1deg);
+  }
+
+  .taste-proof-card:nth-child(3) {
+    background: #d9eef6;
+    transform: rotate(-1deg);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -100,6 +142,11 @@
       transition-duration: 0.01ms !important;
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
+    }
+
+    .taste-proof-card:nth-child(2),
+    .taste-proof-card:nth-child(3) {
+      transform: none;
     }
   }
 
@@ -128,6 +175,39 @@
     20% {
       opacity: 0;
       transform: translate3d(-360px, 190px, 0) rotate(-28deg);
+    }
+  }
+
+  @keyframes memphis-bob {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(-4deg);
+    }
+
+    50% {
+      transform: translate3d(0, -16px, 0) rotate(5deg);
+    }
+  }
+
+  @keyframes memphis-wiggle {
+    0%,
+    100% {
+      transform: rotate(10deg) scale(1);
+    }
+
+    50% {
+      transform: rotate(-5deg) scale(1.04);
+    }
+  }
+
+  @keyframes memphis-drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(-6deg);
+    }
+
+    50% {
+      transform: translate3d(22px, -10px, 0) rotate(4deg);
     }
   }
 }

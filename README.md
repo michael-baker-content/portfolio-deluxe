@@ -135,10 +135,19 @@ Run the local site:
 npm run dev
 ```
 
+Plain Vite dev uses the built-in content defaults and does not call the Vercel Blob API.
+
 If you specifically want port `3000`, stop anything already running there, then use:
 
 ```powershell
 npm run dev:3000
+```
+
+To test the `/admin` dashboard and Vercel API locally, run the Vercel dev server and opt into API loading:
+
+```powershell
+VITE_ENABLE_CONTENT_API=true
+npm run dev:vercel
 ```
 
 Build the deployable static site:

@@ -7,9 +7,12 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "dev:3000": "vite --host 127.0.0.1 --port 3000 --strictPort",
+    "dev:vercel": "vercel dev",
+    "stop:3000": "powershell -ExecutionPolicy Bypass -File scripts/stop-port.ps1 3000",
     "build": "vite build",
     "content:pull": "node scripts/pull-content.mjs",
-    "preview": "vite preview --host 127.0.0.1 --port 4173"
+    "preview": "vite preview --host 127.0.0.1 --port 4173",
+    "test": "node --test"
   },
   "dependencies": {
     "@vercel/blob": "^2.3.3",

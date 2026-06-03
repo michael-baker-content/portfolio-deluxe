@@ -1,4 +1,5 @@
 const CONTENT_PATHNAME = "portfolio/content.json";
+const MAX_BODY_BYTES = 500_000;
 
 function sendJson(response, statusCode, payload) {
   response.statusCode = statusCode;
@@ -11,6 +12,9 @@ function readBody(request) {
     let body = "";
     request.on("data", (chunk) => {
       body += chunk;
+      if (body.length > MAX_BODY_BYTES) {
+        reject(new Error("Request body is too large."));
+      }
     });
     request.on("end", () => resolve(body));
     request.on("error", reject);
@@ -18,6 +22,10 @@ function readBody(request) {
 }
 
 async function readStoredContent() {
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    return null;
+  }
+
   try {
     const { get } = await import("@vercel/blob");
     const result = await get(CONTENT_PATHNAME, { access: "private" });
@@ -33,7 +41,8 @@ async function readStoredContent() {
       return null;
     }
 
-    throw error;
+    console.warn("Could not read stored content:", error?.message || error);
+    return null;
   }
 }
 
@@ -57,7 +66,7 @@ export default async function handler(request, response) {
   try {
     if (request.method === "GET") {
       const content = await readStoredContent();
-      return sendJson(response, content ? 200 : 404, { content, source: content ? "blob" : "default" });
+      return sendJson(response, 200, { content, source: content ? "blob" : "default" });
     }
 
     if (request.method === "PUT") {
@@ -72,7 +81,10 @@ export default async function handler(request, response) {
         return sendJson(response, 400, { error: "Expected a content object." });
       }
 
-      const blob = await put(CONTENT_PATHNAME, JSON.stringify(payload.content, null, 2), {
+      const { sanitizeContent } = await import("../src/lib/sanitizeContent.js");
+      const content = sanitizeContent(payload.content);
+
+      const blob = await put(CONTENT_PATHNAME, JSON.stringify(content, null, 2), {
         access: "private",
         allowOverwrite: true,
         cacheControlMaxAge: 60,

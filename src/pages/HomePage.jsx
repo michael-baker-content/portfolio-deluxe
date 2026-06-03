@@ -57,7 +57,7 @@ export function HomePage({ content }) {
   }, []);
 
   return (
-    <main id="top">
+    <main id="main-content">
       <section className="relative h-screen w-full bg-neutral-950">
         <div className="sticky top-0 w-full h-screen overflow-hidden border-b border-white/45">
 
@@ -196,6 +196,9 @@ export function HomePage({ content }) {
                 {profile.creativePosition.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
+                <Link className="mt-2 inline-flex w-fit border-b-[3px] border-ink text-sm font-black no-underline transition hover:-translate-y-0.5" href="/taste">
+                  Read the full taste and content pitch
+                </Link>
               </div>
             </section>
 
@@ -222,11 +225,27 @@ export function HomePage({ content }) {
                 <div className="grid gap-4 sm:grid-cols-2">
                   <label className="block">
                     <span className="text-xs font-black uppercase text-ink/65">Name</span>
-                    <input className="mt-2 min-h-12 w-full rounded-lg border-2 border-ink bg-cream px-3 font-bold outline-none focus:bg-white" name="name" type="text" autoComplete="name" required />
+                    <input
+                      className="mt-2 min-h-12 w-full rounded-lg border-2 border-ink bg-cream px-3 font-bold outline-none focus:bg-white"
+                      name="name"
+                      type="text"
+                      autoComplete="name"
+                      maxLength="120"
+                      placeholder="Your name"
+                      required
+                    />
                   </label>
                   <label className="block">
                     <span className="text-xs font-black uppercase text-ink/65">Email</span>
-                    <input className="mt-2 min-h-12 w-full rounded-lg border-2 border-ink bg-cream px-3 font-bold outline-none focus:bg-white" name="email" type="email" autoComplete="email" required />
+                    <input
+                      className="mt-2 min-h-12 w-full rounded-lg border-2 border-ink bg-cream px-3 font-bold outline-none focus:bg-white"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      maxLength="254"
+                      placeholder="you@example.com"
+                      required
+                    />
                   </label>
                 </div>
                 <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -246,7 +265,14 @@ export function HomePage({ content }) {
                   </label>
                   <label className="block">
                     <span className="text-xs font-black uppercase text-ink/65">General location</span>
-                    <input className="mt-2 min-h-12 w-full rounded-lg border-2 border-ink bg-cream px-3 font-bold outline-none focus:bg-white" name="location" type="text" placeholder="City, region, or time zone" />
+                    <input
+                      className="mt-2 min-h-12 w-full rounded-lg border-2 border-ink bg-cream px-3 font-bold outline-none focus:bg-white"
+                      name="location"
+                      type="text"
+                      autoComplete="address-level2"
+                      maxLength="120"
+                      placeholder="Bay Area, remote, Eastern time..."
+                    />
                   </label>
                 </div>
                 <label className="mt-4 block">
@@ -262,7 +288,13 @@ export function HomePage({ content }) {
                 </label>
                 <label className="mt-4 block">
                   <span className="text-xs font-black uppercase text-ink/65">Message</span>
-                  <textarea className="mt-2 min-h-32 w-full resize-y rounded-lg border-2 border-ink bg-cream px-3 py-3 font-bold outline-none focus:bg-white" name="message" required />
+                  <textarea
+                    className="mt-2 min-h-32 w-full resize-y rounded-lg border-2 border-ink bg-cream px-3 py-3 font-bold outline-none focus:bg-white"
+                    name="message"
+                    maxLength="3000"
+                    placeholder="Tell me what caught your eye, what role or project you have in mind, or what kind of conversation would be useful."
+                    required
+                  />
                 </label>
                 <button className="button mt-5 bg-coral disabled:cursor-not-allowed disabled:opacity-60" type="submit" disabled={!profile.contactForm.endpoint}>
                   Send message

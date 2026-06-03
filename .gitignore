@@ -9,3 +9,5 @@ dist/
 .pnpm-store/
 .npm-cache/
 source-materials/package-manager-artifacts/
+
+.vercel
