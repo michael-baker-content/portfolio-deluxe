@@ -5,6 +5,7 @@ data/*.before-*.js
 !.env.example
 node_modules/
 dist/
+blog-drafts/
 .corepack/
 .pnpm-store/
 .npm-cache/
