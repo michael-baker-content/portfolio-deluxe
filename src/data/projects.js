@@ -70,7 +70,7 @@ export const projects = [
     ],
   },
   {
-    slug: "music",
+    slug: "mikeslist",
     visibility: "listed",
     priority: 10,
     category: "Local discovery",
@@ -79,7 +79,7 @@ export const projects = [
     description:
       "A local event-discovery tool that turns show listings into richer artist context, review queues, and venue intelligence.",
     cardImage: stockImage("photo-1501386761578-eac5c94b800a", "A live music crowd facing a brightly lit stage."),
-    detailHref: "/projects/music",
+    detailHref: "/projects/mikeslist",
     appHref: "https://mikeslist.xyz",
     repoHref: "https://github.com/michael-baker-content/mikeslist",
     tone: "spotlight",
@@ -101,11 +101,11 @@ export const projects = [
     outcome:
       "The app now frames discovery as a source-aware review workflow: artist and venue records can be enriched, checked, credited, and improved without pretending every automated match is correct.",
     decisions: [
-      "Treat imported listings as leads rather than finished facts, so the product stays honest about uncertain data.",
-      "Separate artist, venue, and event records so each type can carry its own source trail, enrichment notes, and review state.",
-      "Prioritize direct artist-support links and source evidence over platform-only discovery.",
-      "Give ambiguous matches a review state instead of forcing premature certainty into the interface.",
-      "Rebrand the project as Mike's List with its own domain and repository so it can stand as a product, not just a portfolio artifact.",
+      "I designed the product around the idea that a show listing is a lead to investigate, not a finished fact to publish without review.",
+      "I kept artists, venues, and events as separate records so each part of the discovery workflow can have its own sources, notes, and confidence level.",
+      "I emphasized direct artist links, venue context, and visible source trails so the app can support local discovery without hiding where its information came from.",
+      "I gave uncertain matches a review workflow instead of forcing the interface to pretend that every automated enrichment result is correct.",
+      "I moved the project into its own Mike's List brand, domain, and repository so it can grow as a standalone product outside the portfolio.",
     ],
     sections: [
       {
@@ -130,9 +130,9 @@ export const projects = [
       },
     ],
     nextSteps: [
-      "Define a stronger event identity model so repeated listings, date changes, and venue changes can be tracked cleanly.",
-      "Expand venue review screens with clearer source comparison, location confidence, and correction history.",
-      "Turn common enrichment actions into reusable reviewer tools so the workflow gets faster without hiding judgment.",
+      "I want to strengthen the event identity model so duplicate listings, changed dates, and venue updates can be tracked without muddying the source history.",
+      "I want the venue review screens to make source comparison, location confidence, and correction history easier to understand at a glance.",
+      "I want to turn repeated enrichment tasks into reusable review tools so the workflow gets faster while still keeping human judgment visible.",
     ],
   },
   {

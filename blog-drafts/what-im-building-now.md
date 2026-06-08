@@ -80,7 +80,7 @@ The hardest content challenge has been separating the story of the portfolio its
 
 Several recent updates changed the portfolio from a static showcase into a more flexible working system.
 
-First, the site is now live on Vercel. That forced a useful pass over deployment details: Vite build output, SPA route fallbacks, environment variables, and the difference between local defaults and production configuration. The site now supports direct visits to routes like `/case-studies`, `/projects/music`, and `/admin`.
+First, the site is now live on Vercel. That forced a useful pass over deployment details: Vite build output, SPA route fallbacks, environment variables, and the difference between local defaults and production configuration. The site now supports direct visits to routes like `/case-studies`, `/projects/mikeslist`, and `/admin`.
 
 Second, the contact flow is real. The Formspree integration means someone can contact me directly from the portfolio. The extra context fields make the form more useful than a plain message box because they tell me who is writing, where they are generally located, and what work caught their attention.
 

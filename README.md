@@ -182,7 +182,7 @@ Recommended first host.
    - `ADMIN_TOKEN`
 4. Deploy.
 
-`vercel.json` includes a rewrite so direct visits to routes like `/case-studies` and `/projects/music` serve the React app instead of returning 404.
+`vercel.json` includes a rewrite so direct visits to routes like `/case-studies` and `/projects/mikeslist` serve the React app instead of returning 404.
 
 ### Cloudflare Pages
 

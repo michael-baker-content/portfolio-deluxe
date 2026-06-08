@@ -55,6 +55,28 @@ function cleanObjectArray(value, mapper) {
   return cleanArray(value, (item) => (item && typeof item === "object" ? mapper(item) : null));
 }
 
+function migrateLegacyProject(project = {}) {
+  const slug = cleanText(project.slug, 120).trim().toLowerCase();
+  const title = cleanText(project.title, 200);
+  const repoHref = cleanText(project.repoHref, MAX_URL_LENGTH);
+  const appHref = cleanText(project.appHref, MAX_URL_LENGTH);
+  const isLegacyMikesList =
+    slug === "music" ||
+    title === "Bay Area Show Explorer" ||
+    repoHref.includes("bay-area-music-calendar") ||
+    appHref.includes("../Music");
+
+  if (!isLegacyMikesList) return project;
+
+  return {
+    ...project,
+    slug: "mikeslist",
+    title: title === "Bay Area Show Explorer" || !title ? "Mike's List" : project.title,
+    appHref: appHref.includes("../Music") || !appHref ? "https://mikeslist.xyz" : project.appHref,
+    repoHref: repoHref.includes("bay-area-music-calendar") || !repoHref ? "https://github.com/michael-baker-content/mikeslist" : project.repoHref,
+  };
+}
+
 function cleanProfile(profile = {}) {
   return {
     ...profile,
@@ -83,7 +105,8 @@ function cleanProfile(profile = {}) {
 }
 
 function cleanProject(project = {}) {
-  const slug = cleanText(project.slug, 120)
+  const migratedProject = migrateLegacyProject(project);
+  const slug = cleanText(migratedProject.slug, 120)
     .trim()
     .toLowerCase()
     .replace(/[^a-z0-9-]/g, "-")
@@ -91,24 +114,24 @@ function cleanProject(project = {}) {
     .replace(/^-|-$/g, "");
 
   return {
-    ...project,
+    ...migratedProject,
     slug,
     detailHref: slug ? `/projects/${slug}` : "",
-    appHref: cleanUrl(project.appHref),
-    repoHref: cleanUrl(project.repoHref),
-    cardImage: cleanImage(project.cardImage),
-    priority: cleanNumber(project.priority),
-    visibility: project.visibility === "hidden" ? "hidden" : "listed",
-    evidence: cleanArray(project.evidence, (item) => cleanText(item, 80)),
-    tools: cleanArray(project.tools, (item) => cleanText(item, 80)),
-    collaborators: cleanArray(project.collaborators, (item) => cleanText(item, 120)),
-    decisions: cleanArray(project.decisions),
-    nextSteps: cleanArray(project.nextSteps),
-    metrics: cleanObjectArray(project.metrics, (metric) => ({
+    appHref: cleanUrl(migratedProject.appHref),
+    repoHref: cleanUrl(migratedProject.repoHref),
+    cardImage: cleanImage(migratedProject.cardImage),
+    priority: cleanNumber(migratedProject.priority),
+    visibility: migratedProject.visibility === "hidden" ? "hidden" : "listed",
+    evidence: cleanArray(migratedProject.evidence, (item) => cleanText(item, 80)),
+    tools: cleanArray(migratedProject.tools, (item) => cleanText(item, 80)),
+    collaborators: cleanArray(migratedProject.collaborators, (item) => cleanText(item, 120)),
+    decisions: cleanArray(migratedProject.decisions),
+    nextSteps: cleanArray(migratedProject.nextSteps),
+    metrics: cleanObjectArray(migratedProject.metrics, (metric) => ({
       label: cleanText(metric.label, 80),
       value: cleanText(metric.value, 120),
     })),
-    sections: cleanObjectArray(project.sections, (section) => ({
+    sections: cleanObjectArray(migratedProject.sections, (section) => ({
       title: cleanText(section.title, 120),
       body: cleanText(section.body),
     })),

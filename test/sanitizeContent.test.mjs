@@ -43,3 +43,22 @@ test("sanitizeContent cleans project URLs, image URLs, slugs, and arrays", () =>
   assert.deepEqual(content.projects[0].evidence, ["React"]);
   assert.deepEqual(content.projects[0].tools, []);
 });
+
+test("sanitizeContent migrates legacy Mike's List project content", () => {
+  const content = sanitizeContent({
+    projects: [
+      {
+        slug: "music",
+        title: "Bay Area Show Explorer",
+        appHref: "../Music/index.html",
+        repoHref: "https://github.com/michael-baker-content/bay-area-music-calendar",
+      },
+    ],
+  });
+
+  assert.equal(content.projects[0].slug, "mikeslist");
+  assert.equal(content.projects[0].detailHref, "/projects/mikeslist");
+  assert.equal(content.projects[0].title, "Mike's List");
+  assert.equal(content.projects[0].appHref, "https://mikeslist.xyz/");
+  assert.equal(content.projects[0].repoHref, "https://github.com/michael-baker-content/mikeslist");
+});

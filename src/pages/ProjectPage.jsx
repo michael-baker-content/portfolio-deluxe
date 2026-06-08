@@ -76,7 +76,7 @@ export function ProjectPage({ content, slug }) {
               ))}
             </ul>
             {project.appHref || project.repoHref ? (
-              <div className="mt-7 flex flex-col items-start gap-3">
+              <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
                 {project.appHref ? (
                   <a className="inline-flex items-center gap-2 border-b-[3px] border-ink text-sm font-black no-underline" href={project.appHref}>
                     Open project
