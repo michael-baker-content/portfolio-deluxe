@@ -17,9 +17,9 @@ The work ranges from local music discovery to link-in-bio publishing to learning
 
 Here is where things stand.
 
-## Show Explorer
+## Mike's List
 
-Show Explorer is a music discovery tool for the Bay Area, live at [sfcalendar.netlify.app](https://sfcalendar.netlify.app). The core insight is that concert listings are leads, not facts. The app separates import from review, so data can be enriched and questioned rather than blindly trusted. Ambiguity gets a home instead of a false resolution.
+Mike's List is a local show discovery tool, live at [mikeslist.xyz](https://mikeslist.xyz). The core insight is that event listings are leads, not facts. The app separates import from review, so data can be enriched and questioned rather than blindly trusted. Ambiguity gets a home instead of a false resolution.
 
 ## BakerLinks
 
@@ -88,9 +88,9 @@ Third, the case-study system is easier to browse. The homepage shows a focused s
 
 Fourth, the admin dashboard gives me a content workflow. I can edit homepage copy and case studies in the browser, save to Vercel Blob, download JSON, and pull live content locally when I want to compare or commit changes. It is a small backend, but it changes the character of the project. The portfolio is no longer only an output. It is becoming a tool for maintaining itself.
 
-## Bay Area Show Explorer
+## Mike's List
 
-Bay Area Show Explorer is a local music discovery tool. At first glance, it is about concerts: who is playing, where they are playing, and what events are coming up. But the more interesting product problem is trust.
+Mike's List is a local show discovery tool. At first glance, it is about concerts: who is playing, where they are playing, and what events are coming up. But the more interesting product problem is trust.
 
 Concert listings are useful, but they are often thin. They may name an artist without telling you whether the artist is local, what kind of work they make, where to support them, or how reliable the imported data is. The app treats that thin listing as the start of a review workflow instead of the final product.
 
@@ -184,6 +184,6 @@ I am building around a few recurring questions:
 - How do you keep tools focused enough that they stay useful?
 - How do you make content editable without losing control of the underlying system?
 
-Portfolio Deluxe, Bay Area Show Explorer, BakerLinks, Baker University, the blog, and the smaller utilities all answer those questions from different angles. Together they are becoming more than a collection of repos. They are a practice: product thinking, frontend craft, writing, data structure, deployment, and content operations reinforcing each other.
+Portfolio Deluxe, Mike's List, BakerLinks, Baker University, the blog, and the smaller utilities all answer those questions from different angles. Together they are becoming more than a collection of repos. They are a practice: product thinking, frontend craft, writing, data structure, deployment, and content operations reinforcing each other.
 
 That is the work I want to keep doing.

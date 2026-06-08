@@ -21,7 +21,7 @@ Build a portfolio site that feels personal enough to represent Michael's taste a
 - Personal before generic: keep the structure of a portfolio template, but replace stock developer-portfolio language with specific project evidence.
 - Projects as evidence: each project card should explain what the project does, why it exists, what improved, and where to go next.
 - Data over markup: project entries, tags, links, and summaries should live in structured data.
-- Three-project clarity: Portfolio, Music, and Greeting are sibling projects under the same local apps workspace.
+- Project clarity: Portfolio, Mike's List, and Greeting are related projects, but their app code and repositories should stay separate.
 - Source materials stay separate: old assets, references, and prototypes belong under `source-materials` unless they are active code.
 - Accessible by default: navigation, contrast, reduced motion, semantic sections, and keyboard flow should be part of the baseline.
 
@@ -29,12 +29,12 @@ Build a portfolio site that feels personal enough to represent Michael's taste a
 
 - Re-establish the app architecture around React, Vite, and Tailwind.
 - Restore the high-level portfolio theme of the 1.0 fork while letting theme experiments live as case studies.
-- Add structured project data for Portfolio, Music, and Greeting case studies.
+- Add structured project data for Portfolio, Mike's List, Greeting, and other case studies.
 - Expand the project-detail pattern with screenshots and richer proof.
 - Keep the site deployable as a static portfolio.
 
 ## Out Of Scope For Now
 
-- Mixing Music or Greeting app code back into the Portfolio root.
+- Mixing Mike's List or Greeting app code back into the Portfolio root.
 - Recreating the original template unchanged.
-- Adding a backend before the public portfolio needs one.
+- Expanding the backend beyond the current owner-only content dashboard before the public portfolio needs it.

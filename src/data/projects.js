@@ -75,13 +75,13 @@ export const projects = [
     priority: 10,
     category: "Local discovery",
     label: "Case study",
-    title: "Bay Area Show Explorer",
+    title: "Mike's List",
     description:
-      "A local music discovery tool that turns listings into richer artist context, review queues, and venue intelligence.",
+      "A local event-discovery tool that turns show listings into richer artist context, review queues, and venue intelligence.",
     cardImage: stockImage("photo-1501386761578-eac5c94b800a", "A live music crowd facing a brightly lit stage."),
     detailHref: "/projects/music",
-    appHref: "../Music/index.html",
-    repoHref: "https://github.com/michael-baker-content/bay-area-music-calendar",
+    appHref: "https://mikeslist.xyz",
+    repoHref: "https://github.com/michael-baker-content/mikeslist",
     tone: "spotlight",
     status: "Local discovery tool",
     timeline: "2026",
@@ -95,7 +95,7 @@ export const projects = [
       { label: "Source posture", value: "Traceable" },
     ],
     summary:
-      "Bay Area Show Explorer turns local concert listings into a reviewable music-discovery system. The project is less about making another event calendar and more about answering better questions: who is this artist, how local are they, where can someone support them directly, and how confident should we be in the data?",
+      "Mike's List turns local show listings into a reviewable discovery system. The project is less about making another event calendar and more about answering better questions: who is this artist, how local are they, where can someone support them directly, and how confident should we be in the data?",
     problem:
       "Local concert listings are useful but thin. They usually tell you what is happening, but not enough about whether the artist is local, what kind of act they are, which source should be trusted, or what still needs human review.",
     outcome:
@@ -105,7 +105,7 @@ export const projects = [
       "Keep artist, venue, and event data separate so each record can carry its own review state.",
       "Favor direct artist-support links and source trails over platform-only discovery.",
       "Leave ambiguous matches unresolved until there is enough evidence to make a confident call.",
-      "Separate the Music app from the Portfolio repo so product work and portfolio storytelling can evolve independently.",
+      "Give the project its own identity, URL, and repository so the product can stand apart from the portfolio.",
     ],
     sections: [
       {
@@ -126,7 +126,7 @@ export const projects = [
       {
         title: "Editorial Use",
         body:
-          "Bay Area Show Explorer shows how automated enrichment, editorial review, and local discovery can work together without hiding uncertainty from the user.",
+          "Mike's List shows how automated enrichment, editorial review, and local discovery can work together without hiding uncertainty from the user.",
       },
     ],
     nextSteps: [

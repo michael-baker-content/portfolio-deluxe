@@ -203,7 +203,7 @@ Good second host and a useful comparison point.
 
 Related app projects may live beside this folder in a shared apps workspace:
 
-- Music app: `../Music`
+- Mike's List: [mikeslist.xyz](https://mikeslist.xyz) / [`michael-baker-content/mikeslist`](https://github.com/michael-baker-content/mikeslist)
 - Greeting Card app: `../Greeting`
 
 The Portfolio project may link to those apps, but their app code should not be mixed back into this repo root.
@@ -214,7 +214,7 @@ The Portfolio project may link to those apps, but their app code should not be m
 
 Current source-material groups:
 
-- `source-materials/music-show-explorer`: legacy Music app materials kept for reference.
+- `source-materials/music-show-explorer`: legacy Mike's List / Show Explorer materials kept for reference.
 - `source-materials/static-prototype`: the previous static prototype.
 - `source-materials/package-manager-artifacts`: old package-manager artifacts. This folder is ignored by Git and is not part of the active project.
 - `source-materials/empty-folders`: recovered empty folder names from earlier cleanup.
