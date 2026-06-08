@@ -35,11 +35,11 @@ export const projects = [
     outcome:
       "The current site preserves the fork's familiar portfolio promise while adding a richer content model, a filterable case-study index, direct contact, a Taste page, a protected admin dashboard, and a deployment path that can support ongoing edits.",
     decisions: [
-      "Keep the 1.0 structure visible: hero, navigation, work, skills, case studies, and contact.",
-      "Move the 'occasionally strange' direction from the main site identity into documented design evidence.",
-      "Use structured project data so cards, filters, project pages, and admin edits can share the same source.",
-      "Treat the homepage as a candidate pitch and the case-study pages as deeper evidence.",
-      "Add backend editing through Vercel Blob without removing the code defaults that make the site portable.",
+      "Preserve the 1.0 portfolio pattern so visitors can still recognize the source lineage: hero, navigation, work, capabilities, projects, and contact.",
+      "Move the more theatrical visual experiment into the case-study story so the main site can feel expressive without becoming only a theme demo.",
+      "Make project content data-driven so homepage cards, filters, detail pages, and admin edits all rely on the same model.",
+      "Separate the homepage pitch from the case-study evidence: the homepage introduces the candidate, while detail pages explain the work.",
+      "Use Vercel Blob for editable live content while keeping code defaults as a durable fallback for local development and recovery.",
     ],
     sections: [
       {
@@ -64,9 +64,9 @@ export const projects = [
       },
     ],
     nextSteps: [
-      "Add before-and-after screenshots from the fork and the themed version.",
-      "Document the visual decisions behind the 'occasionally strange' pass.",
-      "Add a short reusable guide for turning the 1.0 fork into other 2.0 portfolio directions.",
+      "Add a visual timeline showing the original fork, the themed experiment, and the current 2.0 portfolio system.",
+      "Publish a short implementation note on how the admin dashboard, default content, and live Blob content work together.",
+      "Turn the fork-to-2.0 process into a reusable adaptation guide for people starting from the same source repo.",
     ],
   },
   {
@@ -101,11 +101,11 @@ export const projects = [
     outcome:
       "The app now frames discovery as a source-aware review workflow: artist and venue records can be enriched, checked, credited, and improved without pretending every automated match is correct.",
     decisions: [
-      "Treat imported listings as leads, not finished truth.",
-      "Keep artist, venue, and event data separate so each record can carry its own review state.",
-      "Favor direct artist-support links and source trails over platform-only discovery.",
-      "Leave ambiguous matches unresolved until there is enough evidence to make a confident call.",
-      "Give the project its own identity, URL, and repository so the product can stand apart from the portfolio.",
+      "Treat imported listings as leads rather than finished facts, so the product stays honest about uncertain data.",
+      "Separate artist, venue, and event records so each type can carry its own source trail, enrichment notes, and review state.",
+      "Prioritize direct artist-support links and source evidence over platform-only discovery.",
+      "Give ambiguous matches a review state instead of forcing premature certainty into the interface.",
+      "Rebrand the project as Mike's List with its own domain and repository so it can stand as a product, not just a portfolio artifact.",
     ],
     sections: [
       {
@@ -130,9 +130,9 @@ export const projects = [
       },
     ],
     nextSteps: [
-      "Improve event identity and change tracking.",
-      "Add stronger venue review flows.",
-      "Turn repeated enrichment patterns into reusable review tools.",
+      "Define a stronger event identity model so repeated listings, date changes, and venue changes can be tracked cleanly.",
+      "Expand venue review screens with clearer source comparison, location confidence, and correction history.",
+      "Turn common enrichment actions into reusable reviewer tools so the workflow gets faster without hiding judgment.",
     ],
   },
   {
@@ -166,9 +166,9 @@ export const projects = [
     outcome:
       "The app gives the portfolio a companion project for experimenting with tone, composition, and lightweight creative tools.",
     decisions: [
-      "Keep the interaction closer to making than filling out a form.",
-      "Use playful visual constraints instead of endless options.",
-      "Let the card format carry personality while the tool stays direct.",
+      "Keep the interaction closer to making than form-filling, so the user feels like they are shaping a message rather than completing intake.",
+      "Use a small set of playful visual constraints instead of an endless theme picker.",
+      "Let the card format carry personality while the tool stays simple enough to finish quickly.",
     ],
     sections: [
       {
@@ -188,9 +188,9 @@ export const projects = [
       },
     ],
     nextSteps: [
-      "Add card collections by occasion.",
-      "Create export/share flows.",
-      "Develop a clearer visual system for themes and formats.",
+      "Define a few strong occasion collections so the first version has obvious entry points.",
+      "Add export and sharing flows that preserve the card's visual polish outside the app.",
+      "Create a tighter visual system for type, color, and layout so cards feel related without becoming repetitive.",
     ],
   },
   {
@@ -224,11 +224,11 @@ export const projects = [
     outcome:
       "The app creates a dedicated home for participant state, scoring logic, roster detail, and leaderboard review while keeping the deployment path practical through Flask, a database layer, and Railway.",
     decisions: [
-      "Use a small Flask app instead of a heavier framework so the scoring model stays easy to reason about.",
-      "Keep local SQLite simple while allowing PostgreSQL in production.",
-      "Make detail and leaderboard views separate so users can inspect both summary and supporting evidence.",
-      "Treat the app as an operational dashboard, not just a technical demo.",
-      "Model the competition rules explicitly so the leaderboard can be trusted and explained.",
+      "Use Flask to keep the app small enough that the scoring model and request flow remain easy to inspect.",
+      "Support SQLite locally and PostgreSQL in production so development stays light while deployment has a durable database.",
+      "Separate leaderboard and roster views so users can inspect both the standings and the evidence behind them.",
+      "Treat the app as an operational dashboard for a real league, not only as a coding exercise.",
+      "Model competition rules explicitly so standings can be explained instead of merely displayed.",
     ],
     sections: [
       {
@@ -253,9 +253,9 @@ export const projects = [
       },
     ],
     nextSteps: [
-      "Add screenshots of the leaderboard and detail pages.",
-      "Document the scoring rules and update flow.",
-      "Add a short note about moving from SQLite locally to PostgreSQL on Railway.",
+      "Add annotated screenshots of the leaderboard, roster pages, and scoring states.",
+      "Document the scoring model in plain language so a league member can understand why standings move.",
+      "Explain the local-to-production database path, including what changes between SQLite and PostgreSQL on Railway.",
     ],
   },
   {
@@ -289,11 +289,11 @@ export const projects = [
     outcome:
       "The app frames external movie data around the decisions a user needs to make in the moment, turning lookup into lightweight decision support.",
     decisions: [
-      "Use TMDB for broad movie metadata instead of building a custom data source.",
-      "Prioritize fast scanning over encyclopedic detail.",
-      "Deploy through Vercel to keep sharing and iteration simple.",
-      "Keep the project scoped to a specific workflow so the interface can stay direct.",
-      "Use TypeScript so API responses and UI expectations stay easier to reason about.",
+      "Use TMDB as the metadata source so the project can focus on workflow design instead of data collection.",
+      "Prioritize fast scanning and comparison over encyclopedic movie detail.",
+      "Keep the scope tied to a specific decision workflow so the interface can stay opinionated.",
+      "Use TypeScript to make API response shapes and UI expectations easier to reason about.",
+      "Deploy on Vercel so the project can be shared quickly and iterated without infrastructure drag.",
     ],
     sections: [
       {
@@ -318,9 +318,9 @@ export const projects = [
       },
     ],
     nextSteps: [
-      "Add screenshots or flow diagrams of the lookup workflow.",
-      "Clarify the exact decisions the app supports.",
-      "Document TMDB API constraints and error handling.",
+      "Add a short flow diagram showing the lookup path from search to useful decision.",
+      "Name the exact user decisions the tool is meant to support, then tune the interface around those moments.",
+      "Document TMDB API limits, missing-data states, and error handling so the app's reliability is easier to evaluate.",
     ],
   },
   {
@@ -354,11 +354,11 @@ export const projects = [
     outcome:
       "The platform creates a test bed for course navigation, lesson authoring, math rendering, and reusable learning content. It is a place to ask what a small, personally owned LMS could become if the authoring experience is treated as part of the product.",
     decisions: [
-      "Use Next.js and TypeScript for a durable foundation that can grow beyond a static course shell.",
-      "Explore Tiptap because lesson authoring needs richer structure than plain text alone can comfortably provide.",
-      "Include KaTeX so the platform can support technical lessons, formulas, and math-heavy explanations.",
-      "Treat course structure, editing, and learner navigation as connected product problems.",
-      "Draw on online art education experience: examples, sequencing, critique, and context should shape the interface.",
+      "Use Next.js and TypeScript for a foundation that can grow from static lessons into a fuller learning product.",
+      "Explore Tiptap because lesson authoring needs structured blocks, not just plain text fields.",
+      "Include KaTeX so technical lessons can support notation, formulas, and step-by-step explanation.",
+      "Treat course structure, editing, and learner navigation as one connected product problem.",
+      "Bring online art-education habits into the interface: sequencing, examples, critique, context, and accessibility.",
     ],
     sections: [
       {
@@ -383,9 +383,9 @@ export const projects = [
       },
     ],
     nextSteps: [
-      "Add screenshots of lesson and editing states.",
-      "Define the first real course example.",
-      "Clarify whether the next milestone is learner progress, authoring workflow, or publishing.",
+      "Add screenshots that compare the learner view with the authoring/editing view.",
+      "Build one complete sample course so the platform can be judged against real content instead of abstract structure.",
+      "Choose the next product center: learner progress, authoring workflow, publishing, or course discovery.",
     ],
   },
   {
@@ -419,11 +419,11 @@ export const projects = [
     outcome:
       "The project tests profile publishing, link management, hosted data, and public pages through a practical Next.js, Supabase, and Vercel stack while keeping the core experience focused on fast publishing.",
     decisions: [
-      "Use Supabase for hosted data and authentication patterns instead of building the backend from scratch.",
-      "Keep public profile pages in Next.js so they are fast, shareable, and easy to deploy.",
+      "Use Supabase for hosted data and auth patterns so the product can test publishing behavior before custom infrastructure.",
+      "Render public profile pages with Next.js so they are fast, shareable, and deployable.",
       "Focus the first version on publishing clarity before advanced personalization.",
-      "Treat the free model as a design constraint: the product should not depend on hiding basic usefulness behind a paywall.",
-      "Keep the interface closer to a publishing tool than a social network.",
+      "Treat the free model as a product constraint: basic usefulness should not depend on a paywall.",
+      "Keep the interface closer to a publishing tool than a social network, with fewer distractions around the core link page.",
     ],
     sections: [
       {
@@ -448,9 +448,9 @@ export const projects = [
       },
     ],
     nextSteps: [
-      "Add examples of public profile pages.",
-      "Document the data model for links and profiles.",
-      "Clarify the product position against common link-in-bio tools.",
+      "Create a few example public profiles that show different audiences and publishing styles.",
+      "Document the link/profile data model so the editing workflow is easier to evaluate.",
+      "Sharpen the product position against common link-in-bio tools: what stays free, what stays simple, and what the product refuses to become.",
     ],
   },
   {
@@ -484,11 +484,11 @@ export const projects = [
     outcome:
       "The project creates a custom interface for character information that can respond to the rules system and the needs of the table, with dynamic behavior where static reference becomes friction.",
     decisions: [
-      "Start with a specific rules system instead of designing a generic tracker.",
-      "Prioritize dynamic behavior where rules density creates friction.",
-      "Use JavaScript to keep the project lightweight and adaptable.",
-      "Treat table usability as the product goal, not just rules completeness.",
-      "Keep the interface organized around player action rather than sourcebook structure.",
+      "Start with a specific rules system so the tool can be tested against real play needs instead of generic character-sheet theory.",
+      "Prioritize dynamic behavior only where rules density creates real friction.",
+      "Use lightweight JavaScript so the prototype stays easy to modify as the rules model changes.",
+      "Treat table usability as the goal, not exhaustive rules coverage.",
+      "Organize the interface around player action rather than sourcebook structure.",
     ],
     sections: [
       {
@@ -513,9 +513,9 @@ export const projects = [
       },
     ],
     nextSteps: [
-      "Add screenshots of the sheet in play-facing states.",
-      "Document the most important calculated fields.",
-      "Clarify what is manual, automated, and intentionally out of scope.",
+      "Add screenshots of the tracker in common play-facing states.",
+      "Document the calculated fields that save the most time or prevent the most lookup friction.",
+      "Clarify which values are automated, which remain manual, and which rules are intentionally out of scope.",
     ],
   },
   {
@@ -549,11 +549,11 @@ export const projects = [
     outcome:
       "The utility gives the cleanup job a repeatable path, turning a messy export archive into a more human-readable file structure while keeping the scope narrow enough to remain understandable.",
     decisions: [
-      "Keep the tool focused on a narrow recurring workflow.",
-      "Support scripting patterns that can be repeated across exports.",
-      "Treat filename clarity as the main product value.",
+      "Keep the tool focused on one recurring export-cleanup workflow instead of expanding into a general file manager.",
+      "Support repeatable scripting patterns so the cleanup can be run safely across multiple archives.",
+      "Treat filename clarity as the main product value: the output should be easier to scan, share, and maintain.",
       "Avoid turning a small utility into an oversized content-management project.",
-      "Preserve the user's archive structure while removing the parts that make it harder to read.",
+      "Preserve the archive structure while removing the UUID noise that makes exported files harder to read.",
     ],
     sections: [
       {
@@ -578,9 +578,9 @@ export const projects = [
       },
     ],
     nextSteps: [
-      "Add a before-and-after filename example.",
-      "Document supported export shapes and edge cases.",
-      "Clarify when to use the JavaScript path, Python path, or browser UI.",
+      "Add a before-and-after export example that shows exactly what changes in filenames and folders.",
+      "Document supported archive shapes, collision handling, and edge cases.",
+      "Clarify when the browser UI, JavaScript script, or Python script is the best fit.",
     ],
   },
   {
@@ -615,11 +615,11 @@ export const projects = [
     outcome:
       "The Astro site connects repositories to essays, notes, technical examples, and creative experiments. It turns code history into something a reader can follow.",
     decisions: [
-      "Use Astro because the site is content-first but still needs room for interactive components.",
+      "Use Astro because the site is content-first but still has room for React components and interactive experiments.",
       "Support KaTeX and p5.js so technical explanation and creative coding can live in the same publishing system.",
-      "Treat repo writeups as a bridge between code history, portfolio narrative, and public learning.",
+      "Treat repo writeups as a bridge between code history, portfolio evidence, and public learning.",
       "Keep the site deployable through GitHub Pages so publishing stays lightweight.",
-      "Use posts to explain the reasoning that a repository alone cannot show.",
+      "Use posts to explain project intent, tradeoffs, and lessons that a repository alone cannot show.",
     ],
     sections: [
       {
@@ -644,9 +644,9 @@ export const projects = [
       },
     ],
     nextSteps: [
-      "Add links between portfolio case studies and blog posts.",
-      "Define a standard post format for repo retrospectives.",
-      "Add screenshots or embeds for creative coding examples.",
+      "Add reciprocal links between portfolio case studies and their deeper blog posts.",
+      "Define a repeatable post format for repo retrospectives: spark, build, challenge, decision, next step.",
+      "Add screenshots, embeds, or code examples where the writing needs more concrete proof.",
     ],
   },
   {

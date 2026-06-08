@@ -75,17 +75,21 @@ export function ProjectPage({ content, slug }) {
                 </li>
               ))}
             </ul>
-            {project.appHref ? (
-              <a className="mt-7 inline-flex items-center gap-2 border-b-[3px] border-ink text-sm font-black no-underline" href={project.appHref}>
-                Open project
-                <ExternalLink size={16} />
-              </a>
-            ) : null}
-            {project.repoHref ? (
-              <a className="mt-4 inline-flex items-center gap-2 border-b-[3px] border-ink text-sm font-black no-underline" href={project.repoHref}>
-                View repository
-                <ExternalLink size={16} />
-              </a>
+            {project.appHref || project.repoHref ? (
+              <div className="mt-7 flex flex-col items-start gap-3">
+                {project.appHref ? (
+                  <a className="inline-flex items-center gap-2 border-b-[3px] border-ink text-sm font-black no-underline" href={project.appHref}>
+                    Open project
+                    <ExternalLink size={16} />
+                  </a>
+                ) : null}
+                {project.repoHref ? (
+                  <a className="inline-flex items-center gap-2 border-b-[3px] border-ink text-sm font-black no-underline" href={project.repoHref}>
+                    View repository
+                    <ExternalLink size={16} />
+                  </a>
+                ) : null}
+              </div>
             ) : null}
           </aside>
         </div>
