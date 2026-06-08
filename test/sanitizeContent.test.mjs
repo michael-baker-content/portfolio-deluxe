@@ -62,3 +62,21 @@ test("sanitizeContent migrates legacy Mike's List project content", () => {
   assert.equal(content.projects[0].appHref, "https://mikeslist.xyz/");
   assert.equal(content.projects[0].repoHref, "https://github.com/michael-baker-content/mikeslist");
 });
+
+test("sanitizeContent replaces fragmented Mike's List decision copy", () => {
+  const content = sanitizeContent({
+    projects: [
+      {
+        slug: "mikeslist",
+        title: "Mike's List",
+        decisions: ["I", "I", "I g", "I mo"],
+        nextSteps: ["I", "I"],
+      },
+    ],
+  });
+
+  assert.equal(content.projects[0].decisions.length, 5);
+  assert.equal(content.projects[0].nextSteps.length, 3);
+  assert.match(content.projects[0].decisions[0], /imported show listing/);
+  assert.match(content.projects[0].nextSteps[0], /event identity model/);
+});

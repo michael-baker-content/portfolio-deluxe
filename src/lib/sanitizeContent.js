@@ -2,6 +2,20 @@ const MAX_TEXT_LENGTH = 5000;
 const MAX_URL_LENGTH = 1000;
 const SAFE_URL_PROTOCOLS = new Set(["http:", "https:", "mailto:"]);
 
+const MIKES_LIST_DECISIONS = [
+  "Mike's List treats each imported show listing as a lead that needs review before it becomes trusted local-discovery data.",
+  "The app separates artists, venues, and events so each record can carry its own sources, notes, corrections, and confidence level.",
+  "The product favors visible source trails and direct artist or venue context over pretending that automated enrichment is always enough.",
+  "Uncertain matches stay in a review workflow, which keeps ambiguity visible instead of forcing the interface to publish a false answer.",
+  "The rebrand gives Mike's List its own domain and repository so it can grow as a standalone product beyond the portfolio case study.",
+];
+
+const MIKES_LIST_NEXT_STEPS = [
+  "Strengthen the event identity model so duplicate listings, date changes, and venue updates can be tracked without muddying the source history.",
+  "Improve venue review screens so source comparison, location confidence, and correction history are easier to understand at a glance.",
+  "Turn repeated enrichment tasks into reusable review tools so the workflow gets faster while human judgment remains visible.",
+];
+
 function cleanText(value, maxLength = MAX_TEXT_LENGTH) {
   if (value === null || value === undefined) return "";
 
@@ -77,6 +91,11 @@ function migrateLegacyProject(project = {}) {
   };
 }
 
+function hasFragmentedListCopy(items) {
+  if (!Array.isArray(items) || items.length === 0) return true;
+  return items.some((item) => cleanText(item, 200).trim().length < 24);
+}
+
 function cleanProfile(profile = {}) {
   return {
     ...profile,
@@ -113,6 +132,10 @@ function cleanProject(project = {}) {
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "");
 
+  const cleanedDecisions = cleanArray(migratedProject.decisions);
+  const cleanedNextSteps = cleanArray(migratedProject.nextSteps);
+  const isMikesList = slug === "mikeslist";
+
   return {
     ...migratedProject,
     slug,
@@ -125,8 +148,8 @@ function cleanProject(project = {}) {
     evidence: cleanArray(migratedProject.evidence, (item) => cleanText(item, 80)),
     tools: cleanArray(migratedProject.tools, (item) => cleanText(item, 80)),
     collaborators: cleanArray(migratedProject.collaborators, (item) => cleanText(item, 120)),
-    decisions: cleanArray(migratedProject.decisions),
-    nextSteps: cleanArray(migratedProject.nextSteps),
+    decisions: isMikesList && hasFragmentedListCopy(cleanedDecisions) ? MIKES_LIST_DECISIONS : cleanedDecisions,
+    nextSteps: isMikesList && hasFragmentedListCopy(cleanedNextSteps) ? MIKES_LIST_NEXT_STEPS : cleanedNextSteps,
     metrics: cleanObjectArray(migratedProject.metrics, (metric) => ({
       label: cleanText(metric.label, 80),
       value: cleanText(metric.value, 120),
