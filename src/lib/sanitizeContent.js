@@ -16,6 +16,8 @@ const MIKES_LIST_NEXT_STEPS = [
   "Turn repeated enrichment tasks into reusable review tools so the workflow gets faster while human judgment remains visible.",
 ];
 
+const CODEX_COLLABORATOR_SLUGS = new Set(["portfolio", "mikeslist"]);
+
 function cleanText(value, maxLength = MAX_TEXT_LENGTH) {
   if (value === null || value === undefined) return "";
 
@@ -91,6 +93,28 @@ function migrateLegacyProject(project = {}) {
   };
 }
 
+function migrateBakerversityProject(project = {}) {
+  const slug = cleanText(project.slug, 120).trim().toLowerCase();
+  const title = cleanText(project.title, 200);
+  const repoHref = cleanText(project.repoHref, MAX_URL_LENGTH);
+  const appHref = cleanText(project.appHref, MAX_URL_LENGTH);
+  const isLegacyBakerversity =
+    slug === "bakeruniversity" ||
+    title === "Baker University" ||
+    repoHref.includes("bakeruniversity") ||
+    appHref.includes("bakeruniversity");
+
+  if (!isLegacyBakerversity) return project;
+
+  return {
+    ...project,
+    slug: "bakerversity",
+    title: title === "Baker University" || !title ? "Bakerversity" : project.title,
+    appHref: appHref.includes("bakeruniversity") || !appHref ? "https://bakerversity.vercel.app" : project.appHref,
+    repoHref: repoHref.includes("bakeruniversity") || !repoHref ? "https://github.com/michael-baker-content/bakerversity" : project.repoHref,
+  };
+}
+
 function hasFragmentedListCopy(items) {
   if (!Array.isArray(items) || items.length === 0) return true;
   return items.some((item) => cleanText(item, 200).trim().length < 24);
@@ -124,7 +148,7 @@ function cleanProfile(profile = {}) {
 }
 
 function cleanProject(project = {}) {
-  const migratedProject = migrateLegacyProject(project);
+  const migratedProject = migrateBakerversityProject(migrateLegacyProject(project));
   const slug = cleanText(migratedProject.slug, 120)
     .trim()
     .toLowerCase()
@@ -134,6 +158,7 @@ function cleanProject(project = {}) {
 
   const cleanedDecisions = cleanArray(migratedProject.decisions);
   const cleanedNextSteps = cleanArray(migratedProject.nextSteps);
+  const cleanedCollaborators = cleanArray(migratedProject.collaborators, (item) => cleanText(item, 120));
   const isMikesList = slug === "mikeslist";
 
   return {
@@ -147,7 +172,9 @@ function cleanProject(project = {}) {
     visibility: migratedProject.visibility === "hidden" ? "hidden" : "listed",
     evidence: cleanArray(migratedProject.evidence, (item) => cleanText(item, 80)),
     tools: cleanArray(migratedProject.tools, (item) => cleanText(item, 80)),
-    collaborators: cleanArray(migratedProject.collaborators, (item) => cleanText(item, 120)),
+    collaborators: CODEX_COLLABORATOR_SLUGS.has(slug)
+      ? cleanedCollaborators
+      : cleanedCollaborators.filter((item) => item.toLowerCase() !== "codex"),
     decisions: isMikesList && hasFragmentedListCopy(cleanedDecisions) ? MIKES_LIST_DECISIONS : cleanedDecisions,
     nextSteps: isMikesList && hasFragmentedListCopy(cleanedNextSteps) ? MIKES_LIST_NEXT_STEPS : cleanedNextSteps,
     metrics: cleanObjectArray(migratedProject.metrics, (metric) => ({

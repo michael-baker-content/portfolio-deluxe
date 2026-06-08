@@ -151,7 +151,7 @@ export const projects = [
     status: "Creative tool",
     timeline: "2026",
     role: "Creative direction, interaction design, prototype engineering",
-    collaborators: ["Michael Baker", "Codex"],
+    collaborators: ["Michael Baker"],
     tools: ["Frontend prototype", "Prompted composition", "Visual themes"],
     evidence: ["Message shaping", "Visual play", "Shareable output"],
     metrics: [
@@ -209,7 +209,7 @@ export const projects = [
     status: "Public app",
     timeline: "2026",
     role: "Dashboard design, backend modeling, frontend implementation",
-    collaborators: ["Michael Baker", "Codex"],
+    collaborators: ["Michael Baker"],
     tools: ["Python", "Flask", "SQLite", "PostgreSQL", "Railway", "nba-api"],
     evidence: ["Leaderboard design", "Roster pages", "Scoring model"],
     metrics: [
@@ -274,7 +274,7 @@ export const projects = [
     status: "Public tool",
     timeline: "2026",
     role: "Interaction design, React/Next.js implementation, API integration",
-    collaborators: ["Michael Baker", "Codex"],
+    collaborators: ["Michael Baker"],
     tools: ["TypeScript", "React", "Next.js", "TMDB API", "Vercel"],
     evidence: ["Movie lookup", "TMDB integration", "Decision support"],
     metrics: [
@@ -324,22 +324,23 @@ export const projects = [
     ],
   },
   {
-    slug: "bakeruniversity",
+    slug: "bakerversity",
     visibility: "listed",
     priority: 30,
     category: "Learning platform",
     label: "Case study",
-    title: "Baker University",
+    title: "Bakerversity",
     description:
       "A Next.js learning platform exploring courses, rich lessons, math rendering, and editable learning content.",
     cardImage: stockImage("https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1200", "People walking near a university building and graduation lawn."),
-    detailHref: "/projects/bakeruniversity",
-    repoHref: "https://github.com/michael-baker-content/bakeruniversity",
+    detailHref: "/projects/bakerversity",
+    appHref: "https://bakerversity.vercel.app",
+    repoHref: "https://github.com/michael-baker-content/bakerversity",
     tone: "gold",
     status: "Public platform",
     timeline: "2026",
     role: "Learning product design, frontend architecture, content editor exploration",
-    collaborators: ["Michael Baker", "Codex"],
+    collaborators: ["Michael Baker"],
     tools: ["TypeScript", "React", "Next.js", "Tailwind", "KaTeX", "Tiptap"],
     evidence: ["LMS structure", "Rich text editing", "Math rendering"],
     metrics: [
@@ -348,7 +349,7 @@ export const projects = [
       { label: "Math", value: "KaTeX" },
     ],
     summary:
-      "Baker University is a learning-platform prototype for turning structured lessons, rich explanation, and technical notation into a coherent course experience. It combines my online education background with a modern web stack that can support authoring, presentation, and future learner workflows.",
+      "Bakerversity is a learning-platform prototype for turning structured lessons, rich explanation, and technical notation into a coherent course experience. It combines my online education background with a modern web stack that can support authoring, presentation, and future learner workflows.",
     problem:
       "Learning products need a difficult balance: enough structure to guide someone through material, enough flexibility to support rich teaching, and enough editorial control that the course does not collapse into a pile of disconnected pages.",
     outcome:
@@ -404,7 +405,7 @@ export const projects = [
     status: "Public platform",
     timeline: "2026",
     role: "Product design, full-stack prototyping, social publishing workflow",
-    collaborators: ["Michael Baker", "Codex"],
+    collaborators: ["Michael Baker"],
     tools: ["TypeScript", "React", "Next.js", "Tailwind", "Vercel", "Supabase"],
     evidence: ["Profile pages", "Link management", "Free publishing model"],
     metrics: [
@@ -469,7 +470,7 @@ export const projects = [
     status: "Public tool",
     timeline: "2026",
     role: "Interactive tool design, rules modeling, JavaScript implementation",
-    collaborators: ["Michael Baker", "Codex"],
+    collaborators: ["Michael Baker"],
     tools: ["JavaScript", "Pathfinder 2E", "RPG systems"],
     evidence: ["Dynamic tracker", "Rules support", "Player workflow"],
     metrics: [
@@ -534,7 +535,7 @@ export const projects = [
     status: "Public utility",
     timeline: "2026",
     role: "Workflow automation, scripting, file-cleanup utility design",
-    collaborators: ["Michael Baker", "Codex"],
+    collaborators: ["Michael Baker"],
     tools: ["JavaScript", "Python", "HTML", "Notion exports", "Scripts"],
     evidence: ["Zip cleanup", "Filename normalization", "Export workflow"],
     metrics: [
@@ -600,7 +601,7 @@ export const projects = [
     status: "Public blog",
     timeline: "2026",
     role: "Writing system, static-site design, technical documentation",
-    collaborators: ["Michael Baker", "Codex"],
+    collaborators: ["Michael Baker"],
     tools: ["Astro", "React", "KaTeX", "p5.js", "GitHub Pages"],
     evidence: ["Repo writeups", "Static publishing", "Technical experiments"],
     metrics: [

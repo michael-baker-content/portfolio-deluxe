@@ -25,9 +25,9 @@ Mike's List is a local show discovery tool, live at [mikeslist.xyz](https://mike
 
 BakerLinks is a free link-in-bio platform, live at [bakerlinks.com](https://bakerlinks.com). The product question is whether a publishing tool can stay genuinely useful without accumulating features. The stack is Next.js, Supabase, and Vercel — kept lightweight by design.
 
-## Baker University
+## Bakerversity
 
-Baker University is a learning platform experiment, live at [bakeruniversity.vercel.app](https://bakeruniversity.vercel.app). It uses Tiptap for rich lesson authoring and KaTeX for math. The challenge is finding the right balance between structure and expressiveness — enough to guide learners, not so much that writing a lesson becomes its own obstacle.
+Bakerversity is a learning platform experiment, live at [bakerversity.vercel.app](https://bakerversity.vercel.app). It uses Tiptap for rich lesson authoring and KaTeX for math. The challenge is finding the right balance between structure and expressiveness — enough to guide learners, not so much that writing a lesson becomes its own obstacle.
 
 ## Portfolio Deluxe
 
@@ -110,9 +110,9 @@ The product challenge is restraint. Link-in-bio tools can easily become bloated 
 
 This project fits into my broader work because it is about lightweight publishing. I keep returning to that theme: how do you help someone turn scattered material into a public-facing structure that feels organized, useful, and theirs?
 
-## Baker University
+## Bakerversity
 
-Baker University is a learning-platform experiment built in Next.js. It explores courses, lessons, rich text, math rendering, and editable learning content.
+Bakerversity is a learning-platform experiment built in Next.js. It explores courses, lessons, rich text, math rendering, and editable learning content.
 
 Learning products have a difficult balance to strike. They need structure, because learners need to understand where they are and what comes next. But they also need expressiveness, because lessons are not always simple blocks of text. A real learning system may need formulas, diagrams, examples, embedded media, and editable content.
 
@@ -184,6 +184,6 @@ I am building around a few recurring questions:
 - How do you keep tools focused enough that they stay useful?
 - How do you make content editable without losing control of the underlying system?
 
-Portfolio Deluxe, Mike's List, BakerLinks, Baker University, the blog, and the smaller utilities all answer those questions from different angles. Together they are becoming more than a collection of repos. They are a practice: product thinking, frontend craft, writing, data structure, deployment, and content operations reinforcing each other.
+Portfolio Deluxe, Mike's List, BakerLinks, Bakerversity, the blog, and the smaller utilities all answer those questions from different angles. Together they are becoming more than a collection of repos. They are a practice: product thinking, frontend craft, writing, data structure, deployment, and content operations reinforcing each other.
 
 That is the work I want to keep doing.

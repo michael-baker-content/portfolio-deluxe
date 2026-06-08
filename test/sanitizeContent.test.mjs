@@ -80,3 +80,36 @@ test("sanitizeContent replaces fragmented Mike's List decision copy", () => {
   assert.match(content.projects[0].decisions[0], /imported show listing/);
   assert.match(content.projects[0].nextSteps[0], /event identity model/);
 });
+
+test("sanitizeContent migrates legacy Bakerversity project content", () => {
+  const content = sanitizeContent({
+    projects: [
+      {
+        slug: "bakeruniversity",
+        title: "Baker University",
+        appHref: "https://bakeruniversity.vercel.app",
+        repoHref: "https://github.com/michael-baker-content/bakeruniversity",
+      },
+    ],
+  });
+
+  assert.equal(content.projects[0].slug, "bakerversity");
+  assert.equal(content.projects[0].detailHref, "/projects/bakerversity");
+  assert.equal(content.projects[0].title, "Bakerversity");
+  assert.equal(content.projects[0].appHref, "https://bakerversity.vercel.app/");
+  assert.equal(content.projects[0].repoHref, "https://github.com/michael-baker-content/bakerversity");
+});
+
+test("sanitizeContent only keeps Codex as a collaborator for allowed case studies", () => {
+  const content = sanitizeContent({
+    projects: [
+      { slug: "portfolio", collaborators: ["Michael Baker", "Codex"] },
+      { slug: "mikeslist", collaborators: ["Michael Baker", "Codex"] },
+      { slug: "bakerversity", collaborators: ["Michael Baker", "Codex"] },
+    ],
+  });
+
+  assert.deepEqual(content.projects[0].collaborators, ["Michael Baker", "Codex"]);
+  assert.deepEqual(content.projects[1].collaborators, ["Michael Baker", "Codex"]);
+  assert.deepEqual(content.projects[2].collaborators, ["Michael Baker"]);
+});
