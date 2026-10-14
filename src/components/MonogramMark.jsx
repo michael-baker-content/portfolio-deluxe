@@ -1,0 +1,15 @@
+import React from "react";
+
+export function MonogramMark({ className = "", title = "Michael Baker monogram" }) {
+  const titleId = "monogram-mark-title";
+
+  return (
+    <svg className={className} viewBox="0 0 2048 2048" role="img" aria-labelledby={titleId} xmlns="http://www.w3.org/2000/svg">
+      <title id={titleId}>{title}</title>
+      <path
+        fill="currentColor"
+        d="M150 300h290v1598H150V300Zm290 0h145v145H440V300Zm145-145h440v145H585V155Zm0 290h145v730H585V445Zm290-145h150v1598H875V300Zm295-145h585v145h-585V155Zm0 0h150v1743h-150V155Zm435 145h150v145h-150V300Zm150 0h145v585h-145V300Zm-150 435h150v295h-150V735Zm-285 145h435v150h-435V880Zm435 295h145v510h-145v-510Zm-585 0h730v150h-730v-150Zm150 440h285v150h-285v-150Zm285-440h150v150h-150v-150Zm0 510h150v213h-150v-213Z"
+      />
+    </svg>
+  );
+}

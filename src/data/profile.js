@@ -14,28 +14,28 @@ export const profile = {
     eyebrow: "Content systems + web craft",
     title: "Useful web work, built with editorial taste.",
     description:
-      "Prototypes, dashboards, and publishing tools shaped by 15+ years in content production.",
+      "Creative tools, local information products, and publishing systems shaped by 15+ years in content production.",
     imageAlt:
       "A polished paper-craft workspace with interface elements, project cards, and soft architectural details.",
   },
   lineage: {
     eyebrow: "Candidate snapshot",
-    title: "Content production experience, closer to the build.",
+    title: "I bring order to content, design, and web work.",
     description:
-      "My work has moved through a large marketing agency, a tech news platform, an enterprise technology environment, and a private art and design university. In those settings, the best contributions are often invisible: catching errors, coordinating reviews, preserving accessibility, and helping technical teams publish clearly at scale.",
+      "I have worked in places where the details matter: enterprise web production, technical publishing, and online degree-granting art and design education. That background trained me to turn scattered requirements into clearer systems, better reviews, and smoother collaboration between content, design, and technical teams.",
     beats: [
-      { from: "Enterprise web production", to: "CMS/DAM publishing, localization, product specs, legal copy, and global content deployment." },
-      { from: "Editorial quality", to: "Style systems, QA, accessibility metadata, technical accuracy, and the quiet work of preventing mistakes." },
-      { from: "Online education", to: "Course content, captions, transcripts, alternative text, faculty materials, and media accessibility." },
-      { from: "Technical growth", to: "React prototypes, dashboards, admin tools, and Codex-assisted scaffolding." },
+      { from: "Enterprise production", to: "CMS/DAM publishing, localization, legal review, product specs, and global content deployment." },
+      { from: "Editorial systems", to: "Style guidance, QA habits, accessibility metadata, technical accuracy, and source-of-truth discipline." },
+      { from: "Art and design education", to: "Accredited online course content, captions, transcripts, alternative text, faculty materials, and media accessibility." },
+      { from: "Closer to the build", to: "React prototypes, dashboards, admin workflows, and enough frontend fluency to make ideas inspectable." },
     ],
   },
   creativePosition: {
     eyebrow: "Working style",
     title: "Practical, curious, and comfortable in the messy middle.",
     paragraphs: [
-      "The strongest projects here start where the path is not fully defined yet: the audience needs to be clarified, the data needs a shape, or the interface needs to make a complicated thing feel usable.",
-      "The work combines enough engineering to make the idea real, enough writing to make the decisions legible, and enough design judgment to keep the experience focused.",
+      "The strongest projects here start where the path is not fully defined yet: a daily creative habit needs a product shape, a local information set needs a clean structure, or a publishing workflow needs to feel lighter.",
+      "The work combines enough engineering to make the idea real, enough writing to make the decisions legible, and enough design judgment to keep the experience focused as priorities change.",
     ],
   },
   tastePitch: {
@@ -94,20 +94,20 @@ export const profile = {
 
 export const audienceSignals = [
   {
-    label: "Range",
-    text: "Agency, tech media, enterprise technology, and online art education.",
+    label: "Structure",
+    text: "Turn scattered inputs into source material, workflows, and pages people can actually use.",
   },
   {
-    label: "Quality",
-    text: "CMS/DAM publishing, localization, accessibility, QA, and source-of-truth discipline.",
+    label: "Design",
+    text: "Bring taste, clarity, and practical constraints to content-heavy visual and learning problems.",
   },
   {
-    label: "Collaboration",
-    text: "Comfortable with engineering, branding, localization, and subject-matter expert teams.",
+    label: "Communication",
+    text: "Improve handoffs between writers, designers, engineers, reviewers, and subject-matter experts.",
   },
   {
     label: "Proof",
-    text: "Public React projects show technical growth where NDA-bound work cannot.",
+    text: "Use public web projects to make technical growth visible where professional work cannot be shown.",
   },
 ];
 

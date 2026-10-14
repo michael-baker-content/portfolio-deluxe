@@ -3,10 +3,10 @@ import React from "react";
 import { Link } from "../components/Link.jsx";
 
 const toneClasses = {
-  spotlight: "bg-chartreuse",
-  coral: "bg-[#ffe0d9]",
-  gold: "bg-[#ffe7a8]",
-  blue: "bg-[#d9eef6]",
+  spotlight: "bg-[linear-gradient(135deg,#fffaf1_0%,#f7f0cf_58%,rgba(200,216,75,0.42)_100%)]",
+  coral: "bg-[linear-gradient(135deg,#fffaf1_0%,#fff1ec_58%,rgba(242,107,87,0.28)_100%)]",
+  gold: "bg-[linear-gradient(135deg,#fffaf1_0%,#fff3d6_58%,rgba(210,154,37,0.25)_100%)]",
+  blue: "bg-[linear-gradient(135deg,#fffaf1_0%,#edf6f8_58%,rgba(142,199,223,0.38)_100%)]",
 };
 
 export function ProjectPage({ content, slug }) {
@@ -15,9 +15,9 @@ export function ProjectPage({ content, slug }) {
   if (!project) {
     return (
       <main id="main-content" className="page-shell-narrow grid min-h-[70vh] place-items-center py-20">
-        <div className="rounded-lg border-2 border-ink bg-cream p-8 shadow-hard">
+        <div className="editorial-panel p-8">
           <p className="eyebrow">Missing project</p>
-          <h1 className="mt-2 text-4xl font-black">This case study does not exist yet.</h1>
+          <h1 className="display-type mt-2 text-5xl leading-none">This case study does not exist yet.</h1>
           <Link className="button mt-8 bg-coral" href="/">
             Back to Portfolio
           </Link>
@@ -28,18 +28,18 @@ export function ProjectPage({ content, slug }) {
 
   return (
     <main id="main-content">
-      <section className={`border-b-2 border-ink ${toneClasses[project.tone]} px-4 py-16 sm:px-8 lg:px-14`}>
+      <section className={`border-b border-ink/15 ${toneClasses[project.tone]} px-4 py-20 sm:px-8 lg:px-14`}>
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-end">
           <div>
-            <Link className="inline-flex items-center gap-2 text-sm font-black no-underline" href="/">
+            <Link className="editorial-link items-center gap-2" href="/">
               <ArrowLeft size={17} />
               Back to Portfolio
             </Link>
             <p className="eyebrow mt-10">{project.label}</p>
-            <h1 className="mt-3 text-[clamp(3rem,8vw,7rem)] font-black leading-[0.9]">{project.title}</h1>
+            <h1 className="display-type mt-3 text-[clamp(3.5rem,9vw,8.5rem)] leading-[0.84]">{project.title}</h1>
             <p className="mt-6 max-w-3xl text-xl font-bold leading-8 text-[#3f3835]">{project.summary}</p>
           </div>
-          <aside className="rounded-lg border-2 border-ink bg-white/60 p-5 shadow-hard">
+          <aside className="editorial-panel p-6">
             <p className="eyebrow">Role</p>
             <p className="mt-2 font-black leading-6">{project.role}</p>
             {project.timeline ? (
@@ -61,7 +61,7 @@ export function ProjectPage({ content, slug }) {
                 <p className="eyebrow mt-6">Tools</p>
                 <ul className="mt-3 flex flex-wrap gap-2" aria-label="Tools">
                   {project.tools.map((tool) => (
-                    <li className="rounded-full border border-ink/25 bg-white/60 px-3 py-1 text-xs font-black text-ink/75" key={tool}>
+                    <li className="border-b border-ink/20 pb-0.5 text-xs font-black uppercase tracking-[0.14em] text-ink/65" key={tool}>
                       {tool}
                     </li>
                   ))}
@@ -70,7 +70,7 @@ export function ProjectPage({ content, slug }) {
             ) : null}
             <ul className="mt-6 flex flex-wrap gap-2" aria-label="Evidence">
               {project.evidence.map((item) => (
-                <li className="rounded-full bg-white px-3 py-1 text-xs font-black text-ink/75" key={item}>
+                <li className="bg-white/55 px-2 py-1 text-xs font-black uppercase tracking-[0.12em] text-ink/65" key={item}>
                   {item}
                 </li>
               ))}
@@ -78,13 +78,13 @@ export function ProjectPage({ content, slug }) {
             {project.appHref || project.repoHref ? (
               <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
                 {project.appHref ? (
-                  <a className="inline-flex items-center gap-2 border-b-[3px] border-ink text-sm font-black no-underline" href={project.appHref}>
+                  <a className="editorial-link items-center gap-2" href={project.appHref}>
                     Open project
                     <ExternalLink size={16} />
                   </a>
                 ) : null}
                 {project.repoHref ? (
-                  <a className="inline-flex items-center gap-2 border-b-[3px] border-ink text-sm font-black no-underline" href={project.repoHref}>
+                  <a className="editorial-link items-center gap-2" href={project.repoHref}>
                     View repository
                     <ExternalLink size={16} />
                   </a>
@@ -98,9 +98,9 @@ export function ProjectPage({ content, slug }) {
       {project.metrics?.length ? (
         <section className="page-shell grid gap-4 border-b border-ink/20 py-10 md:grid-cols-3">
           {project.metrics.map((metric) => (
-            <article className="rounded-lg border-2 border-ink bg-cream p-5 shadow-hard" key={metric.label}>
+            <article className="editorial-card p-5" key={metric.label}>
               <p className="eyebrow">{metric.label}</p>
-              <p className="mt-2 text-3xl font-black leading-none">{metric.value}</p>
+              <p className="display-type mt-2 text-4xl leading-none">{metric.value}</p>
             </article>
           ))}
         </section>
@@ -121,7 +121,7 @@ export function ProjectPage({ content, slug }) {
         <section className="page-shell border-t border-ink/20 py-16">
           <div className="mb-7 max-w-3xl">
             <p className="eyebrow">Case study sections</p>
-            <h2 className="mt-2 text-[clamp(2rem,4vw,4.2rem)] font-black leading-none">The fuller story.</h2>
+            <h2 className="display-type mt-3 text-[clamp(2.5rem,5vw,5.2rem)] leading-[0.95]">The fuller story.</h2>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
             {project.sections.map((section) => (
@@ -136,7 +136,7 @@ export function ProjectPage({ content, slug }) {
 
 function CaseBlock({ title, body }) {
   return (
-    <article className="rounded-lg border-2 border-ink bg-white p-5 shadow-hard">
+    <article className="editorial-card p-5">
       <p className="eyebrow">{title}</p>
       <p className="mt-3 font-semibold leading-7 text-muted">{body}</p>
     </article>
@@ -149,7 +149,7 @@ function ListBlock({ title, items }) {
       <p className="eyebrow">{title}</p>
       <ul className="mt-4 grid gap-3">
         {items.map((item) => (
-          <li className="rounded-lg border-2 border-ink bg-cream p-4 font-bold leading-7" key={item}>
+          <li className="border-l border-ink/30 bg-white/70 p-4 font-bold leading-7 shadow-[0_10px_35px_rgba(32,29,29,0.05)]" key={item}>
             {item}
           </li>
         ))}

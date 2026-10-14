@@ -20,13 +20,22 @@ export default {
       },
       fontFamily: {
         sans: [
-          "Inter",
-          "ui-sans-serif",
-          "system-ui",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Segoe UI",
+          "Atkinson Hyperlegible",
+          "Verdana",
+          "Arial",
           "sans-serif",
+        ],
+        display: [
+          "Fraunces",
+          "Cooper Black",
+          "Bookman Old Style",
+          "serif",
+        ],
+        serif: [
+          "Fraunces",
+          "Cooper Black",
+          "Bookman Old Style",
+          "serif",
         ],
       },
     },

@@ -1,60 +1,49 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { ProjectCard } from "../components/ProjectCard.jsx";
 import { Link } from "../components/Link.jsx";
 
 export function HomePage({ content }) {
   const { audienceSignals, capabilities, listedProjects, profile, services } = content;
-  const titleRef = useRef(null);
   const [showAllProjects, setShowAllProjects] = useState(false);
-  const homepageProjects = showAllProjects ? listedProjects : listedProjects.slice(0, 3);
+  const [contactStatus, setContactStatus] = useState("idle");
+  const [contactMessage, setContactMessage] = useState("");
+  const emphasisProjects = listedProjects.slice(0, 4);
+  const homepageProjects = showAllProjects ? listedProjects : emphasisProjects;
 
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const handleContactSubmit = async (event) => {
+    event.preventDefault();
 
-    let ticking = false;
-    const layers = document.querySelectorAll(".zoom-layer");
+    if (!profile.contactForm.endpoint) {
+      setContactStatus("error");
+      setContactMessage("The contact form is not connected yet.");
+      return;
+    }
 
-    const updateScale = () => {
-      const scrollY = window.scrollY;
-      const scrollPercent = Math.min(scrollY / (window.innerHeight * 0.5), 1);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
 
-      if (titleRef.current) {
-        titleRef.current.style.backgroundImage = `linear-gradient(
-            ${135 + scrollPercent * 45}deg,
-            #1e1b4b 0%, 
-            #1d4ed8 ${40 + scrollPercent * 20}%, 
-            #7e22ce 100%
-          )`;
-      }
+    setContactStatus("submitting");
+    setContactMessage("");
 
-      if (!prefersReducedMotion) {
-        layers.forEach((layer) => {
-          const speed = parseFloat(layer.getAttribute("data-scale-speed") || "0");
-          const scaleValue = 1 + ((scrollY * speed) / 400);
-          layer.style.transform = `scale3d(${scaleValue}, ${scaleValue}, 1)`;
-        });
-      }
+    try {
+      const response = await fetch(profile.contactForm.endpoint, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
 
-      ticking = false;
-    };
+      if (!response.ok) throw new Error("Form submission failed");
 
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateScale);
-        ticking = true;
-      }
-    };
-
-    updateScale();
-
-    if (prefersReducedMotion) return;
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
+      form.reset();
+      setContactStatus("success");
+      setContactMessage("Message sent. Thanks for reaching out; I will follow up soon.");
+    } catch {
+      setContactStatus("error");
+      setContactMessage("Something got tangled during submission. Please try again in a moment.");
+    }
+  };
 
   return (
     <main id="main-content">
@@ -65,35 +54,28 @@ export function HomePage({ content }) {
           <span className="sr-only">{profile.hero.imageAlt}</span>
 
           <div className="hero-aurora" aria-hidden="true" />
+          <div className="hero-gradient-plate" aria-hidden="true" />
+          <div className="hero-gradient-ribbon hero-gradient-ribbon-one" aria-hidden="true" />
+          <div className="hero-gradient-ribbon hero-gradient-ribbon-two" aria-hidden="true" />
           <div className="hero-pattern" aria-hidden="true" />
-
-          {/* Individual fragmented layers hidden from assistive tech */}
-          <img src="/assets/hero/sky.svg" className="absolute inset-0 w-full h-full object-cover opacity-70 mix-blend-screen select-none zoom-layer" data-scale-speed="0.05" alt="" aria-hidden="true" />
-          <img src="/assets/hero/background.svg" className="absolute inset-0 w-full h-full object-cover opacity-80 select-none zoom-layer" data-scale-speed="0.25" alt="" aria-hidden="true" />
-          <img src="/assets/hero/midground.svg" className="absolute inset-0 w-full h-full object-cover opacity-85 select-none zoom-layer" data-scale-speed="0.6" alt="" aria-hidden="true" />
-          <img src="/assets/hero/foreground.svg" className="absolute inset-0 w-full h-full object-cover opacity-90 select-none zoom-layer" data-scale-speed="1.3" alt="" aria-hidden="true" />
 
           <div className="absolute inset-0 bg-gradient-to-t from-paper/95 via-paper/62 to-transparent md:bg-gradient-to-r md:from-paper md:via-paper/92 md:via-[48%] md:to-[#163d6a]/10" />
 
           <div className="absolute inset-0 flex flex-col justify-end pb-8 md:justify-center md:pb-0">
-            <div className="hero-copy-shell relative z-10 mx-4 px-0 py-0 md:mx-0 md:rounded-r-[2rem] md:border-y md:border-r md:border-white/55 md:bg-paper/72 md:px-7 md:py-8 md:shadow-soft md:backdrop-blur-md md:ml-[clamp(18px,6vw,84px)]">
-              <div className="mb-4 inline-flex rounded-full border border-ink/15 bg-white/35 px-3 py-2 text-xs font-black uppercase tracking-normal text-ink/65 backdrop-blur-xl">
+            <div className="hero-copy-shell relative z-10 mx-4 pb-5 pl-10 pr-4 pt-8 md:mx-0 md:rounded-r-[2rem] md:border-y md:border-r md:border-white/55 md:bg-paper md:pb-10 md:pl-16 md:pr-9 md:pt-14 md:shadow-soft md:ml-[clamp(18px,6vw,84px)]">
+              <div className="mb-4 inline-flex border-l-2 border-ink bg-white/45 px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-ink/65 backdrop-blur-xl">
                 Michael Baker
               </div>
               <p className="eyebrow">{profile.hero.eyebrow}</p>
-              <h1
-                ref={titleRef}
-                className="mt-3 w-full max-w-none pb-2 text-[clamp(2.5rem,7vw,6rem)] font-black leading-[0.96] tracking-normal bg-clip-text text-transparent"
-                style={{ backgroundImage: "linear-gradient(135deg, #1e1b4b 0%, #1d4ed8 40%, #7e22ce 100%)" }}
-              >
+              <h1 className="hero-title-box display-type mt-3 max-w-none text-[clamp(3rem,7vw,7rem)] leading-[0.9]">
                 {profile.hero.title}
               </h1>
               <p className="mt-5 max-w-xl text-lg font-bold leading-7 text-[#3f3835] md:text-xl">{profile.hero.description}</p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <Link className="button bg-coral" href="/#work">
+                <Link className="paper-tab paper-tab-primary" href="/#work">
                   View work
                 </Link>
-                <Link className="button bg-cream" href="/#contact">
+                <Link className="paper-tab paper-tab-secondary" href="/#contact">
                   Send a note
                 </Link>
               </div>
@@ -104,17 +86,17 @@ export function HomePage({ content }) {
 
       <div className="relative z-20">
         <div className="relative min-h-screen max-md:min-h-0 max-md:px-3 max-md:py-3">
-          <div className="sticky top-0 min-h-screen flex flex-col justify-center bg-cream pt-20 pb-16 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] rounded-t-3xl border-t border-ink/10 max-md:static max-md:min-h-0 max-md:rounded-2xl max-md:px-1 max-md:py-10">
+          <div className="editorial-section sticky top-0 min-h-screen flex flex-col justify-center pt-24 pb-20 shadow-[0_-12px_50px_rgba(32,29,29,0.06)] max-md:static max-md:min-h-0 max-md:px-1 max-md:py-12">
             <section className="page-shell grid gap-6 md:grid-cols-[0.85fr_1.15fr] md:items-start">
               <div>
                 <p className="eyebrow">{profile.lineage.eyebrow}</p>
-                <h2 className="mt-2 text-[clamp(2rem,4vw,4.2rem)] font-black leading-none">{profile.lineage.title}</h2>
+                <h2 className="display-type mt-3 text-[clamp(2.5rem,5vw,5.2rem)] leading-[0.95]">{profile.lineage.title}</h2>
               </div>
-              <div className="rounded-lg border-2 border-ink bg-white/55 p-5 shadow-hard backdrop-blur-xl">
+              <div className="editorial-panel p-6 md:p-8">
                 <p className="text-lg font-bold leading-8 text-muted">{profile.lineage.description}</p>
                 <div className="mt-5 grid gap-3 md:grid-cols-2">
                   {profile.lineage.beats.map((beat) => (
-                    <article className="rounded-lg border border-ink/20 bg-cream/80 p-4" key={beat.from}>
+                    <article className="border-l border-ink/25 bg-paper/70 p-4" key={beat.from}>
                       <p className="text-xs font-black uppercase text-portfolioBlue">Strength: {beat.from}</p>
                       <p className="mt-2 font-black leading-6">{beat.to}</p>
                     </article>
@@ -123,12 +105,12 @@ export function HomePage({ content }) {
               </div>
             </section>
 
-            <section className="page-shell mt-16 grid overflow-hidden rounded-lg border-2 border-ink bg-ink shadow-soft md:grid-cols-4">
+            <section className="page-shell mt-16 grid border-y border-ink/20 bg-white/55 md:grid-cols-4">
               {audienceSignals.map((signal, index) => (
-                <article className="audience-card min-h-44 border-ink bg-cream p-5 md:border-r md:last:border-r-0" key={signal.label}>
+                <article className="min-h-44 border-ink/15 bg-transparent p-5 md:border-r md:last:border-r-0" key={signal.label}>
                   <div className="flex items-start justify-between gap-3">
                     <span className="text-4xl font-black leading-none text-ink/25">{String(index + 1).padStart(2, "0")}</span>
-                    <span className="rounded-full border border-ink/20 bg-white/55 px-2 py-1 text-xs font-black uppercase text-portfolioBlue">{signal.label}</span>
+                    <span className="border-b border-ink/20 pb-1 text-xs font-black uppercase tracking-[0.16em] text-portfolioBlue">{signal.label}</span>
                   </div>
                   <p className="mt-5 text-lg font-black leading-7 text-ink">{signal.text}</p>
                 </article>
@@ -138,28 +120,28 @@ export function HomePage({ content }) {
         </div>
 
         <div id="work" className="relative min-h-screen max-md:min-h-0 max-md:px-3 max-md:py-3">
-          <div className="sticky top-0 flex min-h-screen flex-col justify-center bg-white pt-20 pb-16 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] rounded-t-3xl border-t border-ink/10 max-md:static max-md:min-h-0 max-md:rounded-2xl max-md:px-1 max-md:py-10">
+          <div className="editorial-section sticky top-0 flex min-h-screen flex-col justify-center bg-white/86 pt-24 pb-20 shadow-[0_-12px_50px_rgba(32,29,29,0.06)] max-md:static max-md:min-h-0 max-md:px-1 max-md:py-12">
             <section className="page-shell">
               <div className="mb-7 max-w-3xl">
                 <p className="eyebrow">Case studies</p>
-                <h2 className="mt-2 text-[clamp(2rem,4vw,4.2rem)] font-black leading-none">Selected work, shaped into case studies.</h2>
+                <h2 className="display-type mt-3 text-[clamp(2.5rem,5vw,5.2rem)] leading-[0.95]">I adapt unclear briefs into usable systems.</h2>
                 <p className="mt-4 text-lg font-bold leading-8 text-muted">
-                  Each project makes a different part of the bridge visible: content judgment, data shape, interface decisions, and the tradeoffs behind the build.
+                  Start with the projects that show where my work is headed now: creative tools, local information products, and focused platforms that turn messy needs into usable systems.
                 </p>
-                <Link className="mt-4 inline-flex border-b-[3px] border-ink text-sm font-black no-underline transition hover:-translate-y-0.5" href="/case-studies">
+                <Link className="editorial-link mt-4" href="/case-studies">
                   Open filterable index
                 </Link>
               </div>
               <div id="case-studies" className="scroll-mt-28" />
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 {homepageProjects.map((project) => (
                   <ProjectCard key={project.slug} project={project} />
                 ))}
               </div>
-              {listedProjects.length > 3 ? (
+              {listedProjects.length > emphasisProjects.length ? (
                 <div className="mt-6 flex flex-wrap items-center gap-4">
-                  <button className="button bg-chartreuse" type="button" onClick={() => setShowAllProjects((value) => !value)}>
-                    {showAllProjects ? "Show fewer case studies" : `Show ${listedProjects.length - 3} more case studies`}
+                  <button className="paper-tab paper-tab-secondary" type="button" onClick={() => setShowAllProjects((value) => !value)}>
+                    {showAllProjects ? "Show active work only" : `Show ${listedProjects.length - emphasisProjects.length} more studies`}
                   </button>
                   <span className="text-sm font-black uppercase text-ink/55">
                     Showing {homepageProjects.length} of {listedProjects.length}
@@ -171,17 +153,17 @@ export function HomePage({ content }) {
         </div>
 
         <div id="capabilities" className="relative min-h-screen max-md:min-h-0 max-md:px-3 max-md:py-3">
-          <div className="sticky top-0 min-h-screen flex flex-col justify-center bg-cream pt-20 pb-16 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] rounded-t-3xl border-t border-ink/10 max-md:static max-md:min-h-0 max-md:rounded-2xl max-md:px-1 max-md:py-10">
+          <div className="editorial-section sticky top-0 min-h-screen flex flex-col justify-center pt-24 pb-20 shadow-[0_-12px_50px_rgba(32,29,29,0.06)] max-md:static max-md:min-h-0 max-md:px-1 max-md:py-12">
             <section className="page-shell">
               <div className="mb-7 max-w-3xl">
                 <p className="eyebrow">Capabilities</p>
-                <h2 className="mt-2 text-[clamp(2rem,4vw,4.2rem)] font-black leading-none">What I bring to the work.</h2>
+                <h2 className="display-type mt-3 text-[clamp(2.5rem,5vw,5.2rem)] leading-[0.95]">What I bring to the work.</h2>
               </div>
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 {capabilities.map((capability) => (
-                  <article className="rounded-lg border-2 border-ink bg-white/60 p-5 shadow-hard backdrop-blur-xl" key={capability.title}>
+                  <article className="editorial-card p-5" key={capability.title}>
                     <p className="eyebrow">{capability.category}</p>
-                    <h3 className="mt-2 text-2xl font-black leading-none">{capability.title}</h3>
+                    <h3 className="display-type mt-3 text-3xl leading-none">{capability.title}</h3>
                     <p className="mt-3 text-sm font-black uppercase text-ink/60">{capability.level}</p>
                     <p className="mt-4 font-semibold leading-7 text-muted">{capability.proof}</p>
                   </article>
@@ -192,17 +174,17 @@ export function HomePage({ content }) {
         </div>
 
         <div id="taste" className="relative min-h-screen max-md:min-h-0 max-md:px-3 max-md:py-3">
-          <div className="sticky top-0 min-h-screen flex flex-col justify-center bg-white pt-20 pb-16 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] rounded-t-3xl border-t border-ink/10 max-md:static max-md:min-h-0 max-md:rounded-2xl max-md:px-1 max-md:py-10">
+          <div className="editorial-section sticky top-0 min-h-screen flex flex-col justify-center bg-white/86 pt-24 pb-20 shadow-[0_-12px_50px_rgba(32,29,29,0.06)] max-md:static max-md:min-h-0 max-md:px-1 max-md:py-12">
             <section className="page-shell grid gap-8 md:grid-cols-[0.9fr_1.1fr]">
               <div>
                 <p className="eyebrow">{profile.creativePosition.eyebrow}</p>
-                <h2 className="mt-2 text-[clamp(2rem,4vw,4.2rem)] font-black leading-none">{profile.creativePosition.title}</h2>
+                <h2 className="display-type mt-3 text-[clamp(2.5rem,5vw,5.2rem)] leading-[0.95]">{profile.creativePosition.title}</h2>
               </div>
               <div className="grid gap-4 text-lg font-semibold leading-8 text-muted">
                 {profile.creativePosition.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
-                <Link className="button mt-2 w-fit bg-coral max-sm:w-full" href="/taste">
+                <Link className="paper-tab paper-tab-secondary mt-2 w-fit max-sm:w-full" href="/taste">
                   Open the full taste pitch
                 </Link>
               </div>
@@ -210,29 +192,29 @@ export function HomePage({ content }) {
 
             <section className="page-shell mt-16 grid gap-4 md:grid-cols-3" aria-label="Ways to collaborate">
               {services.map((service) => (
-                <article className="service-card border-t-[6px] border-coral pt-5" key={service.title}>
-                  <h3 className="text-2xl font-black leading-none">{service.title}</h3>
+                <article className="service-card border-t border-ink/20 pt-5" key={service.title}>
+                  <h3 className="display-type text-3xl leading-none">{service.title}</h3>
                   <p className="mt-3 font-semibold leading-7 text-muted">{service.description}</p>
                 </article>
               ))}
             </section>
 
-            <section id="contact" className="page-shell mt-16 grid gap-6 rounded-lg border-2 border-ink bg-chartreuse p-7 shadow-soft md:grid-cols-[0.9fr_1.1fr] md:p-10">
+            <section id="contact" className="page-shell editorial-panel mt-16 grid gap-6 p-7 md:grid-cols-[0.9fr_1.1fr] md:p-10">
               <div className="self-center">
                 <p className="eyebrow">Contact</p>
-                <h2 className="mt-2 text-[clamp(2rem,4vw,4.2rem)] font-black leading-none">Want to talk about a role or project?</h2>
+                <h2 className="display-type mt-3 text-[clamp(2.5rem,5vw,5.2rem)] leading-[0.95]">Want to talk about a role or project?</h2>
                 <p className="mt-4 font-bold leading-7 text-ink/70">
                   Send a note directly from here. I am especially interested in roles and projects where product judgment, writing, and frontend craft overlap.
                 </p>
               </div>
-              <form className="rounded-lg border-2 border-ink bg-white/75 p-5 shadow-hard" action={profile.contactForm.endpoint || undefined} method="POST">
+              <form className="border border-ink/20 bg-paper/80 p-5" action={profile.contactForm.endpoint || undefined} method="POST" onSubmit={handleContactSubmit}>
                 <input type="hidden" name="_subject" value="Portfolio contact form" />
                 <input className="hidden" type="text" name="_gotcha" tabIndex="-1" autoComplete="off" />
                 <div className="grid gap-4 sm:grid-cols-2">
                   <label className="block">
                     <span className="text-xs font-black uppercase text-ink/65">Name</span>
                     <input
-                      className="mt-2 min-h-12 w-full rounded-lg border-2 border-ink bg-cream px-3 font-bold outline-none focus:bg-white"
+                      className="editorial-input"
                       name="name"
                       type="text"
                       autoComplete="name"
@@ -244,7 +226,7 @@ export function HomePage({ content }) {
                   <label className="block">
                     <span className="text-xs font-black uppercase text-ink/65">Email</span>
                     <input
-                      className="mt-2 min-h-12 w-full rounded-lg border-2 border-ink bg-cream px-3 font-bold outline-none focus:bg-white"
+                      className="editorial-input"
                       name="email"
                       type="email"
                       autoComplete="email"
@@ -257,7 +239,7 @@ export function HomePage({ content }) {
                 <div className="mt-4 grid gap-4 sm:grid-cols-2">
                   <label className="block">
                     <span className="text-xs font-black uppercase text-ink/65">Your role</span>
-                    <select className="mt-2 min-h-12 w-full rounded-lg border-2 border-ink bg-cream px-3 font-bold outline-none focus:bg-white" name="role" defaultValue="">
+                    <select className="editorial-input" name="role" defaultValue="">
                       <option value="" disabled>
                         Choose one
                       </option>
@@ -272,7 +254,7 @@ export function HomePage({ content }) {
                   <label className="block">
                     <span className="text-xs font-black uppercase text-ink/65">General location</span>
                     <input
-                      className="mt-2 min-h-12 w-full rounded-lg border-2 border-ink bg-cream px-3 font-bold outline-none focus:bg-white"
+                      className="editorial-input"
                       name="location"
                       type="text"
                       autoComplete="address-level2"
@@ -283,7 +265,7 @@ export function HomePage({ content }) {
                 </div>
                 <label className="mt-4 block">
                   <span className="text-xs font-black uppercase text-ink/65">Case study interest</span>
-                  <select className="mt-2 min-h-12 w-full rounded-lg border-2 border-ink bg-cream px-3 font-bold outline-none focus:bg-white" name="caseStudyInterest" defaultValue="">
+                  <select className="editorial-input" name="caseStudyInterest" defaultValue="">
                     <option value="">No specific study</option>
                     {listedProjects.map((project) => (
                       <option key={project.slug} value={project.title}>
@@ -295,16 +277,30 @@ export function HomePage({ content }) {
                 <label className="mt-4 block">
                   <span className="text-xs font-black uppercase text-ink/65">Message</span>
                   <textarea
-                    className="mt-2 min-h-32 w-full resize-y rounded-lg border-2 border-ink bg-cream px-3 py-3 font-bold outline-none focus:bg-white"
+                    className="editorial-input min-h-32 resize-y py-3"
                     name="message"
                     maxLength="3000"
                     placeholder="What should we talk about?"
                     required
                   />
                 </label>
-                <button className="button mt-5 bg-coral disabled:cursor-not-allowed disabled:opacity-60" type="submit" disabled={!profile.contactForm.endpoint}>
-                  Send message
+                <button className="paper-tab paper-tab-primary mt-5 disabled:cursor-not-allowed disabled:opacity-60" type="submit" disabled={!profile.contactForm.endpoint || contactStatus === "submitting"}>
+                  {contactStatus === "submitting" ? "Sending" : "Send message"}
                 </button>
+                {contactMessage ? (
+                  <div
+                    className={`mt-5 border-l-4 p-4 ${
+                      contactStatus === "success"
+                        ? "border-chartreuse bg-white/80 text-ink"
+                        : "border-coral bg-white/80 text-ink"
+                    }`}
+                    role={contactStatus === "error" ? "alert" : "status"}
+                    aria-live="polite"
+                  >
+                    <p className="eyebrow">{contactStatus === "success" ? "Sent" : "Form note"}</p>
+                    <p className="mt-2 font-bold leading-7">{contactMessage}</p>
+                  </div>
+                ) : null}
                 {!profile.contactForm.endpoint ? (
                   <p className="mt-4 text-sm font-bold leading-6 text-ink/65">
                     Formspree is ready to connect. Add `VITE_FORMSPREE_ENDPOINT` to your local environment to enable submissions.
@@ -316,7 +312,7 @@ export function HomePage({ content }) {
         </div>
       </div>
 
-      <footer className="relative z-20 border-t-2 border-ink bg-ink px-4 py-10 text-cream sm:px-8 lg:px-14">
+      <footer className="relative z-20 border-t border-ink bg-ink px-4 py-10 text-cream sm:px-8 lg:px-14">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-xs font-black uppercase text-chartreuse">Michael Baker</p>

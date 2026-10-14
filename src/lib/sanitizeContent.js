@@ -17,6 +17,7 @@ const MIKES_LIST_NEXT_STEPS = [
 ];
 
 const CODEX_COLLABORATOR_SLUGS = new Set(["portfolio", "mikeslist"]);
+const PROJECT_STAGES = new Set(["featured", "supporting", "background", "template"]);
 
 function cleanText(value, maxLength = MAX_TEXT_LENGTH) {
   if (value === null || value === undefined) return "";
@@ -170,6 +171,8 @@ function cleanProject(project = {}) {
     cardImage: cleanImage(migratedProject.cardImage),
     priority: cleanNumber(migratedProject.priority),
     visibility: migratedProject.visibility === "hidden" ? "hidden" : "listed",
+    stage: PROJECT_STAGES.has(migratedProject.stage) ? migratedProject.stage : "supporting",
+    emphasisLabel: cleanText(migratedProject.emphasisLabel, 80),
     evidence: cleanArray(migratedProject.evidence, (item) => cleanText(item, 80)),
     tools: cleanArray(migratedProject.tools, (item) => cleanText(item, 80)),
     collaborators: CODEX_COLLABORATOR_SLUGS.has(slug)

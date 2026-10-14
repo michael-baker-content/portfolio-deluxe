@@ -53,5 +53,53 @@ test("deriveContent restores fragmented decision and next-step copy for any case
   assert.match(content.projectBySlug("portfolio").decisions[0], /Preserve the 1\.0 portfolio pattern/);
   assert.match(content.projectBySlug("portfolio").nextSteps[0], /visual timeline/);
   assert.match(content.projectBySlug("bakerlinks").decisions[0], /Supabase/);
-  assert.match(content.projectBySlug("bakerlinks").nextSteps[0], /example public profiles/);
+  assert.match(content.projectBySlug("bakerlinks").nextSteps[0], /foundation for my own social media links site/);
+});
+
+test("deriveContent restores default emphasis stage for saved project content", () => {
+  const content = deriveContent({
+    projects: [
+      {
+        slug: "mikeslist",
+        title: "Mike's List",
+        priority: 10,
+        visibility: "listed",
+        category: "Local discovery",
+      },
+      {
+        slug: "notion-clean",
+        title: "Notion Archive Cleaner",
+        priority: 120,
+        visibility: "listed",
+        category: "Workflow utility",
+      },
+    ],
+  });
+
+  assert.equal(content.projectBySlug("mikeslist").stage, "background");
+  assert.equal(content.projectBySlug("making-tools").stage, "supporting");
+  assert.equal(content.projectBySlug("notion-clean").stage, "background");
+  assert.equal(content.projectBySlug("sketchlet").stage, "featured");
+  assert.equal(content.projectBySlug("bakerparks").stage, "featured");
+  assert.deepEqual(
+    content.listedProjects.slice(0, 5).map((project) => project.slug),
+    ["sketchlet", "bakerparks", "bakerlinks", "making-tools", "mikeslist"],
+  );
+});
+
+test("deriveContent preserves explicit saved emphasis stages", () => {
+  const content = deriveContent({
+    projects: [
+      {
+        slug: "mikeslist",
+        title: "Mike's List",
+        stage: "featured",
+        priority: 10,
+        visibility: "listed",
+        category: "Local discovery",
+      },
+    ],
+  });
+
+  assert.equal(content.projectBySlug("mikeslist").stage, "featured");
 });

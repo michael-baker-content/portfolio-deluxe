@@ -2,16 +2,19 @@ import { Menu, X } from "lucide-react";
 import React from "react";
 import { useState } from "react";
 import { Link } from "./Link.jsx";
+import { MonogramMark } from "./MonogramMark.jsx";
 import { navItems } from "../data/navigation.js";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-20 border-b border-white/35 bg-paper/75 px-4 py-4 shadow-[0_12px_45px_rgba(32,29,29,0.08)] backdrop-blur-xl sm:px-8 lg:px-14">
+    <header className="sticky top-0 z-20 border-b border-ink/10 bg-paper/88 px-4 py-3 shadow-[0_10px_35px_rgba(32,29,29,0.05)] backdrop-blur-xl sm:px-8 lg:px-14">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4">
-        <Link className="flex items-center gap-3 font-black no-underline" href="/" aria-label="Home">
-          <span className="grid h-9 w-9 place-items-center rounded-full border-2 border-ink bg-chartreuse shadow-[0_0_28px_rgba(200,216,75,0.55)]">M</span>
+        <Link className="flex items-center gap-3 text-sm font-black uppercase tracking-[0.16em] no-underline" href="/" aria-label="Home">
+          <span className="grid h-10 w-10 place-items-center border border-ink bg-white p-1.5 shadow-[4px_4px_0_rgba(32,29,29,0.18)]">
+            <MonogramMark className="h-full w-full text-ink" title="Michael Baker" />
+          </span>
           <span>Michael Baker</span>
         </Link>
 
@@ -34,7 +37,7 @@ export function Header() {
           {navItems.map((item) => (
             <Link
               key={item.href}
-              className="inline-flex min-h-9 items-center rounded-full border border-transparent px-3 text-sm font-extrabold no-underline transition hover:-translate-y-0.5 hover:border-white/70 hover:bg-white/45"
+              className="inline-flex min-h-9 items-center border-b border-transparent px-1 text-sm font-extrabold no-underline transition hover:border-ink sm:px-2"
               href={item.href}
               onClick={() => setIsOpen(false)}
             >

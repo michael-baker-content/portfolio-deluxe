@@ -7,7 +7,8 @@ export const projects = [
   {
     slug: "portfolio",
     visibility: "listed",
-    priority: 50,
+    stage: "background",
+    priority: 70,
     category: "Portfolio system",
     label: "Portfolio case study",
     title: "Portfolio Case Study",
@@ -70,14 +71,150 @@ export const projects = [
     ],
   },
   {
+    slug: "sketchlet",
+    visibility: "listed",
+    stage: "featured",
+    priority: 10,
+    category: "Creative tool",
+    label: "Case study",
+    emphasisLabel: "Active",
+    title: "Sketchlet",
+    description:
+      "A Wordle-inspired daily drawing game for people who want a few creative minutes and something shareable at the end.",
+    cardImage: stockImage("photo-1513475382585-d06e58bcb0e0", "Colored pencils arranged for a drawing session."),
+    detailHref: "/projects/sketchlet",
+    appHref: "https://sketchlet.app",
+    tone: "coral",
+    status: "Active build",
+    timeline: "2026",
+    role: "Product direction, drawing-tool design, frontend prototyping",
+    collaborators: ["Michael Baker"],
+    tools: ["React", "Drawing tools", "User accounts", "Training materials", "Daily game design"],
+    evidence: ["Rich drawing tools", "Daily creative loop", "Shareable drawings"],
+    metrics: [
+      { label: "Product type", value: "Daily game" },
+      { label: "Core action", value: "Draw" },
+      { label: "Audience", value: "Casual creators" },
+    ],
+    summary:
+      "Sketchlet is the current lead project: a daily drawing game inspired by the quick, repeatable pleasure of Wordle. The premise is simple: give people a few creative minutes, a reason to draw, and a shareable result they can send to friends.",
+    problem:
+      "Many drawing tools are either full creative suites or passive prompt lists. Sketchlet sits between those poles: it needs enough rich tooling to make drawing feel expressive, but it also has to stay light enough for a short daily visit.",
+    outcome:
+      "The project now has rich drawing tools, training materials, and user accounts, with the product direction centered on daily play, easy sharing, and the social pleasure of seeing what friends made.",
+    decisions: [
+      "Use the daily-game pattern as the product constraint: the experience should be easy to understand, quick to start, and satisfying to repeat.",
+      "Make the drawing tools expressive enough to feel fun without turning a short daily game into a professional art application.",
+      "Include training materials so new users can learn the tool behavior without leaving the creative flow.",
+      "Support user accounts so drawings, progress, and future social features have a durable home.",
+      "Treat sharing as part of the core loop because the product becomes more fun when people can compare what they made.",
+    ],
+    sections: [
+      {
+        title: "Daily Game Loop",
+        body:
+          "Sketchlet began from a Wordle-like idea: a site can earn a place in someone's day by being easy to enter, fun for a few minutes, and worth sharing afterward. The daily loop gives the product a clear rhythm without asking users to treat drawing like homework.",
+      },
+      {
+        title: "Drawing Tools",
+        body:
+          "The hardest product work is getting the tools to behave as intended. Drawing interactions are unforgiving: small mismatches in feel, timing, brush behavior, or control state can make a playful tool feel broken. The tool layer has to be dependable before the game layer can shine.",
+      },
+      {
+        title: "Learning Support",
+        body:
+          "Training materials help users understand the drawing environment without turning the app into a formal course. That fits the product's tone: lightweight, helpful, and built for people who may only have a few minutes to play.",
+      },
+      {
+        title: "Social Potential",
+        body:
+          "The next opportunity is social. Sketchlet can become more memorable when users can share drawings, see what friends made, and build lightweight rituals around returning together.",
+      },
+    ],
+    nextSteps: [
+      "Add more social features so users can connect around drawings, not only create them in isolation.",
+      "Refine tool behavior until drawing feels predictable, responsive, and fun across input methods.",
+      "Clarify the sharing loop so a finished drawing becomes an invitation for someone else to try the daily challenge.",
+    ],
+  },
+  {
+    slug: "bakerparks",
+    visibility: "listed",
+    stage: "featured",
+    priority: 20,
+    category: "Civic information",
+    label: "Case study",
+    emphasisLabel: "Active",
+    title: "BakerParks",
+    description:
+      "A San Francisco parks guide that adds context, filters, accessibility care, and original photography to public park data.",
+    cardImage: stockImage("photo-1500530855697-b586d89ba3ee", "A green public park with open grass, trees, and water."),
+    detailHref: "/projects/bakerparks",
+    appHref: "https://bakerparks.vercel.app",
+    tone: "blue",
+    status: "Active build",
+    timeline: "2026",
+    role: "Information architecture, accessibility-focused UX, local data modeling, photography",
+    collaborators: ["Michael Baker"],
+    tools: ["San Francisco parks data", "Filtering UX", "Accessibility", "Original photography"],
+    evidence: ["Explore filters", "Park profiles", "Original photos"],
+    metrics: [
+      { label: "Domain", value: "SF parks" },
+      { label: "Audience", value: "Locals + tourists" },
+      { label: "Core flow", value: "Explore" },
+    ],
+    summary:
+      "BakerParks is an active San Francisco public-parks guide inspired by frustration with the existing SF Parks website. It uses underlying public data as a base, then adds filtering, context, accessibility care, and original photography to help people choose parks with more confidence.",
+    problem:
+      "Public park information can be technically available but still hard to use. Locals and tourists may want to know what a park offers, how to get there, and whether it fits a specific kind of visit, but the answers are often buried in municipal pages, maps, or scattered informal sources.",
+    outcome:
+      "The current Explore experience lets users apply filters to find the right park for a visit. As I personally explore more of the San Francisco park landscape, I use my own photographs and impressions to keep improving the site's context and usability.",
+    decisions: [
+      "Use SF Parks data as a foundation, then add a clearer product layer for people trying to choose where to go.",
+      "Make Explore the practical center of the app so users can filter by what they need instead of reading every park page from scratch.",
+      "Hold the project to a high accessibility standard because public information should be usable by as many visitors as possible.",
+      "Include my own photographs so the pages carry specific visual context instead of feeling like abstract data records.",
+      "Let personal exploration inform product improvements, using real visits to notice what the interface should explain next.",
+    ],
+    sections: [
+      {
+        title: "Spark",
+        body:
+          "BakerParks started after I read an article describing frustration with the SF Parks website. The project asks what happens when public data is treated as a starting point rather than the finished experience.",
+      },
+      {
+        title: "Explore Flow",
+        body:
+          "The Explore feature is the main utility today. It lets users apply filters to narrow the landscape of San Francisco parks and find a place that better matches the visit they have in mind.",
+      },
+      {
+        title: "Accessibility Standard",
+        body:
+          "The project is aiming for a high accessibility standard. That matters because park information serves a broad public audience, including locals, tourists, and people navigating different access needs.",
+      },
+      {
+        title: "Original Context",
+        body:
+          "Pages include my own photographs of San Francisco public parks. That gives the site a personal, grounded layer that public data alone cannot provide.",
+      },
+    ],
+    nextSteps: [
+      "Continue using the app while personally exploring San Francisco parks, noting where the experience helps and where it leaves questions unanswered.",
+      "Use firsthand impressions and photography to improve park pages with clearer context about what each place offers.",
+      "Keep refining the Explore filters so locals and tourists can move from curiosity to a good park choice faster.",
+    ],
+  },
+  {
     slug: "mikeslist",
     visibility: "listed",
-    priority: 10,
+    stage: "background",
+    priority: 50,
     category: "Local discovery",
     label: "Case study",
+    emphasisLabel: "Background",
     title: "Mike's List",
     description:
-      "A local event-discovery tool that turns show listings into richer artist context, review queues, and venue intelligence.",
+      "A local event-discovery experiment that revealed how much steady editorial labor a useful events calendar requires.",
     cardImage: stockImage("photo-1501386761578-eac5c94b800a", "A live music crowd facing a brightly lit stage."),
     detailHref: "/projects/mikeslist",
     appHref: "https://mikeslist.xyz",
@@ -88,56 +225,123 @@ export const projects = [
     role: "Product design, data modeling, prototype engineering",
     collaborators: ["Michael Baker", "Codex"],
     tools: ["JavaScript", "Local data stores", "Wikidata", "Google Places"],
-    evidence: ["Artist enrichment", "Venue review", "Source trails"],
+    evidence: ["Freshness problem", "Artist review", "Source trails"],
     metrics: [
-      { label: "Primary workflow", value: "Review queue" },
+      { label: "Primary challenge", value: "Freshness" },
       { label: "Data types", value: "Artists, venues, events" },
-      { label: "Source posture", value: "Traceable" },
+      { label: "Status", value: "Background" },
     ],
     summary:
-      "Mike's List turns local show listings into a reviewable discovery system. The project is less about making another event calendar and more about answering better questions: who is this artist, how local are they, where can someone support them directly, and how confident should we be in the data?",
+      "Mike's List began as a local show-discovery tool and quickly became a lesson in the operational reality of events calendars. There is value in the idea, but the product depends on a steady influx of fresh, verified information that I cannot currently provide at the pace the category demands.",
     problem:
-      "Local concert listings are useful but thin. They usually tell you what is happening, but not enough about whether the artist is local, what kind of act they are, which source should be trusted, or what still needs human review.",
+      "Events content expires quickly. Last week's listings have little value, and each new week may introduce artists with very little overlap from the week before. The lower the profile of an event, the less likely algorithmically derived artist information is to be accurate.",
     outcome:
-      "The app now frames discovery as a source-aware review workflow: artist and venue records can be enriched, checked, credited, and improved without pretending every automated match is correct.",
+      "The project clarified the content-quality bar: local discovery needs human review, source tracking, and a lot of data entry. Mike's List remains a useful background study because it shows where automation helps and where editorial labor is still unavoidable.",
     decisions: [
-      "I designed the product around the idea that a show listing is a lead to investigate, not a finished fact to publish without review.",
-      "I kept artists, venues, and events as separate records so each part of the discovery workflow can have its own sources, notes, and confidence level.",
-      "I emphasized direct artist links, venue context, and visible source trails so the app can support local discovery without hiding where its information came from.",
-      "I gave uncertain matches a review workflow instead of forcing the interface to pretend that every automated enrichment result is correct.",
-      "I moved the project into its own Mike's List brand, domain, and repository so it can grow as a standalone product outside the portfolio.",
+      "Treat every show listing as time-sensitive content, not a durable evergreen record.",
+      "Separate artists, venues, and events so reusable information can persist even when weekly event listings expire.",
+      "Assume low-profile events need more human review because automated artist matching becomes less reliable as public data gets thinner.",
+      "Make source trails and review states visible so the product does not pretend uncertain enrichment is finished editorial work.",
+      "Move the project into the background until there is a sustainable way to provide the steady content operations it needs.",
     ],
     sections: [
       {
-        title: "Discovery Layer",
+        title: "Freshness Problem",
         body:
-          "The core product idea is that a listing should be the beginning of discovery, not the end of it. A show entry can point to an event, but the app tries to add the context that makes a person more likely to care: artist identity, local relevance, support links, and source confidence.",
+          "The biggest lesson was how quickly event content loses value. There is very little calling for last week's listings, and a new week of shows may bring a mostly new set of artists to research.",
       },
       {
-        title: "Review Queue",
+        title: "Artist Data",
         body:
-          "The review queue is the product's practical center. It gives uncertain records a place to live while they are checked, rather than forcing bad certainty into the data model. That matters because music listings often contain aliases, partial names, shared venue details, and fragile source trails.",
+          "Algorithmic artist enrichment is least reliable where the product most needs help: lower-profile events, partial names, aliases, and artists with limited public information. That creates a lot of manual review before the content reaches a reasonable quality bar.",
       },
       {
-        title: "Venue Intelligence",
+        title: "Content Operations",
         body:
-          "Venue data adds another layer of usefulness. The project can distinguish between the event itself and the place hosting it, which opens the door to richer venue pages, source review, and eventually better recommendations by geography or scene.",
+          "A useful events calendar is not only a data model or interface. It is a publishing operation. Mike's List made clear that the product would need steady intake, cleanup, correction, and publishing work to stay useful.",
       },
       {
-        title: "Editorial Use",
+        title: "What Remains",
         body:
-          "Mike's List shows how automated enrichment, editorial review, and local discovery can work together without hiding uncertainty from the user.",
+          "There is still something interesting here: automation can support local discovery, but the product has to respect the editorial labor needed to make fresh listings trustworthy.",
       },
     ],
     nextSteps: [
-      "I want to strengthen the event identity model so duplicate listings, changed dates, and venue updates can be tracked without muddying the source history.",
-      "I want the venue review screens to make source comparison, location confidence, and correction history easier to understand at a glance.",
-      "I want to turn repeated enrichment tasks into reusable review tools so the workflow gets faster while still keeping human judgment visible.",
+      "Keep Mike's List in the background while I focus on projects with a more sustainable maintenance rhythm.",
+      "Preserve the lessons about source confidence, review queues, and the limits of automated enrichment.",
+      "Revisit the idea only if there is a clearer content pipeline or narrower scope that can support fresh listings without constant manual upkeep.",
+    ],
+  },
+  {
+    slug: "making-tools",
+    visibility: "listed",
+    stage: "supporting",
+    priority: 40,
+    category: "Hobby tools",
+    label: "Case study",
+    emphasisLabel: "Active",
+    title: "Making Tools",
+    description:
+      "A grouped case study about solving complex hobby problems with focused helper apps, from fantasy stats to RPG interfaces.",
+    cardImage: stockImage("photo-1516321318423-f06f85e504b3", "A laptop workspace with notes and small tools arranged for a technical project."),
+    detailHref: "/projects/making-tools",
+    tone: "gold",
+    status: "Toolmaking series",
+    timeline: "2026",
+    role: "Interface design, data modeling, statistics tooling, frontend prototyping",
+    collaborators: ["Michael Baker"],
+    tools: ["JavaScript", "React", "Python", "Flask", "Statistics", "Structured data", "APIs"],
+    evidence: ["Fantasy league trackers", "RPG character sheets", "Movie trivia learning", "Daily blackjack"],
+    metrics: [
+      { label: "Domains", value: "4+" },
+      { label: "Pattern", value: "Helper apps" },
+      { label: "Core challenge", value: "Complexity" },
+    ],
+    summary:
+      "Making Tools gathers hobby-driven helper apps into one portfolio story. Some of the most complex problems I have solved came from tools I made for my own interests: role-playing game character management, fantasy baseball and basketball league trackers, a learning tool for a movie trivia web game, and a daily blackjack app.",
+    problem:
+      "Personal hobbies can create surprisingly serious software problems. Fantasy leagues need statistics, rankings, standings, and custom rules. Tabletop role-playing characters carry a dense web of stats and actions. Trivia and card games need practice loops, feedback, and enough structure to help users improve.",
+    outcome:
+      "This grouped case study shows how I use small, personally motivated products to solve real interface, data, and logic problems. The projects may be playful, but the underlying challenges include statistical modeling, information architecture, and interaction design.",
+    decisions: [
+      "Group several hobby helper apps together so the portfolio emphasizes the repeatable pattern: find a complicated personal workflow and build a focused tool for it.",
+      "Use Python when math-heavy problems call for it, especially fantasy sports tools that depend on player statistics and standings logic.",
+      "Treat tabletop character management as an interface design problem, not only a data-entry problem.",
+      "Keep each app narrow enough to serve the hobby context that sparked it, whether that is a league, a game night, or a daily practice loop.",
+      "Use playful domains as serious product labs because they reveal real rules, edge cases, and user needs.",
+    ],
+    sections: [
+      {
+        title: "Fantasy Leagues",
+        body:
+          "The fantasy baseball and fantasy basketball tools were built for real-life leagues with custom needs. These apps pushed me toward more Python programming because sports data creates math-heavy problems: player statistics, rankings, standings, and the logic needed to make league state trustworthy.",
+      },
+      {
+        title: "Character Sheets",
+        body:
+          "The role-playing game character sheet app involved some of the most interesting interface work. TTRPG characters have a lot of stats, and I wanted to navigate them nimbly without creating a cluttered mess. The challenge was making dense information feel available without overwhelming the player.",
+      },
+      {
+        title: "Game Learning",
+        body:
+          "The movie trivia helper and daily blackjack app treat games as learning systems. They are not just databases or scoreboards; they are tools for practice, recall, pattern recognition, and improving through repeated short sessions.",
+      },
+      {
+        title: "Shared Pattern",
+        body:
+          "The shared skill is not the hobby domain itself. It is the ability to understand a messy workflow, identify where software can reduce friction, and design an interface that makes complicated rules easier to use.",
+      },
+    ],
+    nextSteps: [
+      "Decide which helper apps deserve individual deep dives and which should remain examples inside the grouped Making Tools story.",
+      "Add screenshots or short notes from the fantasy league trackers, RPG character sheet, movie trivia helper, and daily blackjack app.",
+      "Create a visual matrix showing which projects emphasize statistics, interface density, learning loops, or game-state management.",
     ],
   },
   {
     slug: "greeting",
     visibility: "hidden",
+    stage: "background",
     priority: 80,
     category: "Creative tool",
     label: "Case study",
@@ -196,6 +400,7 @@ export const projects = [
   {
     slug: "nba-roto-tracker",
     visibility: "listed",
+    stage: "background",
     priority: 90,
     category: "Dashboard",
     label: "Case study",
@@ -261,6 +466,7 @@ export const projects = [
   {
     slug: "cine2helper",
     visibility: "listed",
+    stage: "background",
     priority: 100,
     category: "Media database",
     label: "Case study",
@@ -326,7 +532,8 @@ export const projects = [
   {
     slug: "bakerversity",
     visibility: "listed",
-    priority: 30,
+    stage: "background",
+    priority: 80,
     category: "Learning platform",
     label: "Case study",
     title: "Bakerversity",
@@ -392,12 +599,14 @@ export const projects = [
   {
     slug: "bakerlinks",
     visibility: "listed",
-    priority: 20,
+    stage: "supporting",
+    priority: 30,
     category: "Publishing platform",
     label: "Case study",
+    emphasisLabel: "Supported",
     title: "BakerLinks",
     description:
-      "A free link-in-bio platform built with Next.js, Vercel, and Supabase.",
+      "An operational link-hub prototype that powers my own social links site and still supports users making project pages.",
     cardImage: stockImage("photo-1516321497487-e288fb19713f", "A laptop workspace used for publishing and managing online links."),
     detailHref: "/projects/bakerlinks",
     repoHref: "https://github.com/michael-baker-content/bakerlinks",
@@ -407,56 +616,57 @@ export const projects = [
     role: "Product design, full-stack prototyping, social publishing workflow",
     collaborators: ["Michael Baker"],
     tools: ["TypeScript", "React", "Next.js", "Tailwind", "Vercel", "Supabase"],
-    evidence: ["Profile pages", "Link management", "Free publishing model"],
+    evidence: ["Profile pages", "Project hubs", "Operational prototype"],
     metrics: [
-      { label: "Product type", value: "Link-in-bio" },
+      { label: "Product type", value: "Link hub" },
       { label: "Backend", value: "Supabase" },
       { label: "Deploy", value: "Vercel" },
     ],
     summary:
-      "BakerLinks is a free link-in-bio platform experiment built around a simple product promise: make it easy for someone to publish a clean, useful profile page without paying for the privilege of sharing links.",
+      "BakerLinks is an operational link-hub prototype I still use as the foundation for my own social media links site. It lets users make hub pages for current projects, while also showing the limits of entering a crowded category without a very strong competitive package.",
     problem:
-      "Many link-in-bio tools are either overbuilt, paywalled, or too generic. The challenge is to make a small publishing workflow that feels trustworthy, flexible, and easy to understand without turning into a full website builder.",
+      "The link-in-bio and social-links category has strong existing options. A new product in this space needs a very clear package, audience, and reason to switch. BakerLinks is useful, but its opportunity space is narrower than the prototype first suggested.",
     outcome:
-      "The project tests profile publishing, link management, hosted data, and public pages through a practical Next.js, Supabase, and Vercel stack while keeping the core experience focused on fast publishing.",
+      "The project remains useful as a working publishing tool and as the base for my own social links presence. It also taught me to evaluate product categories more skeptically: a pleasant build still needs a sharp market reason to grow beyond prototype scale.",
     decisions: [
       "Use Supabase for hosted data and auth patterns so the product can test publishing behavior before custom infrastructure.",
       "Render public profile pages with Next.js so they are fast, shareable, and deployable.",
-      "Focus the first version on publishing clarity before advanced personalization.",
-      "Treat the free model as a product constraint: basic usefulness should not depend on a paywall.",
-      "Keep the interface closer to a publishing tool than a social network, with fewer distractions around the core link page.",
+      "Keep the first version focused on project hubs and simple social links rather than trying to compete with full website builders.",
+      "Recognize that the category is crowded, so a future version would need a stronger differentiator than basic link publishing.",
+      "Keep supporting the operational version where it has real use: my own hub page and users who want a simple page for current projects.",
     ],
     sections: [
       {
-        title: "Publishing Flow",
+        title: "Working Prototype",
         body:
-          "The product rises or falls on the path from setup to a useful public page. The interesting workflow is not just adding links; it is helping someone decide what belongs on the page, what order it should appear in, and how the result reads to a visitor.",
+          "BakerLinks is still operational and useful. It supports users who want to make a hub page for current projects, and it powers my own social media links site. That gives the prototype a real-life use case even if the broader product opportunity is limited.",
+      },
+      {
+        title: "Competitive Reality",
+        body:
+          "The project also clarified how competitive this category is. Link-hub tools already have strong options, so a new product would need a more distinctive package, sharper audience, or better reason to switch.",
       },
       {
         title: "Platform Choices",
         body:
-          "Supabase and Vercel reduce operational weight, which matters for a small platform experiment. The stack keeps attention on product decisions: profile data, publishing states, editable links, and public presentation.",
+          "Next.js, Supabase, Tailwind, and Vercel made it possible to build a real publishing flow quickly: editable profile data, public pages, hosted storage, and a deployable platform structure.",
       },
       {
-        title: "Product Position",
+        title: "Product Judgment",
         body:
-          "The product position is intentionally plainspoken: a free link page should feel useful before it feels monetized. That gives the project a clearer audience than a generic landing-page builder.",
-      },
-      {
-        title: "Small Platform",
-        body:
-          "BakerLinks puts full-stack product thinking into a small package: user promise, database-backed editing, public pages, deployment, and the tradeoff between simplicity and customization.",
+          "The strongest lesson may be strategic. I enjoyed building BakerLinks, but the project taught me to separate a satisfying prototype from a large opportunity. Not every useful product needs to become a major platform.",
       },
     ],
     nextSteps: [
-      "Create a few example public profiles that show different audiences and publishing styles.",
-      "Document the link/profile data model so the editing workflow is easier to evaluate.",
-      "Sharpen the product position against common link-in-bio tools: what stays free, what stays simple, and what the product refuses to become.",
+      "Continue using BakerLinks as the foundation for my own social media links site.",
+      "Support the current operational product for users who want simple hub pages for active projects.",
+      "If the product expands, define a sharper differentiator before investing in a broader competitive push.",
     ],
   },
   {
     slug: "saske",
     visibility: "listed",
+    stage: "background",
     priority: 110,
     category: "Interactive tracker",
     label: "Case study",
@@ -522,6 +732,7 @@ export const projects = [
   {
     slug: "notion-clean",
     visibility: "listed",
+    stage: "background",
     priority: 120,
     category: "Workflow utility",
     label: "Case study",
@@ -587,7 +798,8 @@ export const projects = [
   {
     slug: "github-repo-journal",
     visibility: "listed",
-    priority: 40,
+    stage: "background",
+    priority: 130,
     category: "Technical writing",
     label: "Case study",
     title: "GitHub Repo Journal",
@@ -653,6 +865,7 @@ export const projects = [
   {
     slug: "template",
     visibility: "hidden",
+    stage: "template",
     priority: 999,
     category: "Template",
     label: "Template",
