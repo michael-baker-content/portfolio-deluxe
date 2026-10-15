@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useId } from "react";
 
 export function MonogramMark({ className = "", title = "Michael Baker monogram" }) {
-  const titleId = "monogram-mark-title";
+  const titleId = useId();
 
   return (
-    <svg className={className} viewBox="0 0 2048 2048" role="img" aria-labelledby={titleId} xmlns="http://www.w3.org/2000/svg">
+    <svg className={className} viewBox="0 0 64 64" role="img" aria-labelledby={titleId} xmlns="http://www.w3.org/2000/svg">
       <title id={titleId}>{title}</title>
-      <path
-        fill="currentColor"
-        d="M150 300h290v1598H150V300Zm290 0h145v145H440V300Zm145-145h440v145H585V155Zm0 290h145v730H585V445Zm290-145h150v1598H875V300Zm295-145h585v145h-585V155Zm0 0h150v1743h-150V155Zm435 145h150v145h-150V300Zm150 0h145v585h-145V300Zm-150 435h150v295h-150V735Zm-285 145h435v150h-435V880Zm435 295h145v510h-145v-510Zm-585 0h730v150h-730v-150Zm150 440h285v150h-285v-150Zm285-440h150v150h-150v-150Zm0 510h150v213h-150v-213Z"
-      />
+      <path fill="#285c8f" d="M5 50V14h7l6 12 6-12h7v36h-7V28l-6 11-6-11v22Z" />
+      <path fill="#f26b57" fillRule="evenodd" d="M36 14h11c8 0 12 4 12 10 0 4-2 7-5 8 4 1 6 4 6 8 0 7-5 10-13 10H36Zm7 7v8h4c3 0 5-1 5-4s-2-4-5-4Zm0 15v7h4c4 0 6-1 6-4 0-2-2-3-6-3Z" />
     </svg>
   );
 }

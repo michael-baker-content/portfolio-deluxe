@@ -83,7 +83,7 @@ test("deriveContent restores default emphasis stage for saved project content", 
   assert.equal(content.projectBySlug("bakerparks").stage, "featured");
   assert.deepEqual(
     content.listedProjects.slice(0, 5).map((project) => project.slug),
-    ["sketchlet", "bakerparks", "bakerlinks", "making-tools", "mikeslist"],
+    ["sketchlet", "mikeslist", "bakerparks", "bakerlinks", "making-tools"],
   );
 });
 
@@ -102,4 +102,12 @@ test("deriveContent preserves explicit saved emphasis stages", () => {
   });
 
   assert.equal(content.projectBySlug("mikeslist").stage, "featured");
+});
+
+
+test("active status does not override the chosen project order", () => {
+  const content = deriveContent();
+  assert.deepEqual(content.listedProjects.slice(0, 6).map((project) => project.slug),
+    ["sketchlet", "bakerparks", "bakerlinks", "making-tools", "mikeslist", "portfolio"]);
+  assert.equal(content.projectBySlug("portfolio").stage, "featured");
 });

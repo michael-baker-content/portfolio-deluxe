@@ -10,18 +10,8 @@ export const defaultContent = {
   projects,
 };
 
-const STAGE_ORDER = {
-  featured: 0,
-  supporting: 1,
-  background: 2,
-  template: 3,
-};
-
 function compareProjects(first, second) {
-  const firstStage = STAGE_ORDER[first.stage] ?? STAGE_ORDER.supporting;
-  const secondStage = STAGE_ORDER[second.stage] ?? STAGE_ORDER.supporting;
-
-  return firstStage - secondStage || first.priority - second.priority;
+  return first.priority - second.priority;
 }
 
 function hasFragmentedListCopy(items) {

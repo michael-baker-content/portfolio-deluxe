@@ -7,11 +7,12 @@ export const projects = [
   {
     slug: "portfolio",
     visibility: "listed",
-    stage: "background",
+    stage: "featured",
     priority: 70,
     category: "Portfolio system",
-    label: "Portfolio case study",
-    title: "Portfolio Case Study",
+    label: "Portfolio",
+    emphasisLabel: "Active",
+    title: "This Portfolio",
     description:
       "A case study about evolving the forked 1.0 portfolio into a themed experiment, then folding that experiment back into a more useful 2.0 site.",
     cardImage: stockImage("photo-1497366754035-f200968a6e72", "A desk workspace with a laptop, notebook, and planning materials."),
@@ -80,61 +81,70 @@ export const projects = [
     emphasisLabel: "Active",
     title: "Sketchlet",
     description:
-      "A Wordle-inspired daily drawing game for people who want a few creative minutes and something shareable at the end.",
+      "A daily drawing playground shaped by practical decisions about draft recovery, touch input, practice, and publication.",
     cardImage: stockImage("photo-1513475382585-d06e58bcb0e0", "Colored pencils arranged for a drawing session."),
     detailHref: "/projects/sketchlet",
     appHref: "https://sketchlet.app",
+    repoHref: "https://github.com/michael-baker-content/sketchlet",
     tone: "coral",
-    status: "Active build",
-    timeline: "2026",
-    role: "Product direction, drawing-tool design, frontend prototyping",
+    status: "Public site · active development",
+    timeline: "October 2026–present",
+    role: "Product direction, drawing-tool design, and implementation",
     collaborators: ["Michael Baker"],
-    tools: ["React", "Drawing tools", "User accounts", "Training materials", "Daily game design"],
-    evidence: ["Rich drawing tools", "Daily creative loop", "Shareable drawings"],
-    metrics: [
-      { label: "Product type", value: "Daily game" },
-      { label: "Core action", value: "Draw" },
-      { label: "Audience", value: "Casual creators" },
-    ],
+    tools: ["HTML", "CSS", "JavaScript", "Canvas API", "Vercel", "Neon", "Clerk"],
+    evidence: ["Draft recovery", "Touch input", "Practice canvas", "Explicit publication"],
+    metrics: [],
     summary:
-      "Sketchlet is the current lead project: a daily drawing game inspired by the quick, repeatable pleasure of Wordle. The premise is simple: give people a few creative minutes, a reason to draw, and a shareable result they can send to friends.",
+      "Sketchlet is a daily drawing playground built around one shared prompt and many possible interpretations. Inspired by the repeatable rhythm of Wordle, it gives people a reason to draw, a place to share their work, and something new to return to tomorrow. The work focuses on making that small creative ritual dependable: preserving an unfinished canvas, adapting tools to touch, and keeping practice, publication, and sharing distinct.",
     problem:
-      "Many drawing tools are either full creative suites or passive prompt lists. Sketchlet sits between those poles: it needs enough rich tooling to make drawing feel expressive, but it also has to stay light enough for a short daily visit.",
+      "A daily drawing game needs expressive tools without asking visitors to learn a professional art application. The tools also need predictable behavior: a finger should not hide the mark, an interrupted session should not lose its work, and saving an image should not accidentally publish it.",
     outcome:
-      "The project now has rich drawing tools, training materials, and user accounts, with the product direction centered on daily play, easy sharing, and the social pleasure of seeing what friends made.",
+      "Sketchlet is a public drawing site with a daily prompt, canvas tools, a gallery, and a published drawing-tool guide with access to free draw. The implementation includes date-specific draft recovery and separate download, submission, and sharing actions. Optional sign-in is publicly advertised; full account recovery still needs production verification. Group experiences remain in development.",
     decisions: [
-      "Use the daily-game pattern as the product constraint: the experience should be easy to understand, quick to start, and satisfying to repeat.",
-      "Make the drawing tools expressive enough to feel fun without turning a short daily game into a professional art application.",
-      "Include training materials so new users can learn the tool behavior without leaving the creative flow.",
-      "Support user accounts so drawings, progress, and future social features have a durable home.",
-      "Treat sharing as part of the core loop because the product becomes more fun when people can compare what they made.",
+      "Keep each draft attached to its prompt date and distinguish a fresh visit, an unfinished drawing, and a completed submission.",
+      "Offset finger input so the mark remains visible, while keeping mouse and pen input directly aligned.",
+      "Give practice a separate persistent canvas and explain tool behavior in a dedicated drawing guide.",
+      "Separate downloading an image from publishing a final entry, with confirmation before gallery submission.",
+      "Allow guest participation and develop account continuity before expanding into group drawing experiences.",
     ],
     sections: [
       {
-        title: "Daily Game Loop",
+        title: "Returning to an unfinished drawing",
         body:
-          "Sketchlet began from a Wordle-like idea: a site can earn a place in someone's day by being easy to enter, fun for a few minutes, and worth sharing afterward. The daily loop gives the product a clear rhythm without asking users to treat drawing like homework.",
+          "The daily rhythm creates three different entry states. In the implementation, a fresh day begins with instructions, an unfinished drawing resumes in the editor, and a completed day opens the submitted work. Drafts remain attached to their original prompt date, so yesterday’s unfinished canvas does not become today’s entry. Recovery and navigation are part of making a short daily visit dependable.",
       },
       {
-        title: "Drawing Tools",
+        title: "Drawing with a finger",
         body:
-          "The hardest product work is getting the tools to behave as intended. Drawing interactions are unforgiving: small mismatches in feel, timing, brush behavior, or control state can make a playful tool feel broken. The tool layer has to be dependable before the game layer can shine.",
+          "A finger covers the mark in a way a mouse pointer does not. Sketchlet’s input handling offsets finger drawing 24 screen pixels upward and provides space below the canvas to reach its bottom edge. Mouse and pen remain directly aligned. Compact controls and full-screen drawing make room for the canvas, while drawing state and undo history survive layout changes. Real-device testing is the next step in evaluating these touch adaptations.",
       },
       {
-        title: "Learning Support",
+        title: "A separate place to practice",
         body:
-          "Training materials help users understand the drawing environment without turning the app into a formal course. That fits the product's tone: lightweight, helpful, and built for people who may only have a few minutes to play.",
+          "One final submission per day gives the game a boundary without ending experimentation. Free draw uses the same tools in a separate persistent canvas. The implementation lets a person start blank or continue from a flattened copy of a submitted drawing without changing the gallery original. A dedicated Info page explains practical tool behavior, including translucent marker strokes and why gaps in a boundary allow fill to escape.",
       },
       {
-        title: "Social Potential",
+        title: "Making publication explicit",
         body:
-          "The next opportunity is social. Sketchlet can become more memorable when users can share drawings, see what friends made, and build lightweight rituals around returning together.",
+          "Downloading a PNG keeps a local image. Saving to the gallery publishes the day’s final entry after confirmation. The sharing code supports a link back to the drawing or an artwork-focused image card with the creator, prompt, and date. Link previews use the Sketchlet logo; image cards omit ratings. A download fallback supports browsers that cannot copy images. These separate actions make the destination of a drawing explicit.",
+      },
+      {
+        title: "Continuity before community",
+        body:
+          "Guests can participate without registering, but browser identity does not automatically reconnect their work on another device or domain. Account development includes reviewing guest drawings and resolving conflicts when two drawings belong to the same day. Sign-in is advertised publicly, while recovery and linking flows still require production verification. Group membership is still in development; shared drawing feeds and group administration are planned.",
+      },
+      {
+        title: "Current limits",
+        body:
+          "The case study describes the public product and ongoing implementation work. Account recovery and linking still need end-to-end checks on the live site. Short visits, creative confidence, and repeat participation are design goals; their effect on users has not yet been measured.",
       },
     ],
     nextSteps: [
-      "Add more social features so users can connect around drawings, not only create them in isolation.",
-      "Refine tool behavior until drawing feels predictable, responsive, and fun across input methods.",
-      "Clarify the sharing loop so a finished drawing becomes an invitation for someone else to try the daily challenge.",
+      "Test account recovery and guest-drawing linking end to end on the live site.",
+      "Complete and verify group membership, then build group drawing views and dedicated admin oversight on that foundation.",
+      "Check draft recovery and touch behavior on real devices, including bottom-edge access and returning from full-screen drawing.",
+      "Observe new visitors using the guide and practice canvas, and record where tool behavior or publication choices cause confusion.",
+      "Evaluate whether visitors understand the difference between downloading, submitting, and sharing a drawing.",
     ],
   },
   {
@@ -146,62 +156,73 @@ export const projects = [
     label: "Case study",
     emphasisLabel: "Active",
     title: "BakerParks",
-    description:
-      "A San Francisco parks guide that adds context, filters, accessibility care, and original photography to public park data.",
+    description: "An independent San Francisco parks guide that turns fragmented public data into searchable destinations, with source links, original photography, and paths to official services.",
     cardImage: stockImage("photo-1500530855697-b586d89ba3ee", "A green public park with open grass, trees, and water."),
     detailHref: "/projects/bakerparks",
     appHref: "https://bakerparks.vercel.app",
+    repoHref: "https://github.com/michael-baker-content/sf-parks",
     tone: "blue",
-    status: "Active build",
+    status: "Working prototype · active development",
     timeline: "2026",
     role: "Information architecture, accessibility-focused UX, local data modeling, photography",
-    collaborators: ["Michael Baker"],
-    tools: ["San Francisco parks data", "Filtering UX", "Accessibility", "Original photography"],
-    evidence: ["Explore filters", "Park profiles", "Original photos"],
-    metrics: [
-      { label: "Domain", value: "SF parks" },
-      { label: "Audience", value: "Locals + tourists" },
-      { label: "Core flow", value: "Explore" },
+    collaborators: [
+      "Michael Baker"
     ],
-    summary:
-      "BakerParks is an active San Francisco public-parks guide inspired by frustration with the existing SF Parks website. It uses underlying public data as a base, then adds filtering, context, accessibility care, and original photography to help people choose parks with more confidence.",
-    problem:
-      "Public park information can be technically available but still hard to use. Locals and tourists may want to know what a park offers, how to get there, and whether it fits a specific kind of visit, but the answers are often buried in municipal pages, maps, or scattered informal sources.",
-    outcome:
-      "The current Explore experience lets users apply filters to find the right park for a visit. As I personally explore more of the San Francisco park landscape, I use my own photographs and impressions to keep improving the site's context and usability.",
+    tools: [
+      "Next.js",
+      "MapLibre",
+      "511 GTFS data",
+      "SQLite",
+      "Vercel Blob"
+    ],
+    evidence: [
+      "Source-linked data",
+      "Shareable filters",
+      "Reviewed map corrections",
+      "Original photography"
+    ],
+    metrics: [],
+    summary: "BakerParks, called SF Parks Explorer in the application and repository, began after I read an article about frustration with the SF Parks website. It brings selected public records, park information, maps, and scheduled transit context into one discovery experience. The aim is to help residents and visitors understand their options while keeping policies, registration, permits, and reservations with the City of San Francisco.",
+    problem: "Planning a park visit can mean piecing together property records, amenity listings, facility pages, maps, transit schedules, and separate reservation systems. Those sources serve different institutional purposes. The challenge is to translate them into useful choices without disguising uncertainty or creating a competing official service.",
+    outcome: "The October 2026 implementation brings together 249 destinations, nine areas, and 41 neighborhoods, with search, shareable filters, optional maps, and scheduled transit context. A local-only editor supports ongoing corrections and content maintenance. The prototype still needs a deployment review and resident usability testing.",
     decisions: [
-      "Use SF Parks data as a foundation, then add a clearer product layer for people trying to choose where to go.",
-      "Make Explore the practical center of the app so users can filter by what they need instead of reading every park page from scratch.",
-      "Hold the project to a high accessibility standard because public information should be usable by as many visitors as possible.",
-      "Include my own photographs so the pages carry specific visual context instead of feeling like abstract data records.",
-      "Let personal exploration inform product improvements, using real visits to notice what the interface should explain next.",
+      "Keep discovery separate from official transactions, linking visitors to City services for registration, permits, and reservations.",
+      "Separate imported source records, normalized data, and public destination pages so presentation decisions retain their provenance.",
+      "Offer conventional search, shareable filters, and complete text results alongside an optional map.",
+      "Record coordinate corrections with supporting evidence and reuse the reviewed location across maps, directions, and transit calculations.",
+      "Give temporary notices and photographs an editorial workflow separate from generated destination data."
     ],
     sections: [
       {
-        title: "Spark",
-        body:
-          "BakerParks started after I read an article describing frustration with the SF Parks website. The project asks what happens when public data is treated as a starting point rather than the finished experience.",
+        "title": "A useful boundary around public services",
+        "body": "The project adds a discovery layer rather than replacing the City’s services. A destination page can bring together amenities, images, location, source links, and next steps, but reservations, program registration, permits, and policy remain with the relevant official service. Search and browsing use deterministic data and static generation without requiring generative-AI calls for each visitor query."
       },
       {
-        title: "Explore Flow",
-        body:
-          "The Explore feature is the main utility today. It lets users apply filters to narrow the landscape of San Francisco parks and find a place that better matches the visit they have in mind.",
+        "title": "From administrative records to destinations",
+        "body": "Properties, facilities, functional areas, and assets are distinct source concepts. The project keeps a source registry and imported records separate from normalization and the presentation model that generates destination pages. That separation preserves source links and provides a place for reviewed corrections without silently rewriting imported material. Source freshness still depends on imports and editorial review."
       },
       {
-        title: "Accessibility Standard",
-        body:
-          "The project is aiming for a high accessibility standard. That matters because park information serves a broad public audience, including locals, tourists, and people navigating different access needs.",
+        "title": "Browsing by the visit someone has in mind",
+        "body": "Explore translates records into conventional search, activity entry points, amenities, area, neighborhood, ZIP code, minimum acreage, and amenity-count filters. Filter state is encoded in the URL so a search can be shared. Text results remain available when the map is closed. Resident testing will help establish whether the categories match how people plan a visit."
       },
       {
-        title: "Original Context",
-        body:
-          "Pages include my own photographs of San Francisco public parks. That gives the site a personal, grounded layer that public data alone cannot provide.",
+        "title": "Correcting plausible but wrong coordinates",
+        "body": "A coordinate can be validly formatted yet put a park in water or on the wrong side of an island. The override workflow records a replacement coordinate, supporting map URL, reason, reviewer, and date. The reviewed location is reused for MapLibre markers, Google Maps directions and embeds, and transit proximity calculations. The correction workflow covers known exceptions; a full location audit remains open."
       },
+      {
+        "title": "Maintaining notices and original photography",
+        "body": "Evergreen place data and temporary conditions need different maintenance workflows. A local-only editor supports expiring notices, image visibility and order, attribution, and reviewed coordinate overrides. My own park photography adds firsthand context; open-license images retain creator, source, and license information, and generic illustrations are distinguished from destination photographs. The editor runs locally and is unavailable to public visitors."
+      },
+      {
+        "title": "Accessibility and transit context",
+        "body": "The interface includes semantic structure, visible keyboard focus, reduced-motion support, and narrow-screen reflow checks. Manual screen-reader, keyboard, zoom, and device testing remain to be completed. Nearby Muni, BART, and Caltrain options use scheduled 511 data processed at build time, so visitors get planning context rather than live arrivals."
+      }
     ],
     nextSteps: [
-      "Continue using the app while personally exploring San Francisco parks, noting where the experience helps and where it leaves questions unanswered.",
-      "Use firsthand impressions and photography to improve park pages with clearer context about what each place offers.",
-      "Keep refining the Explore filters so locals and tourists can move from curiosity to a good park choice faster.",
+      "Check that the live deployment reflects the current implementation and excludes the local editing tools.",
+      "Observe residents finding an activity, comparing destinations, planning transit, and following an official reservation link; use the findings to refine filters and terminology.",
+      "Complete manual keyboard, screen-reader, zoom, and physical-device checks and document specific accessibility issues.",
+      "Continue park visits and original photography, with dated reviews of source data, transit imports, imagery, and official links."
     ],
   },
   {
@@ -536,64 +557,65 @@ export const projects = [
     priority: 80,
     category: "Learning platform",
     label: "Case study",
+    emphasisLabel: "Background",
     title: "Bakerversity",
     description:
-      "A Next.js learning platform exploring courses, rich lessons, math rendering, and editable learning content.",
+      "A promising online learning platform prototype waiting for course content strong enough to justify its production tools.",
     cardImage: stockImage("https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1200", "People walking near a university building and graduation lawn."),
     detailHref: "/projects/bakerversity",
     appHref: "https://bakerversity.vercel.app",
     repoHref: "https://github.com/michael-baker-content/bakerversity",
     tone: "gold",
-    status: "Public platform",
+    status: "Learning platform",
     timeline: "2026",
     role: "Learning product design, frontend architecture, content editor exploration",
     collaborators: ["Michael Baker"],
     tools: ["TypeScript", "React", "Next.js", "Tailwind", "KaTeX", "Tiptap"],
-    evidence: ["LMS structure", "Rich text editing", "Math rendering"],
+    evidence: ["Course production", "Rich text editing", "Math rendering"],
     metrics: [
       { label: "Product type", value: "LMS" },
       { label: "Editor", value: "Tiptap" },
       { label: "Math", value: "KaTeX" },
     ],
     summary:
-      "Bakerversity is a learning-platform prototype for turning structured lessons, rich explanation, and technical notation into a coherent course experience. It combines my online education background with a modern web stack that can support authoring, presentation, and future learner workflows.",
+      "Bakerversity is a learning-platform prototype that I still think has promise. It combines course structure, rich lesson authoring, math rendering, and a modern web stack, but it is on the backburner until I have high-quality educational content that merits the production toolset.",
     problem:
-      "Learning products need a difficult balance: enough structure to guide someone through material, enough flexibility to support rich teaching, and enough editorial control that the course does not collapse into a pile of disconnected pages.",
+      "A course platform is only as persuasive as the content it supports. Without a strong course, the product risks becoming an empty container: technically interesting, but not yet proving the learning experience it was built to serve.",
     outcome:
-      "The platform creates a test bed for course navigation, lesson authoring, math rendering, and reusable learning content. It is a place to ask what a small, personally owned LMS could become if the authoring experience is treated as part of the product.",
+      "The platform now functions as a foundation for future course production. I plan to revisit it when the educational material is ready, so the site can demonstrate not only tooling but a complete learning experience.",
     decisions: [
       "Use Next.js and TypeScript for a foundation that can grow from static lessons into a fuller learning product.",
       "Explore Tiptap because lesson authoring needs structured blocks, not just plain text fields.",
       "Include KaTeX so technical lessons can support notation, formulas, and step-by-step explanation.",
       "Treat course structure, editing, and learner navigation as one connected product problem.",
-      "Bring online art-education habits into the interface: sequencing, examples, critique, context, and accessibility.",
+      "Keep the platform paused until the content is strong enough to show why the course-production tools matter.",
     ],
     sections: [
       {
-        title: "Learning Shape",
+        title: "Platform Promise",
         body:
-          "The product challenge is not just displaying lessons. It is giving learning a shape: courses, units, lessons, examples, and supporting material need to feel ordered without making the experience rigid.",
+          "The platform idea still feels worthwhile: courses, units, lessons, rich explanations, and technical notation can live together in a coherent learning environment. The question is not whether the toolset is interesting, but what content should prove it.",
       },
       {
-        title: "Authoring Experience",
+        title: "Course Production",
         body:
-          "The authoring experience is part of the product. Tiptap makes it possible to imagine lessons with structured blocks, embedded examples, and richer formatting, but the editor still has to protect clarity and keep the act of creating lessons manageable.",
+          "The authoring experience is the heart of Bakerversity. Tiptap, course structure, and reusable lesson patterns are meant to support serious educational content, not just decorate placeholder pages.",
       },
       {
-        title: "Technical Teaching",
+        title: "Content First",
         body:
-          "KaTeX support matters because it expands the kind of learning content the platform can handle. The goal is not only prose lessons, but technical explanation that can include notation, examples, and careful step-by-step reasoning.",
+          "The project is waiting for content that deserves the platform. Once I have high-quality educational material, Bakerversity can show how the toolset helps illustrate, sequence, and publish it.",
       },
       {
-        title: "Learning System",
+        title: "Backburner Status",
         body:
-          "This connects my teaching background to web development. It treats learning systems as content products: structured, authored, navigable, and designed for people trying to understand something difficult.",
+          "For now, Bakerversity is intentionally on the backburner. That is a product judgment: the platform should return when the learning content is ready enough to make the experience feel necessary.",
       },
     ],
     nextSteps: [
-      "Add screenshots that compare the learner view with the authoring/editing view.",
-      "Build one complete sample course so the platform can be judged against real content instead of abstract structure.",
-      "Choose the next product center: learner progress, authoring workflow, publishing, or course discovery.",
+      "Finish developing a strong educational content package that can properly demonstrate the platform.",
+      "Revisit Bakerversity once the content is ready to be illustrated, sequenced, and published through the course-production toolset.",
+      "Use the first complete course to decide which platform features matter most: authoring, learner progress, publishing, or course discovery.",
     ],
   },
   {

@@ -7,7 +7,7 @@ import { AdminPage } from "./pages/AdminPage.jsx";
 import { CaseStudiesPage } from "./pages/CaseStudiesPage.jsx";
 import { HomePage } from "./pages/HomePage.jsx";
 import { ProjectPage } from "./pages/ProjectPage.jsx";
-import { TastePage } from "./pages/TastePage.jsx";
+import { ExperiencePage } from "./pages/ExperiencePage.jsx";
 
 export function App() {
   const path = useRoute();
@@ -48,8 +48,8 @@ export function App() {
         <ProjectPage content={content} slug={projectMatch[1]} />
       ) : path === "/case-studies" ? (
         <CaseStudiesPage content={content} />
-      ) : path === "/taste" ? (
-        <TastePage content={content} />
+      ) : path === "/experience" || path === "/taste" ? (
+        <ExperiencePage content={content} />
       ) : (
         <HomePage content={content} />
       )}

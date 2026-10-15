@@ -1,3 +1,4 @@
+import { capabilityLabels, capabilitiesForProject } from "../data/projectCapabilities.js";
 import React from "react";
 import { Link } from "./Link.jsx";
 
@@ -35,6 +36,11 @@ export function ProjectCard({ project }) {
           </div>
           <h3 className="display-type mt-3 text-3xl leading-[0.98] md:text-4xl">{project.title}</h3>
           <p className="mt-4 font-semibold leading-7 text-muted">{project.description}</p>
+          {capabilitiesForProject(project.slug).length > 0 ? (
+            <ul className="mt-4 flex flex-wrap gap-2" aria-label={`${project.title} capabilities`}>
+              {capabilitiesForProject(project.slug).map((key) => <li className="rounded bg-portfolioBlue/10 px-2 py-1 text-xs font-bold text-portfolioBlue" key={key}>{capabilityLabels[key]}</li>)}
+            </ul>
+          ) : null}
         </div>
       </div>
 

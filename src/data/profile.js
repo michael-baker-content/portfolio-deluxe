@@ -11,23 +11,23 @@ export const profile = {
     { label: "Case studies", href: "/case-studies" },
   ],
   hero: {
-    eyebrow: "Content systems + web craft",
-    title: "Useful web work, built with editorial taste.",
+    eyebrow: "Content experience. Independent projects.",
+    title: "Content, publishing, and useful web tools.",
     description:
-      "Creative tools, local information products, and publishing systems shaped by 15+ years in content production.",
+      "I’m Michael Baker. I bring 15+ years of experience in web production, technical publishing, and online education to building websites and applications.",
     imageAlt:
       "A polished paper-craft workspace with interface elements, project cards, and soft architectural details.",
   },
   lineage: {
-    eyebrow: "Candidate snapshot",
-    title: "I bring order to content, design, and web work.",
+    eyebrow: "Professional experience",
+    title: "The experience behind the projects.",
     description:
       "I have worked in places where the details matter: enterprise web production, technical publishing, and online degree-granting art and design education. That background trained me to turn scattered requirements into clearer systems, better reviews, and smoother collaboration between content, design, and technical teams.",
     beats: [
       { from: "Enterprise production", to: "CMS/DAM publishing, localization, legal review, product specs, and global content deployment." },
       { from: "Editorial systems", to: "Style guidance, QA habits, accessibility metadata, technical accuracy, and source-of-truth discipline." },
       { from: "Art and design education", to: "Accredited online course content, captions, transcripts, alternative text, faculty materials, and media accessibility." },
-      { from: "Closer to the build", to: "React prototypes, dashboards, admin workflows, and enough frontend fluency to make ideas inspectable." },
+      { from: "Cross-functional delivery", to: "Collaboration with engineering, localization, branding, subject-matter experts, and faculty stakeholders." },
     ],
   },
   creativePosition: {
@@ -140,18 +140,18 @@ export const capabilities = [
     category: "Quality",
     title: "Editorial governance",
     proof: "Works across style systems, accessibility guidelines, QA audits, technical accuracy, alternative text, metadata, and compliance-sensitive publishing.",
-    level: "Senior judgment",
+    level: "Review and quality assurance",
   },
   {
     category: "Teams",
     title: "Cross-functional delivery",
     proof: "Collaborates with engineering, localization, branding, SMEs, vendors, faculty stakeholders, and production teams to ship accurate content at scale.",
-    level: "Enterprise-ready",
+    level: "Publishing and collaboration",
   },
   {
     category: "Technical",
-    title: "Frontend growth",
+    title: "Independent development",
     proof: "Builds React dashboards, publishing tools, filters, forms, and admin workflows to show technical ability beyond NDA-bound professional work.",
-    level: "Rapidly improving",
+    level: "Applications and prototypes",
   },
 ];

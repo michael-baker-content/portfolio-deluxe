@@ -12,7 +12,7 @@ export function Header() {
     <header className="sticky top-0 z-20 border-b border-ink/10 bg-paper/88 px-4 py-3 shadow-[0_10px_35px_rgba(32,29,29,0.05)] backdrop-blur-xl sm:px-8 lg:px-14">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4">
         <Link className="flex items-center gap-3 text-sm font-black uppercase tracking-[0.16em] no-underline" href="/" aria-label="Home">
-          <span className="grid h-10 w-10 place-items-center border border-ink bg-white p-1.5 shadow-[4px_4px_0_rgba(32,29,29,0.18)]">
+          <span className="grid h-10 w-10 place-items-center rounded-lg bg-paper p-0.5">
             <MonogramMark className="h-full w-full text-ink" title="Michael Baker" />
           </span>
           <span>Michael Baker</span>

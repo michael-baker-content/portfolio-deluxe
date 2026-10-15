@@ -29,15 +29,15 @@ export function ProjectPage({ content, slug }) {
   return (
     <main id="main-content">
       <section className={`border-b border-ink/15 ${toneClasses[project.tone]} px-4 py-20 sm:px-8 lg:px-14`}>
-        <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-end">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.5fr_1fr] lg:items-start">
           <div>
             <Link className="editorial-link items-center gap-2" href="/">
               <ArrowLeft size={17} />
               Back to Portfolio
             </Link>
             <p className="eyebrow mt-10">{project.label}</p>
-            <h1 className="display-type mt-3 text-[clamp(3.5rem,9vw,8.5rem)] leading-[0.84]">{project.title}</h1>
-            <p className="mt-6 max-w-3xl text-xl font-bold leading-8 text-[#3f3835]">{project.summary}</p>
+            <h1 className="display-type mt-3 break-words text-[clamp(2.75rem,7vw,6rem)] leading-[1.02]">{project.title}</h1>
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-muted">{project.summary}</p>
           </div>
           <aside className="editorial-panel p-6">
             <p className="eyebrow">Role</p>
@@ -68,13 +68,6 @@ export function ProjectPage({ content, slug }) {
                 </ul>
               </>
             ) : null}
-            <ul className="mt-6 flex flex-wrap gap-2" aria-label="Evidence">
-              {project.evidence.map((item) => (
-                <li className="bg-white/55 px-2 py-1 text-xs font-black uppercase tracking-[0.12em] text-ink/65" key={item}>
-                  {item}
-                </li>
-              ))}
-            </ul>
             {project.appHref || project.repoHref ? (
               <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
                 {project.appHref ? (
@@ -95,65 +88,83 @@ export function ProjectPage({ content, slug }) {
         </div>
       </section>
 
+      <section className="page-shell grid gap-10 py-12 md:grid-cols-2 md:py-16" aria-label="Project overview">
+        <OverviewBlock title="The challenge" body={project.problem} />
+        <OverviewBlock title="Where it stands" body={project.outcome} />
+      </section>
+
       {project.metrics?.length ? (
-        <section className="page-shell grid gap-4 border-b border-ink/20 py-10 md:grid-cols-3">
+        <dl className="page-shell grid gap-5 border-t border-ink/15 py-8 sm:grid-cols-3">
           {project.metrics.map((metric) => (
-            <article className="editorial-card p-5" key={metric.label}>
-              <p className="eyebrow">{metric.label}</p>
-              <p className="display-type mt-2 text-4xl leading-none">{metric.value}</p>
-            </article>
+            <div key={metric.label}>
+              <dt className="text-sm font-bold text-muted">{metric.label}</dt>
+              <dd className="mt-2 text-2xl font-bold">{metric.value}</dd>
+            </div>
           ))}
-        </section>
+        </dl>
       ) : null}
-
-      <section className="page-shell grid gap-5 py-16 md:grid-cols-3">
-        <CaseBlock title="Problem" body={project.problem} />
-        <CaseBlock title="Outcome" body={project.outcome} />
-        <CaseBlock title="Why It Matters" body={project.description} />
-      </section>
-
-      <section className="page-shell grid gap-8 border-t border-ink/20 py-16 md:grid-cols-2">
-        <ListBlock title="Product Decisions" items={project.decisions} />
-        <ListBlock title="Next Steps" items={project.nextSteps} />
-      </section>
 
       {project.sections?.length ? (
-        <section className="page-shell border-t border-ink/20 py-16">
-          <div className="mb-7 max-w-3xl">
-            <p className="eyebrow">Case study sections</p>
-            <h2 className="display-type mt-3 text-[clamp(2.5rem,5vw,5.2rem)] leading-[0.95]">The fuller story.</h2>
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {project.sections.map((section) => (
-              <CaseBlock key={section.title} title={section.title} body={section.body} />
+        <section className="page-shell border-t border-ink/20 py-12 md:py-16" aria-labelledby="project-story">
+          <p className="eyebrow">Inside the work</p>
+          <h2 id="project-story" className="mt-3 text-4xl leading-tight md:text-5xl">Decisions and tradeoffs.</h2>
+          <div className="mt-10 divide-y divide-ink/15">
+            {project.sections.map((section, index) => (
+              <article className="grid gap-4 py-8 first:pt-0 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-12" key={section.title}>
+                <div>
+                  <p className="mb-3 text-sm font-bold text-portfolioBlue" aria-hidden="true">{String(index + 1).padStart(2, "0")}</p>
+                  <h3 className="text-2xl leading-tight md:text-3xl">{section.title}</h3>
+                </div>
+                <p className="max-w-[65ch] text-lg leading-8 text-muted">{section.body}</p>
+              </article>
             ))}
+          </div>
+          {project.decisions?.length ? (
+            <details className="mt-6 border-y border-ink/20 py-5">
+              <summary className="cursor-pointer text-base font-bold text-portfolioBlue">Decision summary</summary>
+              <ul className="mt-5 max-w-3xl list-disc space-y-3 pl-5 leading-7 text-muted">
+                {project.decisions.map((item) => <li key={item}>{item}</li>)}
+              </ul>
+            </details>
+          ) : null}
+        </section>
+      ) : project.decisions?.length ? (
+        <section className="page-shell border-t border-ink/20 py-12">
+          <ListBlock title="Key decisions" items={project.decisions} />
+        </section>
+      ) : null}
+
+      {project.nextSteps?.length ? (
+        <section className="border-y border-ink/15 bg-white/60 py-12 md:py-16">
+          <div className="page-shell">
+            <ListBlock title="What comes next" items={project.nextSteps} />
           </div>
         </section>
       ) : null}
+      <nav className="page-shell flex flex-wrap gap-6 py-10" aria-label="Continue exploring">
+        <Link className="editorial-link" href="/case-studies">Browse all case studies</Link>
+        <Link className="editorial-link" href="/#contact">Talk about a role or project</Link>
+      </nav>
     </main>
   );
 }
 
-function CaseBlock({ title, body }) {
+function OverviewBlock({ title, body }) {
   return (
-    <article className="editorial-card p-5">
-      <p className="eyebrow">{title}</p>
-      <p className="mt-3 font-semibold leading-7 text-muted">{body}</p>
-    </article>
+    <div>
+      <h2 className="text-3xl leading-tight">{title}</h2>
+      <p className="mt-4 max-w-[65ch] text-lg leading-8 text-muted">{body}</p>
+    </div>
   );
 }
 
 function ListBlock({ title, items }) {
   return (
-    <section>
-      <p className="eyebrow">{title}</p>
-      <ul className="mt-4 grid gap-3">
-        {items.map((item) => (
-          <li className="border-l border-ink/30 bg-white/70 p-4 font-bold leading-7 shadow-[0_10px_35px_rgba(32,29,29,0.05)]" key={item}>
-            {item}
-          </li>
-        ))}
+    <div className="grid gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-12">
+      <h2 className="text-3xl leading-tight md:text-4xl">{title}</h2>
+      <ul className="max-w-[65ch] list-disc space-y-4 pl-5 text-lg leading-8 text-muted">
+        {items.map((item) => <li key={item}>{item}</li>)}
       </ul>
-    </section>
+    </div>
   );
 }

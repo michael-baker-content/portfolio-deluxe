@@ -1,3 +1,4 @@
+import { capabilityLabels, capabilitiesForProject } from "../data/projectCapabilities.js";
 import React, { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { ProjectCard } from "../components/ProjectCard.jsx";
@@ -21,6 +22,7 @@ function projectSearchText(project) {
     project.title,
     project.description,
     project.category,
+    capabilitiesForProject(project.slug).map((key) => capabilityLabels[key]).join(" "),
     project.status,
     project.role,
     project.tools.join(" "),
@@ -32,6 +34,7 @@ function projectSearchText(project) {
 
 export function CaseStudiesPage({ content }) {
   const { caseStudyCategories, listedProjects } = content;
+  const [capability, setCapability] = useState("all");
   const [category, setCategory] = useState("all");
   const [stage, setStage] = useState("all");
   const [query, setQuery] = useState("");
@@ -41,6 +44,7 @@ export function CaseStudiesPage({ content }) {
     const normalizedQuery = query.trim().toLowerCase();
 
     return listedProjects
+      .filter((project) => capability === "all" || capabilitiesForProject(project.slug).includes(capability))
       .filter((project) => (category === "all" ? true : project.category === category))
       .filter((project) => (stage === "all" ? true : project.stage === stage))
       .filter((project) => (normalizedQuery ? projectSearchText(project).includes(normalizedQuery) : true))
@@ -49,7 +53,7 @@ export function CaseStudiesPage({ content }) {
         if (sort === "timeline") return second.timeline.localeCompare(first.timeline) || first.priority - second.priority;
         return first.priority - second.priority;
       });
-  }, [category, query, sort, stage]);
+  }, [listedProjects, capability, category, query, sort, stage]);
 
   return (
     <main id="main-content" className="bg-paper">
@@ -64,7 +68,7 @@ export function CaseStudiesPage({ content }) {
               <h1 className="display-type mt-3 text-[clamp(3.5rem,8vw,8rem)] leading-[0.86]">Projects with a point of view.</h1>
             </div>
             <p className="text-lg font-bold leading-8 text-muted">
-              The index now leads with the projects I am actively building, keeps supported work easy to find, and moves lesson-rich experiments into the background without burying them.
+              Independent applications and prototypes, ordered to introduce my work. Explore by capability, subject, or current status to explore the projects most relevant to you.
             </p>
           </div>
         </div>
@@ -72,6 +76,17 @@ export function CaseStudiesPage({ content }) {
 
       <section className="page-shell py-10">
         <div className="editorial-panel p-5">
+          <fieldset className="mb-6 border-b border-ink/20 pb-6">
+            <legend className="mb-3 text-sm font-bold">Explore by capability</legend>
+            <div className="flex flex-wrap gap-3">
+              {[["all", "All capabilities"], ...Object.entries(capabilityLabels)].map(([key, label]) => (
+                <button key={key} type="button" aria-pressed={capability === key}
+                  className={`rounded-full border px-4 py-3 text-sm font-bold ${capability === key ? "border-portfolioBlue bg-portfolioBlue text-white" : "border-ink/25 bg-white text-ink hover:border-portfolioBlue"}`}
+                  onClick={() => setCapability(key)}>{label}</button>
+              ))}
+            </div>
+            <p className="mt-3 text-sm text-muted">Projects can demonstrate more than one capability. Filtering preserves your selected sort order.</p>
+          </fieldset>
           <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
             <label className="block">
               <span className="text-xs font-black uppercase text-ink/65">Search projects, tools, evidence</span>
@@ -122,7 +137,7 @@ export function CaseStudiesPage({ content }) {
             </label>
           </div>
 
-          <p className="mt-4 text-sm font-black uppercase text-ink/60">
+          <p role="status" aria-live="polite" className="mt-4 text-sm font-black uppercase text-ink/60">
             Showing {filteredProjects.length} of {listedProjects.length} visible case studies
           </p>
         </div>
@@ -137,9 +152,11 @@ export function CaseStudiesPage({ content }) {
           <div className="editorial-panel mt-8 p-8 text-center">
             <h2 className="display-type text-4xl leading-none">No case studies match those filters yet.</h2>
             <p className="mt-3 font-semibold text-muted">Clear a filter or search for a broader tool, category, or project name.</p>
+            <button type="button" className="paper-tab mt-5" onClick={() => { setCapability("all"); setCategory("all"); setStage("all"); setQuery(""); }}>Clear all filters</button>
           </div>
         ) : null}
       </section>
     </main>
   );
 }
+

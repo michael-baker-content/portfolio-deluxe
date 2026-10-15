@@ -1,231 +1,154 @@
-# Portfolio Deluxe
+# Michael Baker — Portfolio
 
-Portfolio Deluxe is a React, Vite, and Tailwind portfolio system for presenting projects as evidence. It is built for Michael Baker's work, but it is also intended to be a useful 2.0 evolution of the portfolio starter it came from.
+**[View the portfolio](https://michaelbaker.vercel.app)** · [Experience](https://michaelbaker.vercel.app/experience) · [Case studies](https://michaelbaker.vercel.app/case-studies)
 
-This project began as a fork of [`machadop1407/beautiful-react-tailwind-portfolio`](https://github.com/machadop1407/beautiful-react-tailwind-portfolio). The original repo is valuable because it gives you the familiar modern portfolio foundation: a hero, navigation, skills, project cards, responsive layout, visual polish, and a contact path. Portfolio Deluxe keeps that spirit, then pushes the site toward a stronger content system: case studies, searchable work, richer project metadata, contact context, and a homepage that makes the candidate behind the work easier to understand.
+A personal portfolio connecting professional experience in web production, technical publishing, and online education with independent applications and tools. The site gives visitors two paths: understand the experience behind the work, or explore what Michael is building.
 
-## What It Adds
+## What it presents
 
-- A candidate-focused homepage with sections for positioning, strengths, selected work, capabilities, working style, and contact.
-- Data-driven case-study cards and shared project detail pages.
-- A filterable `/case-studies` page with search, category filtering, and sorting.
-- Replaceable decorative card imagery for each visible case study.
-- A Formspree-ready contact form with name, email, role, location, case-study interest, and message fields.
-- A protected `/admin` content dashboard for editing homepage copy and case-study content without touching code.
-- Footer links for GitHub, the project blog, and the case-study index.
-- Hidden draft/template case studies so new work can be prepared before it appears publicly.
+- **Professional experience:** content production, editorial systems, accessibility work, and collaboration across publishing teams.
+- **Selected projects:** Sketchlet, BakerParks / SF Parks Explorer, BakerLinks, and tools for personal hobbies.
+- **Case studies:** project context, responsibilities, implementation decisions, current results, limitations, and next steps, with application and repository links where available.
 
-## Good Starting Moves
+The portfolio is actively evolving. Some project cards still use stock imagery while product screenshots and more detailed evidence are being collected. The deployed site may differ from local changes awaiting publication.
 
-If you are adapting this from the fork, start with content before visual tweaks:
+## How it works
 
-1. Update `src/data/profile.js` with your candidate story, strengths, links, and contact form configuration.
-2. Replace the project records in `src/data/projects.js` with 3-6 real projects that show different kinds of evidence.
-3. Keep unfinished work as `visibility: "hidden"` until the case study is ready.
-4. Use `priority` to control display order and `category` to make the case-study filters useful.
-5. Swap the `cardImage` URLs for your own images, screenshots, or better stock placeholders.
-6. Add your Formspree endpoint in `.env.local` so visitors can contact you without leaving the portfolio.
-7. Add Vercel Blob and `ADMIN_TOKEN` if you want browser-based editing through `/admin`.
-8. Only after the content feels true, tune colors, typography, spacing, and hero art.
+The frontend uses **React, Vite, and Tailwind CSS**. A **Vercel serverless endpoint** reads and writes a JSON content document in **Vercel Blob**; **Formspree** handles contact submissions.
 
-## Project Structure
+- **Shared content model:** structured project records drive homepage cards, the searchable case-study index, and reusable detail pages.
+- **Editorial control:** visibility, priority, category, and stage govern presentation. Display order is independent of whether a project is Active, Supported, or Background.
+- **Owner editing:** an admin dashboard supports content editing and JSON export. Writes require a private admin token; this is an owner-only gate, not a multi-user account system.
+- **Fallback content:** the site starts with repository defaults and loads saved content at runtime where enabled. If the content API is unavailable, defaults remain usable.
+- **Validation:** content normalization and sanitization handle incomplete records, legacy content, and unsafe URL schemes. Automated tests cover these behaviors and API authorization/configuration paths.
+- **Interface details:** responsive layouts, a skip link, visible keyboard focus, labeled form fields, and reduced-motion styles support navigation and reading. These features do not constitute a full accessibility audit.
 
-- `index.html` mounts the Vite app and declares the favicon.
-- `src/main.jsx` boots React.
-- `src/App.jsx` routes the homepage, `/case-studies`, and `/projects/:slug`.
-- `src/pages/HomePage.jsx` contains the homepage sections and contact form.
-- `src/pages/AdminPage.jsx` contains the protected content dashboard UI.
-- `src/pages/CaseStudiesPage.jsx` renders the searchable/filterable case-study index.
-- `src/pages/ProjectPage.jsx` renders shared case-study detail pages.
-- `src/components` contains reusable UI pieces.
-- `src/data/profile.js` contains homepage copy, capabilities, footer links, and Formspree config.
-- `src/data/projects.js` contains case-study content and display metadata.
-- `src/lib/contentModel.js` normalizes code defaults and dashboard-saved content into one shape.
-- `api/content.js` reads and writes dashboard content through Vercel Blob.
-- `src/styles.css` contains Tailwind layers and custom utilities.
-- `public/assets/hero` contains the current layered hero placeholder assets.
+## Run locally
 
-## Case Studies
+Use a Node.js version compatible with the installed Vite release and npm. The repository records npm 11.6.2 as its package manager.
 
-Case-study content lives in `src/data/projects.js`.
-
-Each case study supports:
-
-- Display controls: `visibility`, `priority`, and `category`.
-- Card metadata: `slug`, `label`, `title`, `description`, `status`, `tone`, `evidence`, and `cardImage`.
-- Detail-page overview: `summary`, `problem`, `outcome`, `role`, `timeline`, `collaborators`, and `tools`.
-- Metric cards: `metrics`.
-- Lists: `decisions` and `nextSteps`.
-- Narrative blocks: `sections`.
-- Optional app and repository links via `appHref` and `repoHref`.
-
-Visibility controls:
-
-- `visibility: "listed"` shows a project on the homepage and `/case-studies`.
-- `visibility: "hidden"` keeps a project available by direct route but removes it from public lists.
-- `priority` controls ordering; lower numbers appear first.
-- `category` powers the case-study index filter.
-
-The hidden template case study at `/projects/template` is intentionally placeholder content. Use it as a pattern when drafting new case studies.
-
-## Contact Form
-
-The contact form is wired for Formspree through a Vite environment variable.
-
-Create `.env.local`:
-
-```powershell
-Copy-Item .env.example .env.local
-```
-
-Then replace the placeholder with your real Formspree endpoint:
-
-```powershell
-VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/YOUR_FORM_ID
-```
-
-Restart the dev server after changing environment variables.
-
-## Admin Dashboard
-
-The dashboard lives at `/admin`. It edits a JSON content document stored in Vercel Blob. The public site loads that saved content at runtime; if no saved content exists yet, it falls back to the code defaults in `src/data`.
-
-To enable it on Vercel:
-
-1. Add Vercel Blob storage to the project.
-2. Make sure `BLOB_READ_WRITE_TOKEN` is available to the project. Vercel Blob can create this for you.
-3. Add your own private `ADMIN_TOKEN` environment variable.
-5. Deploy.
-5. Visit `/admin`, paste the admin token, load saved content or start from defaults, edit, and save.
-
-Keep `ADMIN_TOKEN` private. It is not a user account system; it is a simple owner-only token gate for a personal portfolio dashboard.
-
-### Syncing Dashboard Content Back To The Repo
-
-Dashboard edits are stored in Vercel Blob, not automatically committed to Git. Use either sync path when you want a local copy of the live content:
-
-- In `/admin`, use **Download JSON** to save the current editor content.
-- From this repo, run:
-
-```powershell
-npm run content:pull
-```
-
-By default, the script fetches `https://michaelbaker.vercel.app/api/content` and writes `content-snapshots/latest-content.json`.
-
-You can also target another URL or output path:
-
-```powershell
-npm run content:pull -- https://your-preview-url.vercel.app/api/content content-snapshots/preview-content.json
-```
-
-Review the pulled JSON before deciding whether to fold any changes back into `src/data/profile.js` or `src/data/projects.js`.
-
-## Local Development
-
-Install dependencies:
-
-```powershell
-npm install
-```
-
-Run the local site:
-
-```powershell
+```sh
+git clone https://github.com/michael-baker-content/portfolio-deluxe.git
+cd portfolio-deluxe
+npm ci
 npm run dev
 ```
 
-Plain Vite dev uses the built-in content defaults and does not call the Vercel Blob API.
+Open the local URL printed by Vite. Ordinary development uses content from `src/data` and does not load the Vercel content API. The public pages can be previewed without configuring storage or contact services.
 
-If you specifically want port `3000`, stop anything already running there, then use:
-
-```powershell
-npm run dev:3000
+```sh
+npm test
+npm run build
+npm run preview
 ```
 
-To test the `/admin` dashboard and Vercel API locally, run the Vercel dev server and opt into API loading:
+The build output is `dist`. Preview runs on port 4173. For development specifically on port 3000, use `npm run dev:3000`; the port must be available.
+
+### Optional service configuration
+
+Copy `.env.example` to `.env.local` if that file does not already exist, then replace its placeholder values with your configuration. Do not overwrite an existing local configuration.
+
+| Variable | Purpose |
+| --- | --- |
+| `VITE_FORMSPREE_ENDPOINT` | Public Formspree endpoint for the name, email, and message form. |
+| `VITE_ENABLE_CONTENT_API` | Set to `true` to load saved content during local development. Production enables loading automatically. |
+| `BLOB_READ_WRITE_TOKEN` | Server-side credential for Vercel Blob content storage. |
+| `ADMIN_TOKEN` | Private token required to save dashboard edits through the API. |
+
+Keep server credentials out of client-side `VITE_` variables and version control. Restart development after changing environment configuration.
+
+To test the dashboard save/load flow locally, install and authenticate the Vercel CLI, configure the server environment, and run the Vercel development server. In PowerShell:
 
 ```powershell
 $env:VITE_ENABLE_CONTENT_API = "true"
 npm run dev:vercel
 ```
 
-Build the deployable static site:
+Plain Vite serves the frontend but does not run `api/content.js`.
 
-```powershell
-npm run build
+## Content and project structure
+
+Capability labels provide a second way to browse projects without changing their curated order. Edit the slug mappings in `src/data/projectCapabilities.js` to group work under data modeling and analysis, interaction and interface design, or content and publishing systems. A project can belong to multiple groups. These editorial navigation labels are maintained in code rather than the content dashboard.
+
+
+| Location | Responsibility |
+| --- | --- |
+| `src/App.jsx` | Routes and runtime content loading. |
+| `src/pages/HomePage.jsx` | Introduction, selected projects, and contact form. |
+| `src/pages/ExperiencePage.jsx` | Professional background and responsibilities. |
+| `src/pages/CaseStudiesPage.jsx` | Project search, filters, and sorting. |
+| `src/pages/ProjectPage.jsx` | Shared case-study detail layout. |
+| `src/pages/AdminPage.jsx` | Owner content editor. |
+| `src/data/profile.js` | Profile copy, experience content, links, and contact configuration. |
+| `src/data/projects.js` | Project narratives, metadata, images, and links. |
+| `src/lib/contentModel.js` | Default content, normalization, and derived project lists. |
+| `src/lib/sanitizeContent.js` | Content validation, URL sanitization, and legacy migrations. |
+| `api/content.js` | Content reads and authorized writes through Vercel Blob. |
+| `src/components`, `src/styles.css` | Reusable interface elements and styling. |
+| `public` | Static assets, favicon, and static-host routing fallback. |
+| `test` | Node test suite. |
+| `source-materials` | Archived references and prototypes outside the active application. |
+
+Public routes include `/`, `/experience`, `/case-studies`, and `/projects/:slug`. The former `/taste` URL also opens Experience. The editor is at `/admin`.
+
+### Editing case studies
+
+Project records support summaries, problems, outcomes, roles, timelines, collaborators, tools, decisions, narrative sections, next steps, optional metrics, and application/repository links.
+
+- `visibility: "listed"` includes a project in public lists.
+- `visibility: "hidden"` removes it from lists **but leaves its direct route accessible**. It is not a privacy control.
+- `priority` determines default order; lower numbers appear first. The homepage initially shows the first four listed projects.
+- `stage` and `emphasisLabel` describe project status without changing priority.
+- `category` supports filtering; `cardImage` supplies the card image and alternative text.
+
+The hidden `/projects/template` entry provides a drafting pattern. Related applications have their own repositories; their code should not be mixed into this portfolio.
+
+### Saved content versus repository defaults
+
+Dashboard changes live in Vercel Blob and are **not automatically committed to Git**. Saved fields generally take precedence over defaults, with normalization restoring missing projects and selected legacy or incomplete fields. A code deployment alone does not replace previously saved copy.
+
+Before publishing revised content, compare the saved document with `src/data/profile.js` and `src/data/projects.js`. Local Vite previews can show different copy because API loading is disabled by default.
+
+Use **Download JSON** in the dashboard to export the current editor document, or retrieve saved content:
+
+```sh
+npm run content:pull
 ```
 
-If the local npm launcher points at a broken user-level npm install, use the Node-bundled npm CLI directly:
+By default, this reads `https://michaelbaker.vercel.app/api/content` and writes `content-snapshots/latest-content.json`. To use another endpoint or destination:
 
-```powershell
-node "<node-install-dir>\node_modules\npm\bin\npm-cli.js" install
-node "<node-install-dir>\node_modules\npm\bin\npm-cli.js" run build
+```sh
+npm run content:pull -- https://your-preview-url.vercel.app/api/content content-snapshots/preview-content.json
 ```
+
+Review snapshots before incorporating them into repository defaults.
 
 ## Deployment
 
-This is a static Vite app. The production build output is `dist`.
-
 ### Vercel
 
-Recommended first host.
+Import the repository using the Vite build settings:
 
-1. Import the GitHub repo into Vercel.
-2. Use the Vite defaults:
-   - Build command: `npm run build`
-   - Output directory: `dist`
-3. Add the environment variable:
-   - `VITE_FORMSPREE_ENDPOINT`
-4. To enable the admin dashboard, also add:
-   - `BLOB_READ_WRITE_TOKEN`
-   - `ADMIN_TOKEN`
-4. Deploy.
+- Build command: `npm run build`
+- Output directory: `dist`
+- Contact configuration: `VITE_FORMSPREE_ENDPOINT`
+- Dashboard configuration: Vercel Blob storage, `BLOB_READ_WRITE_TOKEN`, and `ADMIN_TOKEN`
 
-`vercel.json` includes a rewrite so direct visits to routes like `/case-studies` and `/projects/mikeslist` serve the React app instead of returning 404.
+`vercel.json` provides the single-page application route fallback while preserving API and asset paths. Once deployed, visit `/admin` to load saved content or start from defaults, edit, and save using the admin token.
 
-### Cloudflare Pages
+### Static hosting
 
-Good second host and a useful comparison point.
+The frontend can also be hosted as static files with a route fallback. `public/_redirects` supplies that fallback for hosts such as Cloudflare Pages. The Vercel content endpoint does not run on a static-only host; dashboard persistence requires a compatible backend. Without one, the public site uses repository defaults.
 
-1. Create a Cloudflare Pages project from the GitHub repo.
-2. Use:
-   - Framework preset: Vite
-   - Build command: `npm run build`
-   - Build output directory: `dist`
-3. Add the environment variable:
-   - `VITE_FORMSPREE_ENDPOINT`
-4. Deploy.
+### Before publishing
 
-`public/_redirects` is copied into `dist` during the Vite build and gives Cloudflare Pages the same SPA route fallback.
+1. Check the changed pages locally, including narrow layouts and navigation.
+2. Run `npm test` and `npm run build`.
+3. Review project visibility, factual claims, links, and any saved-content differences.
+4. Keep `.env.local`, dependencies, build output, caches, and archived package-manager artifacts out of the commit.
 
-## Related Projects
+## Credits
 
-Related app projects may live beside this folder in a shared apps workspace:
+This project began as a fork of [machadop1407/beautiful-react-tailwind-portfolio](https://github.com/machadop1407/beautiful-react-tailwind-portfolio), which supplied the initial React/Tailwind portfolio foundation.
 
-- Mike's List: [mikeslist.xyz](https://mikeslist.xyz) / [`michael-baker-content/mikeslist`](https://github.com/michael-baker-content/mikeslist)
-- Greeting Card app: `../Greeting`
-
-The Portfolio project may link to those apps, but their app code should not be mixed back into this repo root.
-
-## Source Materials
-
-`source-materials` is for archived references, old prototypes, and files that are useful context but not part of the active Portfolio app.
-
-Current source-material groups:
-
-- `source-materials/music-show-explorer`: legacy Mike's List / Show Explorer materials kept for reference.
-- `source-materials/static-prototype`: the previous static prototype.
-- `source-materials/package-manager-artifacts`: old package-manager artifacts. This folder is ignored by Git and is not part of the active project.
-- `source-materials/empty-folders`: recovered empty folder names from earlier cleanup.
-
-## Push Checklist
-
-Before pushing to GitHub:
-
-1. Confirm the app runs locally at the URL printed by `npm run dev`.
-2. Confirm `.env.local` is not staged.
-3. Run `npm test`.
-4. Run `npm run build`.
-5. Check that `node_modules`, `dist`, `.npm-cache`, and `source-materials/package-manager-artifacts` are not staged.
-6. Review case-study visibility so drafts are not accidentally public.
+The current implementation adds the experience and project paths, structured case studies, search and filtering, owner content editing, validation and fallback behavior, and a revised visual identity. The repository retains the name `portfolio-deluxe` from that development history.
